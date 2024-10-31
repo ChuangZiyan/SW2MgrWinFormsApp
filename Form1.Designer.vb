@@ -22,99 +22,106 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Button1 = New Button()
-        Button2 = New Button()
-        Button3 = New Button()
-        Button4 = New Button()
-        Button5 = New Button()
-        ListView1 = New ListView()
-        ColumnHeader1 = New ColumnHeader()
-        ColumnHeader2 = New ColumnHeader()
-        ColumnHeader3 = New ColumnHeader()
-        ColumnHeader4 = New ColumnHeader()
+        CreateNewSW2App_Button = New Button()
+        DeleteSelectedSW2AppFolder_Button = New Button()
+        LaunchSeletedSW2App_Button = New Button()
+        TerminateSW2AppByPId_Button = New Button()
+        UpdateSW2AppListView_Button = New Button()
+        SW2App_ListView = New ListView()
+        SW2App_PId_ColumnHeader = New ColumnHeader()
+        SW2App_FolderName_ColumnHeader = New ColumnHeader()
+        SW2App_Version_ColumnHeader = New ColumnHeader()
+        SW2App_Status_ColumnHeader = New ColumnHeader()
         ColumnHeader5 = New ColumnHeader()
         Label1 = New Label()
-        TextBox1 = New TextBox()
+        NewSW2FolderName_TextBox = New TextBox()
         Label2 = New Label()
         Button6 = New Button()
-        TextBox2 = New TextBox()
+        SourceSW2AppVersion_TextBox = New TextBox()
         RevealAppSourceFolder_Button = New Button()
         Button8 = New Button()
         Button9 = New Button()
         SuspendLayout()
         ' 
-        ' Button1
+        ' CreateNewSW2App_Button
         ' 
-        Button1.Location = New Point(274, 57)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(94, 29)
-        Button1.TabIndex = 1
-        Button1.Text = "新增"
-        Button1.UseVisualStyleBackColor = True
+        CreateNewSW2App_Button.Location = New Point(410, 57)
+        CreateNewSW2App_Button.Name = "CreateNewSW2App_Button"
+        CreateNewSW2App_Button.Size = New Size(94, 29)
+        CreateNewSW2App_Button.TabIndex = 1
+        CreateNewSW2App_Button.Text = "新增"
+        CreateNewSW2App_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button2
+        ' DeleteSelectedSW2AppFolder_Button
         ' 
-        Button2.Location = New Point(374, 57)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(94, 29)
-        Button2.TabIndex = 2
-        Button2.Text = "刪除"
-        Button2.UseVisualStyleBackColor = True
+        DeleteSelectedSW2AppFolder_Button.Location = New Point(510, 57)
+        DeleteSelectedSW2AppFolder_Button.Name = "DeleteSelectedSW2AppFolder_Button"
+        DeleteSelectedSW2AppFolder_Button.Size = New Size(94, 29)
+        DeleteSelectedSW2AppFolder_Button.TabIndex = 2
+        DeleteSelectedSW2AppFolder_Button.Text = "刪除"
+        DeleteSelectedSW2AppFolder_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button3
+        ' LaunchSeletedSW2App_Button
         ' 
-        Button3.Location = New Point(12, 506)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(94, 29)
-        Button3.TabIndex = 3
-        Button3.Text = "啟動"
-        Button3.UseVisualStyleBackColor = True
+        LaunchSeletedSW2App_Button.Location = New Point(12, 506)
+        LaunchSeletedSW2App_Button.Name = "LaunchSeletedSW2App_Button"
+        LaunchSeletedSW2App_Button.Size = New Size(94, 29)
+        LaunchSeletedSW2App_Button.TabIndex = 3
+        LaunchSeletedSW2App_Button.Text = "啟動"
+        LaunchSeletedSW2App_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button4
+        ' TerminateSW2AppByPId_Button
         ' 
-        Button4.Location = New Point(112, 506)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(94, 29)
-        Button4.TabIndex = 4
-        Button4.Text = "關閉所選"
-        Button4.UseVisualStyleBackColor = True
+        TerminateSW2AppByPId_Button.Location = New Point(112, 506)
+        TerminateSW2AppByPId_Button.Name = "TerminateSW2AppByPId_Button"
+        TerminateSW2AppByPId_Button.Size = New Size(94, 29)
+        TerminateSW2AppByPId_Button.TabIndex = 4
+        TerminateSW2AppByPId_Button.Text = "關閉所選"
+        TerminateSW2AppByPId_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button5
+        ' UpdateSW2AppListView_Button
         ' 
-        Button5.Location = New Point(474, 57)
-        Button5.Name = "Button5"
-        Button5.Size = New Size(94, 29)
-        Button5.TabIndex = 5
-        Button5.Text = "重新整理"
-        Button5.UseVisualStyleBackColor = True
+        UpdateSW2AppListView_Button.Location = New Point(610, 57)
+        UpdateSW2AppListView_Button.Name = "UpdateSW2AppListView_Button"
+        UpdateSW2AppListView_Button.Size = New Size(94, 29)
+        UpdateSW2AppListView_Button.TabIndex = 5
+        UpdateSW2AppListView_Button.Text = "重新整理"
+        UpdateSW2AppListView_Button.UseVisualStyleBackColor = True
         ' 
-        ' ListView1
+        ' SW2App_ListView
         ' 
-        ListView1.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2, ColumnHeader3, ColumnHeader4, ColumnHeader5})
-        ListView1.Location = New Point(12, 92)
-        ListView1.Name = "ListView1"
-        ListView1.Size = New Size(556, 408)
-        ListView1.TabIndex = 6
-        ListView1.UseCompatibleStateImageBehavior = False
-        ListView1.View = View.Details
+        SW2App_ListView.Columns.AddRange(New ColumnHeader() {SW2App_PId_ColumnHeader, SW2App_FolderName_ColumnHeader, SW2App_Version_ColumnHeader, SW2App_Status_ColumnHeader, ColumnHeader5})
+        SW2App_ListView.FullRowSelect = True
+        SW2App_ListView.Location = New Point(12, 92)
+        SW2App_ListView.Name = "SW2App_ListView"
+        SW2App_ListView.Size = New Size(692, 408)
+        SW2App_ListView.TabIndex = 6
+        SW2App_ListView.UseCompatibleStateImageBehavior = False
+        SW2App_ListView.View = View.Details
         ' 
-        ' ColumnHeader1
+        ' SW2App_PId_ColumnHeader
         ' 
-        ColumnHeader1.Text = "PID"
-        ColumnHeader1.Width = 100
+        SW2App_PId_ColumnHeader.Text = "PID"
+        SW2App_PId_ColumnHeader.Width = 80
         ' 
-        ' ColumnHeader2
+        ' SW2App_FolderName_ColumnHeader
         ' 
-        ColumnHeader2.Text = "資料夾名稱"
-        ColumnHeader2.Width = 120
+        SW2App_FolderName_ColumnHeader.Text = "資料夾名稱"
+        SW2App_FolderName_ColumnHeader.Width = 150
         ' 
-        ' ColumnHeader3
+        ' SW2App_Version_ColumnHeader
         ' 
-        ColumnHeader3.Text = "版本"
+        SW2App_Version_ColumnHeader.Text = "版本"
+        SW2App_Version_ColumnHeader.Width = 150
         ' 
-        ' ColumnHeader4
+        ' SW2App_Status_ColumnHeader
         ' 
-        ColumnHeader4.Text = "狀態"
+        SW2App_Status_ColumnHeader.Text = "狀態"
+        ' 
+        ' ColumnHeader5
+        ' 
+        ColumnHeader5.Text = "保留"
+        ColumnHeader5.Width = 150
         ' 
         ' Label1
         ' 
@@ -125,12 +132,12 @@ Partial Class Form1
         Label1.TabIndex = 7
         Label1.Text = "資料夾名稱: "
         ' 
-        ' TextBox1
+        ' NewSW2FolderName_TextBox
         ' 
-        TextBox1.Location = New Point(109, 57)
-        TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(159, 27)
-        TextBox1.TabIndex = 8
+        NewSW2FolderName_TextBox.Location = New Point(109, 57)
+        NewSW2FolderName_TextBox.Name = "NewSW2FolderName_TextBox"
+        NewSW2FolderName_TextBox.Size = New Size(295, 27)
+        NewSW2FolderName_TextBox.TabIndex = 8
         ' 
         ' Label2
         ' 
@@ -143,23 +150,24 @@ Partial Class Form1
         ' 
         ' Button6
         ' 
-        Button6.Location = New Point(374, 17)
+        Button6.Location = New Point(510, 17)
         Button6.Name = "Button6"
         Button6.Size = New Size(94, 29)
         Button6.TabIndex = 1
         Button6.Text = "更新所選"
         Button6.UseVisualStyleBackColor = True
         ' 
-        ' TextBox2
+        ' SourceSW2AppVersion_TextBox
         ' 
-        TextBox2.Location = New Point(109, 17)
-        TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(159, 27)
-        TextBox2.TabIndex = 2
+        SourceSW2AppVersion_TextBox.Location = New Point(109, 17)
+        SourceSW2AppVersion_TextBox.Name = "SourceSW2AppVersion_TextBox"
+        SourceSW2AppVersion_TextBox.ReadOnly = True
+        SourceSW2AppVersion_TextBox.Size = New Size(295, 27)
+        SourceSW2AppVersion_TextBox.TabIndex = 2
         ' 
         ' RevealAppSourceFolder_Button
         ' 
-        RevealAppSourceFolder_Button.Location = New Point(274, 17)
+        RevealAppSourceFolder_Button.Location = New Point(410, 17)
         RevealAppSourceFolder_Button.Name = "RevealAppSourceFolder_Button"
         RevealAppSourceFolder_Button.Size = New Size(94, 29)
         RevealAppSourceFolder_Button.TabIndex = 3
@@ -168,7 +176,7 @@ Partial Class Form1
         ' 
         ' Button8
         ' 
-        Button8.Location = New Point(474, 506)
+        Button8.Location = New Point(610, 506)
         Button8.Name = "Button8"
         Button8.Size = New Size(94, 29)
         Button8.TabIndex = 10
@@ -177,7 +185,7 @@ Partial Class Form1
         ' 
         ' Button9
         ' 
-        Button9.Location = New Point(474, 17)
+        Button9.Location = New Point(610, 17)
         Button9.Name = "Button9"
         Button9.Size = New Size(94, 29)
         Button9.TabIndex = 11
@@ -188,40 +196,40 @@ Partial Class Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1118, 658)
+        ClientSize = New Size(1118, 611)
         Controls.Add(Button9)
         Controls.Add(RevealAppSourceFolder_Button)
         Controls.Add(Button8)
-        Controls.Add(TextBox2)
+        Controls.Add(SourceSW2AppVersion_TextBox)
         Controls.Add(Button6)
-        Controls.Add(TextBox1)
+        Controls.Add(NewSW2FolderName_TextBox)
         Controls.Add(Label2)
         Controls.Add(Label1)
-        Controls.Add(ListView1)
-        Controls.Add(Button5)
-        Controls.Add(Button4)
-        Controls.Add(Button3)
-        Controls.Add(Button2)
-        Controls.Add(Button1)
+        Controls.Add(SW2App_ListView)
+        Controls.Add(UpdateSW2AppListView_Button)
+        Controls.Add(TerminateSW2AppByPId_Button)
+        Controls.Add(LaunchSeletedSW2App_Button)
+        Controls.Add(DeleteSelectedSW2AppFolder_Button)
+        Controls.Add(CreateNewSW2App_Button)
         Name = "Form1"
         Text = "Form1"
         ResumeLayout(False)
         PerformLayout()
     End Sub
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Button5 As Button
-    Friend WithEvents ListView1 As ListView
-    Friend WithEvents ColumnHeader1 As ColumnHeader
-    Friend WithEvents ColumnHeader2 As ColumnHeader
-    Friend WithEvents ColumnHeader3 As ColumnHeader
-    Friend WithEvents ColumnHeader4 As ColumnHeader
+    Friend WithEvents CreateNewSW2App_Button As Button
+    Friend WithEvents DeleteSelectedSW2AppFolder_Button As Button
+    Friend WithEvents LaunchSeletedSW2App_Button As Button
+    Friend WithEvents TerminateSW2AppByPId_Button As Button
+    Friend WithEvents UpdateSW2AppListView_Button As Button
+    Friend WithEvents SW2App_ListView As ListView
+    Friend WithEvents SW2App_PId_ColumnHeader As ColumnHeader
+    Friend WithEvents SW2App_FolderName_ColumnHeader As ColumnHeader
+    Friend WithEvents SW2App_Version_ColumnHeader As ColumnHeader
+    Friend WithEvents SW2App_Status_ColumnHeader As ColumnHeader
     Friend WithEvents ColumnHeader5 As ColumnHeader
     Friend WithEvents Label1 As Label
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents NewSW2FolderName_TextBox As TextBox
+    Friend WithEvents SourceSW2AppVersion_TextBox As TextBox
     Friend WithEvents Button6 As Button
     Friend WithEvents Label2 As Label
     Friend WithEvents RevealAppSourceFolder_Button As Button
