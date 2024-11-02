@@ -212,7 +212,8 @@ Partial Class Form1
         Controls.Add(DeleteSelectedSW2AppFolder_Button)
         Controls.Add(CreateNewSW2App_Button)
         Name = "Form1"
-        Text = "Form1"
+        StartPosition = FormStartPosition.Manual
+        Text = "SW2App 主控"
         ResumeLayout(False)
         PerformLayout()
     End Sub
