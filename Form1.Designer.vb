@@ -41,6 +41,16 @@ Partial Class Form1
         RevealAppSourceFolder_Button = New Button()
         Button8 = New Button()
         Button9 = New Button()
+        AppConfigs_GroupBox = New GroupBox()
+        Label4 = New Label()
+        SW2App_ScheduledRun_RadioButton = New RadioButton()
+        SW2App_SequentialRun_RadioButton = New RadioButton()
+        SW2App_AutoRunDelaySeconds_NumericUpDown = New NumericUpDown()
+        Label3 = New Label()
+        SW2App_AutoRun_CheckBox = New CheckBox()
+        SaveSW2AppConfigs_Button = New Button()
+        AppConfigs_GroupBox.SuspendLayout()
+        CType(SW2App_AutoRunDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' CreateNewSW2App_Button
@@ -192,11 +202,96 @@ Partial Class Form1
         Button9.Text = "全部更新"
         Button9.UseVisualStyleBackColor = True
         ' 
+        ' AppConfigs_GroupBox
+        ' 
+        AppConfigs_GroupBox.Controls.Add(Label4)
+        AppConfigs_GroupBox.Controls.Add(SW2App_ScheduledRun_RadioButton)
+        AppConfigs_GroupBox.Controls.Add(SW2App_SequentialRun_RadioButton)
+        AppConfigs_GroupBox.Controls.Add(SW2App_AutoRunDelaySeconds_NumericUpDown)
+        AppConfigs_GroupBox.Controls.Add(Label3)
+        AppConfigs_GroupBox.Controls.Add(SW2App_AutoRun_CheckBox)
+        AppConfigs_GroupBox.Location = New Point(710, 92)
+        AppConfigs_GroupBox.Name = "AppConfigs_GroupBox"
+        AppConfigs_GroupBox.Size = New Size(322, 408)
+        AppConfigs_GroupBox.TabIndex = 12
+        AppConfigs_GroupBox.TabStop = False
+        AppConfigs_GroupBox.Text = "程式設置"
+        ' 
+        ' Label4
+        ' 
+        Label4.AutoSize = True
+        Label4.Location = New Point(6, 63)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(80, 19)
+        Label4.TabIndex = 6
+        Label4.Text = "執行模式 : "
+        ' 
+        ' SW2App_ScheduledRun_RadioButton
+        ' 
+        SW2App_ScheduledRun_RadioButton.AutoSize = True
+        SW2App_ScheduledRun_RadioButton.Location = New Point(188, 61)
+        SW2App_ScheduledRun_RadioButton.Name = "SW2App_ScheduledRun_RadioButton"
+        SW2App_ScheduledRun_RadioButton.Size = New Size(90, 23)
+        SW2App_ScheduledRun_RadioButton.TabIndex = 5
+        SW2App_ScheduledRun_RadioButton.TabStop = True
+        SW2App_ScheduledRun_RadioButton.Text = "定時執行"
+        SW2App_ScheduledRun_RadioButton.UseVisualStyleBackColor = True
+        ' 
+        ' SW2App_SequentialRun_RadioButton
+        ' 
+        SW2App_SequentialRun_RadioButton.AutoSize = True
+        SW2App_SequentialRun_RadioButton.Location = New Point(92, 61)
+        SW2App_SequentialRun_RadioButton.Name = "SW2App_SequentialRun_RadioButton"
+        SW2App_SequentialRun_RadioButton.Size = New Size(90, 23)
+        SW2App_SequentialRun_RadioButton.TabIndex = 4
+        SW2App_SequentialRun_RadioButton.TabStop = True
+        SW2App_SequentialRun_RadioButton.Text = "順序執行"
+        SW2App_SequentialRun_RadioButton.UseVisualStyleBackColor = True
+        ' 
+        ' SW2App_AutoRunDelaySeconds_NumericUpDown
+        ' 
+        SW2App_AutoRunDelaySeconds_NumericUpDown.Location = New Point(204, 22)
+        SW2App_AutoRunDelaySeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        SW2App_AutoRunDelaySeconds_NumericUpDown.Name = "SW2App_AutoRunDelaySeconds_NumericUpDown"
+        SW2App_AutoRunDelaySeconds_NumericUpDown.Size = New Size(60, 27)
+        SW2App_AutoRunDelaySeconds_NumericUpDown.TabIndex = 3
+        SW2App_AutoRunDelaySeconds_NumericUpDown.Value = New Decimal(New Integer() {15, 0, 0, 0})
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Location = New Point(118, 27)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(80, 19)
+        Label3.TabIndex = 2
+        Label3.Text = "延遲秒數 : "
+        ' 
+        ' SW2App_AutoRun_CheckBox
+        ' 
+        SW2App_AutoRun_CheckBox.AutoSize = True
+        SW2App_AutoRun_CheckBox.Location = New Point(6, 26)
+        SW2App_AutoRun_CheckBox.Name = "SW2App_AutoRun_CheckBox"
+        SW2App_AutoRun_CheckBox.Size = New Size(106, 23)
+        SW2App_AutoRun_CheckBox.TabIndex = 0
+        SW2App_AutoRun_CheckBox.Text = "啟動時執行"
+        SW2App_AutoRun_CheckBox.UseVisualStyleBackColor = True
+        ' 
+        ' SaveSW2AppConfigs_Button
+        ' 
+        SaveSW2AppConfigs_Button.Location = New Point(938, 506)
+        SaveSW2AppConfigs_Button.Name = "SaveSW2AppConfigs_Button"
+        SaveSW2AppConfigs_Button.Size = New Size(94, 29)
+        SaveSW2AppConfigs_Button.TabIndex = 13
+        SaveSW2AppConfigs_Button.Text = "儲存"
+        SaveSW2AppConfigs_Button.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1118, 611)
+        ClientSize = New Size(1057, 603)
+        Controls.Add(SaveSW2AppConfigs_Button)
+        Controls.Add(AppConfigs_GroupBox)
         Controls.Add(Button9)
         Controls.Add(RevealAppSourceFolder_Button)
         Controls.Add(Button8)
@@ -214,6 +309,9 @@ Partial Class Form1
         Name = "Form1"
         StartPosition = FormStartPosition.Manual
         Text = "SW2App 主控"
+        AppConfigs_GroupBox.ResumeLayout(False)
+        AppConfigs_GroupBox.PerformLayout()
+        CType(SW2App_AutoRunDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -236,5 +334,13 @@ Partial Class Form1
     Friend WithEvents RevealAppSourceFolder_Button As Button
     Friend WithEvents Button8 As Button
     Friend WithEvents Button9 As Button
+    Friend WithEvents AppConfigs_GroupBox As GroupBox
+    Friend WithEvents SaveSW2AppConfigs_Button As Button
+    Friend WithEvents Label3 As Label
+    Friend WithEvents SW2App_AutoRun_CheckBox As CheckBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents SW2App_ScheduledRun_RadioButton As RadioButton
+    Friend WithEvents SW2App_SequentialRun_RadioButton As RadioButton
+    Friend WithEvents SW2App_AutoRunDelaySeconds_NumericUpDown As NumericUpDown
 
 End Class

@@ -11,7 +11,7 @@ Module MainFormController
             Dim sw2appListViewItem As New ListViewItem()
             Dim folderName As String = Path.GetFileName(dir)
 
-            Dim myProfile As Webview2AppProfile = getProfile(folderName)
+            Dim myProfile As Webview2AppProfile = GetProfile(folderName)
 
             sw2appListViewItem.SubItems.Add(folderName)
             sw2appListViewItem.SubItems.Add(myProfile.Version)
@@ -25,7 +25,7 @@ Module MainFormController
     End Sub
 
 
-    Private Function getProfile(folderName)
+    Private Function GetProfile(folderName)
         Try
             Dim profile As New Webview2AppProfile With {
                 .Version = "N/A",    ' 設定預設版本號
@@ -33,7 +33,7 @@ Module MainFormController
             }
 
             Dim filePath As String = Path.Combine(AppInitModule.webview2AppDirectory, folderName, "mySW2App", "appConfigs", "profile.json")
-            Debug.WriteLine(filePath)
+            ' Debug.WriteLine(filePath)
             ' 如果 profile.json 檔案存在，就讀取檔案並反序列化
             If File.Exists(filePath) Then
                 Dim jsonString As String = File.ReadAllText(filePath)
@@ -46,6 +46,33 @@ Module MainFormController
             Return Nothing
         End Try
 
+    End Function
+
+
+    Public Function GetAppConfigs(folderName)
+        Try
+            Dim appConfigs As New AppConfigs With {
+                .AutoRun = False,
+                .AutoRunDelaySeconds = 15,
+                .ScheduledRun = False
+            }
+
+            Dim filePath As String = Path.Combine(AppInitModule.webview2AppDirectory, folderName, "mySW2App", "appConfigs", "appConfigs.json")
+            ' Debug.WriteLine(filePath)
+            ' 如果 profile.json 檔案存在，就讀取檔案並反序列化
+            If File.Exists(filePath) Then
+                Dim jsonString As String = File.ReadAllText(filePath)
+                appConfigs = JsonConvert.DeserializeObject(Of AppConfigs)(jsonString)
+            Else
+                Dim jsonString As String = JsonConvert.SerializeObject(appConfigs, Formatting.Indented)
+                File.WriteAllText(filePath, jsonString)
+            End If
+
+            Return appConfigs
+        Catch ex As Exception
+            Debug.WriteLine(ex.Message)
+            Return Nothing
+        End Try
 
     End Function
 
@@ -74,6 +101,13 @@ Module MainFormController
     Public Class Webview2AppProfile
         Public Property Version As String
         Public Property BuildDate As String
+
+    End Class
+
+    Public Class AppConfigs
+        Public Property AutoRun As Boolean
+        Public Property AutoRunDelaySeconds As Integer
+        Public Property ScheduledRun As Boolean
 
     End Class
 

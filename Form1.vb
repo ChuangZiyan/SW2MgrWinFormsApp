@@ -1,4 +1,6 @@
 ﻿Imports System.IO
+Imports Newtonsoft.Json
+Imports SW2MgrWinFormsApp.MainFormController
 
 Public Class Form1
     Private Sub RevealAppSourceFolder_Button_Click(sender As Object, e As EventArgs) Handles RevealAppSourceFolder_Button.Click
@@ -30,9 +32,9 @@ Public Class Form1
                 If Directory.Exists(sourceFolder) Then
                     ' 複製資料夾到目標位置，並遞迴複製所有子目錄和檔案
                     DirectoryCopy(sourceFolder, destinationPath, True)
-                    Console.WriteLine("資料夾已成功複製並重新命名！")
+                    Debug.WriteLine("資料夾已成功複製並重新命名！")
                 Else
-                    Console.WriteLine("來源資料夾不存在！")
+                    Debug.WriteLine("來源資料夾不存在！")
                 End If
 
                 'Directory.CreateDirectory(Path.Combine(folderPath, "null"))
@@ -99,8 +101,6 @@ Public Class Form1
             MsgBox("無法啟動")
         End Try
 
-
-
     End Sub
 
     Private Sub TerminateSW2AppByPId_Button_Click(sender As Object, e As EventArgs) Handles TerminateSW2AppByPId_Button.Click
@@ -126,6 +126,58 @@ Public Class Form1
             Debug.WriteLine(ex)
             MsgBox("關閉失敗")
         End Try
+    End Sub
+
+    Private Sub SW2App_ListView_SelectedIndexChanged(sender As Object, e As EventArgs) Handles SW2App_ListView.SelectedIndexChanged
+        Try
+            Dim selectedSW2AppListViewItems = SW2App_ListView.SelectedItems
+            If selectedSW2AppListViewItems.Count > 0 Then
+                Dim folderName = selectedSW2AppListViewItems(0).SubItems(1).Text
+                'Debug.WriteLine(folderName)
+                Dim appConfigs As AppConfigs = GetAppConfigs(folderName)
+                SW2App_AutoRun_CheckBox.Checked = appConfigs.AutoRun
+                SW2App_AutoRunDelaySeconds_NumericUpDown.Value = appConfigs.AutoRunDelaySeconds
+                If appConfigs.ScheduledRun Then
+                    SW2App_ScheduledRun_RadioButton.Checked = True
+                    SW2App_SequentialRun_RadioButton.Checked = False
+                Else
+                    SW2App_ScheduledRun_RadioButton.Checked = False
+                    SW2App_SequentialRun_RadioButton.Checked = True
+                End If
+
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Debug.WriteLine("讀取SW2 Configs失敗")
+        End Try
+
+    End Sub
+
+    Private Sub SaveSW2AppConfigs_Button_Click(sender As Object, e As EventArgs) Handles SaveSW2AppConfigs_Button.Click
+        Try
+            Dim selectedSW2AppListViewItems = SW2App_ListView.SelectedItems
+
+            If selectedSW2AppListViewItems.Count > 0 Then
+                Dim folderName = selectedSW2AppListViewItems(0).SubItems(1).Text
+                Dim filePath As String = Path.Combine(AppInitModule.webview2AppDirectory, folderName, "mySW2App", "appConfigs", "appConfigs.json")
+
+                Dim appConfigs As New AppConfigs With {
+                    .AutoRun = SW2App_AutoRun_CheckBox.Checked,
+                    .AutoRunDelaySeconds = SW2App_AutoRunDelaySeconds_NumericUpDown.Value,
+                    .ScheduledRun = SW2App_ScheduledRun_RadioButton.Checked
+                }
+                Dim jsonString As String = JsonConvert.SerializeObject(appConfigs, Formatting.Indented)
+                File.WriteAllText(filePath, jsonString)
+                MsgBox("儲存成功")
+            Else
+                MsgBox("未選擇程式")
+            End If
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("寫入失敗")
+        End Try
+
     End Sub
 
 End Class
