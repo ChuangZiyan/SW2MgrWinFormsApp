@@ -39,7 +39,7 @@ Module AppInitModule
                 .BuildDate = "N/A"
             }
 
-            Dim filePath As String = Path.Combine(AppInitModule.webview2AppSourceDirectory, "mySW2App", "appConfigs", "profile.json")
+            Dim filePath As String = Path.Combine(AppInitModule.webview2AppSourceDirectory, "appConfigs", "profile.json")
             'Debug.WriteLine(filePath)
             ' 如果 profile.json 檔案存在，就讀取檔案並反序列化
             If File.Exists(filePath) Then
@@ -48,7 +48,6 @@ Module AppInitModule
             End If
 
             Form1.SourceSW2AppVersion_TextBox.Text = profile.Version
-
 
         Catch ex As Exception
             Debug.WriteLine(ex)

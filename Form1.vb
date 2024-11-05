@@ -25,21 +25,19 @@ Public Class Form1
                 Directory.CreateDirectory(folderPath)
 
                 ' 複製SW2 source 到 新資料夾
-                Dim sourceFolder As String = Path.Combine(AppInitModule.webview2AppSourceDirectory, "mySW2App")
+                Dim sourceFolder As String = AppInitModule.webview2AppSourceDirectory
 
-                Dim destinationPath As String = Path.Combine(folderPath, "mySW2App")
+                Dim destinationPath As String = folderPath
 
                 If Directory.Exists(sourceFolder) Then
-                    ' 複製資料夾到目標位置，並遞迴複製所有子目錄和檔案
                     DirectoryCopy(sourceFolder, destinationPath, True)
-                    Debug.WriteLine("資料夾已成功複製並重新命名！")
                 Else
-                    Debug.WriteLine("來源資料夾不存在！")
+                    Debug.WriteLine("source not found")
                 End If
 
                 'Directory.CreateDirectory(Path.Combine(folderPath, "null"))
                 MainFormController.UpdateSW2AppListView()
-
+                NewSW2FolderName_TextBox.Clear()
             Else
                 MsgBox("無法使用此名稱")
             End If
@@ -51,6 +49,7 @@ Public Class Form1
 
     Private Sub UpdateSW2AppListView_Button_Click(sender As Object, e As EventArgs) Handles UpdateSW2AppListView_Button.Click
         MainFormController.UpdateSW2AppListView()
+        AppInitModule.ReadSourceAppProfile()
     End Sub
 
     Private Sub DeleteSelectedSW2AppFolder_Button_Click(sender As Object, e As EventArgs) Handles DeleteSelectedSW2AppFolder_Button.Click
@@ -79,17 +78,15 @@ Public Class Form1
 
         Try
             If SW2App_ListView.SelectedItems.Count > 0 Then
-
                 Dim selectedSW2Item As ListViewItem = SW2App_ListView.SelectedItems.Item(0)
-                Dim exePath As String = Path.Combine(AppInitModule.webview2AppDirectory, selectedSW2Item.SubItems(1).Text, "mySW2App", "SW2WinFormsApp.exe")
-                'Debug.WriteLine("exepath : " & exePath)
+                Dim exePath As String = Path.Combine(AppInitModule.webview2AppDirectory, selectedSW2Item.SubItems(1).Text, "SW2WinFormsApp.exe")
+                Debug.WriteLine("exepath : " & exePath)
                 If File.Exists(exePath) Then
-
+                    LaunchSeletedSW2App_Button.Enabled = False
                     Dim process As Process = Process.Start(exePath)
                     Dim pid As Integer = process.Id
                     selectedSW2Item.SubItems(0).Text = pid.ToString()
                     selectedSW2Item.SubItems(3).Text = "On"
-
                 Else
                     Debug.WriteLine("找不到指定的exe檔案！")
                 End If
@@ -99,6 +96,7 @@ Public Class Form1
         Catch ex As Exception
             Debug.WriteLine(ex)
             MsgBox("無法啟動")
+            LaunchSeletedSW2App_Button.Enabled = True
         End Try
 
     End Sub
@@ -118,6 +116,7 @@ Public Class Form1
 
                 selectedSW2Item.SubItems(0).Text = ""
                 selectedSW2Item.SubItems(3).Text = "Off"
+                LaunchSeletedSW2App_Button.Enabled = True
                 MsgBox("關閉成功")
 
             End If
@@ -132,6 +131,13 @@ Public Class Form1
         Try
             Dim selectedSW2AppListViewItems = SW2App_ListView.SelectedItems
             If selectedSW2AppListViewItems.Count > 0 Then
+
+                If selectedSW2AppListViewItems(0).SubItems(3).Text = "On" Then
+                    LaunchSeletedSW2App_Button.Enabled = False
+                Else
+                    LaunchSeletedSW2App_Button.Enabled = True
+                End If
+
                 Dim folderName = selectedSW2AppListViewItems(0).SubItems(1).Text
                 'Debug.WriteLine(folderName)
                 Dim appConfigs As AppConfigs = GetAppConfigs(folderName)
@@ -159,7 +165,7 @@ Public Class Form1
 
             If selectedSW2AppListViewItems.Count > 0 Then
                 Dim folderName = selectedSW2AppListViewItems(0).SubItems(1).Text
-                Dim filePath As String = Path.Combine(AppInitModule.webview2AppDirectory, folderName, "mySW2App", "appConfigs", "appConfigs.json")
+                Dim filePath As String = Path.Combine(AppInitModule.webview2AppDirectory, folderName, "appConfigs", "appConfigs.json")
 
                 Dim appConfigs As New AppConfigs With {
                     .AutoRun = SW2App_AutoRun_CheckBox.Checked,

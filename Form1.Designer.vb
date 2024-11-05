@@ -289,7 +289,7 @@ Partial Class Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1057, 603)
+        ClientSize = New Size(1057, 552)
         Controls.Add(SaveSW2AppConfigs_Button)
         Controls.Add(AppConfigs_GroupBox)
         Controls.Add(Button9)

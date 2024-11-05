@@ -4,23 +4,52 @@ Module MainFormController
 
     Public Sub UpdateSW2AppListView()
 
-        Form1.SW2App_ListView.Items.Clear()
-
         Dim dirs As String() = Directory.GetDirectories(AppInitModule.webview2AppDirectory)
         For Each dir As String In dirs
-            Dim sw2appListViewItem As New ListViewItem()
-            Dim folderName As String = Path.GetFileName(dir)
 
+            Dim folderName As String = Path.GetFileName(dir)
             Dim myProfile As Webview2AppProfile = GetProfile(folderName)
 
-            sw2appListViewItem.SubItems.Add(folderName)
-            sw2appListViewItem.SubItems.Add(myProfile.Version)
-            '狀態
-            sw2appListViewItem.SubItems.Add("Off")
-            sw2appListViewItem.SubItems.Add("")
-            Form1.SW2App_ListView.Items.Add(sw2appListViewItem)
-        Next
+            Dim exist_app = False
+            Dim app_status = "Off"
+            Dim app_pid = ""
 
+            For Each item As ListViewItem In Form1.SW2App_ListView.Items
+                'Debug.WriteLine("PID: " & item.SubItems(0).Text)
+                Dim exist_app_pid = item.SubItems(0).Text
+                Dim exist_app_name = item.SubItems(1).Text
+                'Debug.WriteLine("Name: " & item.SubItems(1).Text)
+                If exist_app_name = folderName Then
+                    Debug.WriteLine("exist app " & folderName)
+                    exist_app = True
+                    ' check app status with pid
+                    If exist_app_pid <> "" Then
+                        If IsProcessRunning(CInt(exist_app_pid)) Then
+                            Debug.WriteLine("app pid : " & exist_app_pid & " is running ")
+                            app_status = "On"
+                            app_pid = exist_app_pid
+                        Else
+                            item.SubItems(0).Text = app_pid
+                            item.SubItems(3).Text = app_status
+                        End If
+
+                    End If
+
+                    Exit For
+                End If
+            Next
+
+            If Not exist_app Then
+                Dim sw2appListViewItem As New ListViewItem(app_pid)
+                sw2appListViewItem.SubItems.Add(folderName)
+                sw2appListViewItem.SubItems.Add(myProfile.Version)
+                '狀態
+                sw2appListViewItem.SubItems.Add(app_status)
+                sw2appListViewItem.SubItems.Add("")
+                Form1.SW2App_ListView.Items.Add(sw2appListViewItem)
+            End If
+
+        Next
 
     End Sub
 
@@ -32,7 +61,7 @@ Module MainFormController
                 .BuildDate = "N/A" ' 設定預設建置日期
             }
 
-            Dim filePath As String = Path.Combine(AppInitModule.webview2AppDirectory, folderName, "mySW2App", "appConfigs", "profile.json")
+            Dim filePath As String = Path.Combine(AppInitModule.webview2AppDirectory, folderName, "appConfigs", "profile.json")
             ' Debug.WriteLine(filePath)
             ' 如果 profile.json 檔案存在，就讀取檔案並反序列化
             If File.Exists(filePath) Then
@@ -57,7 +86,7 @@ Module MainFormController
                 .ScheduledRun = False
             }
 
-            Dim filePath As String = Path.Combine(AppInitModule.webview2AppDirectory, folderName, "mySW2App", "appConfigs", "appConfigs.json")
+            Dim filePath As String = Path.Combine(AppInitModule.webview2AppDirectory, folderName, "appConfigs", "appConfigs.json")
             ' Debug.WriteLine(filePath)
             ' 如果 profile.json 檔案存在，就讀取檔案並反序列化
             If File.Exists(filePath) Then
@@ -76,27 +105,6 @@ Module MainFormController
 
     End Function
 
-    Public Sub DirectoryCopy(sourceDir As String, destDir As String, copySubDirs As Boolean)
-        Dim dir As DirectoryInfo = New DirectoryInfo(sourceDir)
-        Dim dirs As DirectoryInfo() = dir.GetDirectories()
-
-        If Not Directory.Exists(destDir) Then
-            Directory.CreateDirectory(destDir)
-        End If
-
-        Dim files As FileInfo() = dir.GetFiles()
-        For Each file As FileInfo In files
-            Dim tempPath As String = Path.Combine(destDir, file.Name)
-            file.CopyTo(tempPath, False)
-        Next
-
-        If copySubDirs Then
-            For Each subdir As DirectoryInfo In dirs
-                Dim tempPath As String = Path.Combine(destDir, subdir.Name)
-                DirectoryCopy(subdir.FullName, tempPath, copySubDirs)
-            Next
-        End If
-    End Sub
 
     Public Class Webview2AppProfile
         Public Property Version As String
