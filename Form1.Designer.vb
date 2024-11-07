@@ -39,7 +39,7 @@ Partial Class Form1
         Button6 = New Button()
         SourceSW2AppVersion_TextBox = New TextBox()
         RevealAppSourceFolder_Button = New Button()
-        Button8 = New Button()
+        TerminateAllSW2App_Button = New Button()
         Button9 = New Button()
         AppConfigs_GroupBox = New GroupBox()
         Label4 = New Label()
@@ -184,14 +184,14 @@ Partial Class Form1
         RevealAppSourceFolder_Button.Text = "打開"
         RevealAppSourceFolder_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button8
+        ' TerminateAllSW2App_Button
         ' 
-        Button8.Location = New Point(610, 506)
-        Button8.Name = "Button8"
-        Button8.Size = New Size(94, 29)
-        Button8.TabIndex = 10
-        Button8.Text = "全部關閉"
-        Button8.UseVisualStyleBackColor = True
+        TerminateAllSW2App_Button.Location = New Point(610, 506)
+        TerminateAllSW2App_Button.Name = "TerminateAllSW2App_Button"
+        TerminateAllSW2App_Button.Size = New Size(94, 29)
+        TerminateAllSW2App_Button.TabIndex = 10
+        TerminateAllSW2App_Button.Text = "全部關閉"
+        TerminateAllSW2App_Button.UseVisualStyleBackColor = True
         ' 
         ' Button9
         ' 
@@ -294,7 +294,7 @@ Partial Class Form1
         Controls.Add(AppConfigs_GroupBox)
         Controls.Add(Button9)
         Controls.Add(RevealAppSourceFolder_Button)
-        Controls.Add(Button8)
+        Controls.Add(TerminateAllSW2App_Button)
         Controls.Add(SourceSW2AppVersion_TextBox)
         Controls.Add(Button6)
         Controls.Add(NewSW2FolderName_TextBox)
@@ -332,7 +332,7 @@ Partial Class Form1
     Friend WithEvents Button6 As Button
     Friend WithEvents Label2 As Label
     Friend WithEvents RevealAppSourceFolder_Button As Button
-    Friend WithEvents Button8 As Button
+    Friend WithEvents TerminateAllSW2App_Button As Button
     Friend WithEvents Button9 As Button
     Friend WithEvents AppConfigs_GroupBox As GroupBox
     Friend WithEvents SaveSW2AppConfigs_Button As Button

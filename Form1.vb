@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports Newtonsoft.Json
 Imports SW2MgrWinFormsApp.MainFormController
 
@@ -54,19 +55,18 @@ Public Class Form1
 
     Private Sub DeleteSelectedSW2AppFolder_Button_Click(sender As Object, e As EventArgs) Handles DeleteSelectedSW2AppFolder_Button.Click
         Try
-            Dim selectedItems = SW2App_ListView.SelectedItems
-            If selectedItems.Count > 0 Then
-                ' 刪掉選擇的
+
+            For Each selectedItem As ListViewItem In SW2App_ListView.SelectedItems
                 Dim result As DialogResult = MessageBox.Show("確定要刪除嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 If result = DialogResult.Yes Then
-                    For Each item As ListViewItem In selectedItems
-                        Dim folderPath = Path.Combine(AppInitModule.webview2AppDirectory, item.SubItems(1).Text)
-                        Directory.Delete(folderPath, recursive:=True)
-                    Next
-                    MainFormController.UpdateSW2AppListView()
+
+                    Dim folderPath = Path.Combine(AppInitModule.webview2AppDirectory, selectedItem.SubItems(1).Text)
+                    Directory.Delete(folderPath, recursive:=True)
+                    SW2App_ListView.Items.Remove(selectedItem)
                     MsgBox("刪除成功")
                 End If
-            End If
+
+            Next
 
         Catch ex As Exception
             Debug.WriteLine(ex)
@@ -76,55 +76,51 @@ Public Class Form1
 
     Private Sub LaunchSeletedSW2App_Button_Click(sender As Object, e As EventArgs) Handles LaunchSeletedSW2App_Button.Click
 
-        Try
-            If SW2App_ListView.SelectedItems.Count > 0 Then
-                Dim selectedSW2Item As ListViewItem = SW2App_ListView.SelectedItems.Item(0)
-                Dim exePath As String = Path.Combine(AppInitModule.webview2AppDirectory, selectedSW2Item.SubItems(1).Text, "SW2WinFormsApp.exe")
+        For Each selectedItem As ListViewItem In SW2App_ListView.SelectedItems
+            Try
+                Dim exePath As String = Path.Combine(AppInitModule.webview2AppDirectory, selectedItem.SubItems(1).Text, "SW2WinFormsApp.exe")
                 Debug.WriteLine("exepath : " & exePath)
                 If File.Exists(exePath) Then
                     LaunchSeletedSW2App_Button.Enabled = False
+                    TerminateSW2AppByPId_Button.Enabled = True
                     Dim process As Process = Process.Start(exePath)
                     Dim pid As Integer = process.Id
-                    selectedSW2Item.SubItems(0).Text = pid.ToString()
-                    selectedSW2Item.SubItems(3).Text = "On"
+                    selectedItem.SubItems(0).Text = pid.ToString()
+                    selectedItem.SubItems(3).Text = "On"
                 Else
                     Debug.WriteLine("找不到指定的exe檔案！")
                 End If
+            Catch ex As Exception
+                Debug.WriteLine(ex)
+                MsgBox("啟動 " & selectedItem.SubItems(1).Text & " 失敗")
+            End Try
 
-            End If
-
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-            MsgBox("無法啟動")
-            LaunchSeletedSW2App_Button.Enabled = True
-        End Try
+        Next
 
     End Sub
 
     Private Sub TerminateSW2AppByPId_Button_Click(sender As Object, e As EventArgs) Handles TerminateSW2AppByPId_Button.Click
-        Try
 
-            If SW2App_ListView.SelectedItems.Count > 0 Then
+        For Each selectedItem As ListViewItem In SW2App_ListView.SelectedItems
+            Try
 
-                Dim selectedSW2Item As ListViewItem = SW2App_ListView.SelectedItems.Item(0)
-
-                Dim pid As Integer = CInt(selectedSW2Item.SubItems(0).Text)
+                Dim pid As Integer = CInt(selectedItem.SubItems(0).Text)
 
                 ' 取得對應的Process物件並終止
                 Dim process As Process = Process.GetProcessById(pid)
                 process.Kill()
 
-                selectedSW2Item.SubItems(0).Text = ""
-                selectedSW2Item.SubItems(3).Text = "Off"
+                selectedItem.SubItems(0).Text = ""
+                selectedItem.SubItems(3).Text = "Off"
                 LaunchSeletedSW2App_Button.Enabled = True
-                MsgBox("關閉成功")
+                TerminateSW2AppByPId_Button.Enabled = False
+            Catch ex As Exception
+                Debug.WriteLine(ex)
+                MsgBox("關閉 " & selectedItem.SubItems(1).Text & " 失敗")
+            End Try
 
-            End If
+        Next
 
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-            MsgBox("關閉失敗")
-        End Try
     End Sub
 
     Private Sub SW2App_ListView_SelectedIndexChanged(sender As Object, e As EventArgs) Handles SW2App_ListView.SelectedIndexChanged
@@ -134,8 +130,10 @@ Public Class Form1
 
                 If selectedSW2AppListViewItems(0).SubItems(3).Text = "On" Then
                     LaunchSeletedSW2App_Button.Enabled = False
+                    TerminateSW2AppByPId_Button.Enabled = True
                 Else
                     LaunchSeletedSW2App_Button.Enabled = True
+                    TerminateSW2AppByPId_Button.Enabled = False
                 End If
 
                 Dim folderName = selectedSW2AppListViewItems(0).SubItems(1).Text
@@ -186,4 +184,35 @@ Public Class Form1
 
     End Sub
 
+    Private Sub TerminateAllSW2App_Button_Click(sender As Object, e As EventArgs) Handles TerminateAllSW2App_Button.Click
+        Try
+            For Each selectedItem As ListViewItem In SW2App_ListView.Items
+                Try
+                    Dim app_status = selectedItem.SubItems(3).Text
+
+                    If app_status = "On" Then
+                        Dim pid As Integer = CInt(selectedItem.SubItems(0).Text)
+                        Dim process As Process = Process.GetProcessById(pid)
+                        process.Kill()
+
+                        selectedItem.SubItems(0).Text = ""
+                        selectedItem.SubItems(3).Text = "Off"
+                    End If
+
+                Catch ex As Exception
+                    Debug.WriteLine(ex)
+                End Try
+
+            Next
+
+            LaunchSeletedSW2App_Button.Enabled = True
+            TerminateSW2AppByPId_Button.Enabled = False
+            MsgBox("關閉全部成功")
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("關閉發生錯誤")
+        End Try
+
+
+    End Sub
 End Class
