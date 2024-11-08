@@ -14,7 +14,7 @@ Public Class Form1
         AddHandler UpdateSelectedSW2App_Button.Click, AddressOf MgrMainFormEventController.UpdateSelectedSW2App_Button_Click
         AddHandler RevealAppSourceFolder_Button.Click, AddressOf MgrMainFormEventController.RevealAppSourceFolder_Button_Click
         AddHandler CreateNewSW2App_Button.Click, AddressOf MgrMainFormEventController.CreateNewSW2App_Button_Click
-        AddHandler UpdateSW2AppListView_Button.Click, AddressOf MgrMainFormEventController.UpdateSelectedSW2App_Button_Click
+        AddHandler UpdateSW2AppListView_Button.Click, AddressOf MgrMainFormEventController.UpdateSW2AppListView_Button_Click
         AddHandler DeleteSelectedSW2AppFolder_Button.Click, AddressOf MgrMainFormEventController.DeleteSelectedSW2AppFolder_Button_Click
         AddHandler LaunchSeletedSW2App_Button.Click, AddressOf MgrMainFormEventController.LaunchSeletedSW2App_Button_Click
         AddHandler TerminateSW2AppByPId_Button.Click, AddressOf MgrMainFormEventController.TerminateSW2AppByPId_Button_Click
@@ -44,6 +44,7 @@ Public Class Form1
         Me.Invoke(Sub()
                       'Debug.WriteLine("update data")
                       MainFormController.UpdateSW2AppListView()
+                      AppInitModule.ReadSourceAppProfile()
                   End Sub)
     End Sub
 
@@ -68,7 +69,6 @@ Public Class Form1
         End If
 
     End Sub
-
 
 
 End Class
