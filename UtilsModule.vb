@@ -34,4 +34,8 @@ Module UtilsModule
         End If
     End Sub
 
+    Public Async Function Delay_msec(msec As Integer) As Task
+        Await Task.Delay(msec)
+    End Function
+
 End Module

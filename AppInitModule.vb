@@ -9,7 +9,7 @@ Module AppInitModule
 
     Public Sub InitializeMainApp()
         InitializeDataDirectory()
-        MainFormController.UpdateSW2AppListView()
+        'MainFormController.UpdateSW2AppListView()
         ReadSourceAppProfile()
 
     End Sub

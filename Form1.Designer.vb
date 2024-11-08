@@ -36,7 +36,7 @@ Partial Class Form1
         Label1 = New Label()
         NewSW2FolderName_TextBox = New TextBox()
         Label2 = New Label()
-        Button6 = New Button()
+        UpdateSelectedSW2App_Button = New Button()
         SourceSW2AppVersion_TextBox = New TextBox()
         RevealAppSourceFolder_Button = New Button()
         TerminateAllSW2App_Button = New Button()
@@ -49,8 +49,11 @@ Partial Class Form1
         Label3 = New Label()
         SW2App_AutoRun_CheckBox = New CheckBox()
         SaveSW2AppConfigs_Button = New Button()
+        LaunchDelaySeconds_NumericUpDown = New NumericUpDown()
+        Label5 = New Label()
         AppConfigs_GroupBox.SuspendLayout()
         CType(SW2App_AutoRunDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(LaunchDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' CreateNewSW2App_Button
@@ -73,7 +76,7 @@ Partial Class Form1
         ' 
         ' LaunchSeletedSW2App_Button
         ' 
-        LaunchSeletedSW2App_Button.Location = New Point(12, 506)
+        LaunchSeletedSW2App_Button.Location = New Point(228, 506)
         LaunchSeletedSW2App_Button.Name = "LaunchSeletedSW2App_Button"
         LaunchSeletedSW2App_Button.Size = New Size(94, 29)
         LaunchSeletedSW2App_Button.TabIndex = 3
@@ -82,7 +85,7 @@ Partial Class Form1
         ' 
         ' TerminateSW2AppByPId_Button
         ' 
-        TerminateSW2AppByPId_Button.Location = New Point(112, 506)
+        TerminateSW2AppByPId_Button.Location = New Point(328, 506)
         TerminateSW2AppByPId_Button.Name = "TerminateSW2AppByPId_Button"
         TerminateSW2AppByPId_Button.Size = New Size(94, 29)
         TerminateSW2AppByPId_Button.TabIndex = 4
@@ -158,14 +161,14 @@ Partial Class Form1
         Label2.TabIndex = 0
         Label2.Text = "來源版本 : "
         ' 
-        ' Button6
+        ' UpdateSelectedSW2App_Button
         ' 
-        Button6.Location = New Point(510, 17)
-        Button6.Name = "Button6"
-        Button6.Size = New Size(94, 29)
-        Button6.TabIndex = 1
-        Button6.Text = "更新所選"
-        Button6.UseVisualStyleBackColor = True
+        UpdateSelectedSW2App_Button.Location = New Point(510, 17)
+        UpdateSelectedSW2App_Button.Name = "UpdateSelectedSW2App_Button"
+        UpdateSelectedSW2App_Button.Size = New Size(94, 29)
+        UpdateSelectedSW2App_Button.TabIndex = 1
+        UpdateSelectedSW2App_Button.Text = "更新所選"
+        UpdateSelectedSW2App_Button.UseVisualStyleBackColor = True
         ' 
         ' SourceSW2AppVersion_TextBox
         ' 
@@ -285,18 +288,38 @@ Partial Class Form1
         SaveSW2AppConfigs_Button.Text = "儲存"
         SaveSW2AppConfigs_Button.UseVisualStyleBackColor = True
         ' 
+        ' LaunchDelaySeconds_NumericUpDown
+        ' 
+        LaunchDelaySeconds_NumericUpDown.Location = New Point(128, 506)
+        LaunchDelaySeconds_NumericUpDown.Maximum = New Decimal(New Integer() {999, 0, 0, 0})
+        LaunchDelaySeconds_NumericUpDown.Name = "LaunchDelaySeconds_NumericUpDown"
+        LaunchDelaySeconds_NumericUpDown.Size = New Size(94, 27)
+        LaunchDelaySeconds_NumericUpDown.TabIndex = 14
+        LaunchDelaySeconds_NumericUpDown.Value = New Decimal(New Integer() {3, 0, 0, 0})
+        ' 
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Location = New Point(12, 511)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(110, 19)
+        Label5.TabIndex = 15
+        Label5.Text = "啟動延遲秒數 : "
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1057, 552)
+        Controls.Add(Label5)
+        Controls.Add(LaunchDelaySeconds_NumericUpDown)
         Controls.Add(SaveSW2AppConfigs_Button)
         Controls.Add(AppConfigs_GroupBox)
         Controls.Add(Button9)
         Controls.Add(RevealAppSourceFolder_Button)
         Controls.Add(TerminateAllSW2App_Button)
         Controls.Add(SourceSW2AppVersion_TextBox)
-        Controls.Add(Button6)
+        Controls.Add(UpdateSelectedSW2App_Button)
         Controls.Add(NewSW2FolderName_TextBox)
         Controls.Add(Label2)
         Controls.Add(Label1)
@@ -312,6 +335,7 @@ Partial Class Form1
         AppConfigs_GroupBox.ResumeLayout(False)
         AppConfigs_GroupBox.PerformLayout()
         CType(SW2App_AutoRunDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(LaunchDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -329,7 +353,7 @@ Partial Class Form1
     Friend WithEvents Label1 As Label
     Friend WithEvents NewSW2FolderName_TextBox As TextBox
     Friend WithEvents SourceSW2AppVersion_TextBox As TextBox
-    Friend WithEvents Button6 As Button
+    Friend WithEvents UpdateSelectedSW2App_Button As Button
     Friend WithEvents Label2 As Label
     Friend WithEvents RevealAppSourceFolder_Button As Button
     Friend WithEvents TerminateAllSW2App_Button As Button
@@ -342,5 +366,7 @@ Partial Class Form1
     Friend WithEvents SW2App_ScheduledRun_RadioButton As RadioButton
     Friend WithEvents SW2App_SequentialRun_RadioButton As RadioButton
     Friend WithEvents SW2App_AutoRunDelaySeconds_NumericUpDown As NumericUpDown
+    Friend WithEvents LaunchDelaySeconds_NumericUpDown As NumericUpDown
+    Friend WithEvents Label5 As Label
 
 End Class

@@ -3,53 +3,59 @@ Imports Newtonsoft.Json
 Module MainFormController
 
     Public Sub UpdateSW2AppListView()
+        'Debug.WriteLine("update listview")
+        Try
 
-        Dim dirs As String() = Directory.GetDirectories(AppInitModule.webview2AppDirectory)
-        For Each dir As String In dirs
+            Dim dirs As String() = Directory.GetDirectories(AppInitModule.webview2AppDirectory)
+            For Each dir As String In dirs
 
-            Dim folderName As String = Path.GetFileName(dir)
-            Dim myProfile As Webview2AppProfile = GetProfile(folderName)
+                Dim folderName As String = Path.GetFileName(dir)
+                Dim myProfile As Webview2AppProfile = GetProfile(folderName)
 
-            Dim exist_app = False
-            Dim app_status = "Off"
-            Dim app_pid = ""
+                Dim exist_app = False
+                Dim app_status = "Off"
+                Dim app_pid = ""
 
-            For Each item As ListViewItem In Form1.SW2App_ListView.Items
-                'Debug.WriteLine("PID: " & item.SubItems(0).Text)
-                Dim exist_app_pid = item.SubItems(0).Text
-                Dim exist_app_name = item.SubItems(1).Text
-                'Debug.WriteLine("Name: " & item.SubItems(1).Text)
-                If exist_app_name = folderName Then
-                    Debug.WriteLine("exist app " & folderName)
-                    exist_app = True
-                    ' check app status with pid
-                    If exist_app_pid <> "" Then
-                        If IsProcessRunning(CInt(exist_app_pid)) Then
-                            Debug.WriteLine("app pid : " & exist_app_pid & " is running ")
-                            app_status = "On"
-                            app_pid = exist_app_pid
-                        Else
-                            item.SubItems(0).Text = app_pid
-                            item.SubItems(3).Text = app_status
+                For Each item As ListViewItem In Form1.SW2App_ListView.Items
+                    'Debug.WriteLine("PID: " & item.SubItems(0).Text)
+                    Dim exist_app_pid = item.SubItems(0).Text
+                    Dim exist_app_name = item.SubItems(1).Text
+                    'Debug.WriteLine("Name: " & item.SubItems(1).Text)
+                    If exist_app_name = folderName Then
+                        'Debug.WriteLine("exist app " & folderName)
+                        exist_app = True
+                        ' check app status with pid
+                        If exist_app_pid <> "" Then
+                            If IsProcessRunning(CInt(exist_app_pid)) Then
+                                'Debug.WriteLine("app pid : " & exist_app_pid & " is running ")
+                                app_status = "On"
+                                app_pid = exist_app_pid
+                            Else
+                                item.SubItems(0).Text = app_pid
+                                item.SubItems(3).Text = app_status
+                            End If
+
                         End If
-
+                        Exit For
                     End If
+                Next
 
-                    Exit For
+                If Not exist_app Then
+                    Dim sw2appListViewItem As New ListViewItem(app_pid)
+                    sw2appListViewItem.SubItems.Add(folderName)
+                    sw2appListViewItem.SubItems.Add(myProfile.Version)
+                    '狀態
+                    sw2appListViewItem.SubItems.Add(app_status)
+                    sw2appListViewItem.SubItems.Add("")
+                    Form1.SW2App_ListView.Items.Add(sw2appListViewItem)
                 End If
+
             Next
+        Catch ex As Exception
+            Debug.WriteLine("更新失敗")
+            Debug.WriteLine(ex)
+        End Try
 
-            If Not exist_app Then
-                Dim sw2appListViewItem As New ListViewItem(app_pid)
-                sw2appListViewItem.SubItems.Add(folderName)
-                sw2appListViewItem.SubItems.Add(myProfile.Version)
-                '狀態
-                sw2appListViewItem.SubItems.Add(app_status)
-                sw2appListViewItem.SubItems.Add("")
-                Form1.SW2App_ListView.Items.Add(sw2appListViewItem)
-            End If
-
-        Next
 
     End Sub
 
