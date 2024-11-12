@@ -41,11 +41,16 @@ Public Class Form1
     End Sub
 
     Private Sub UpdateData()
-        Me.Invoke(Sub()
-                      'Debug.WriteLine("update data")
-                      MainFormController.UpdateSW2AppListView()
-                      AppInitModule.ReadSourceAppProfile()
-                  End Sub)
+        Try
+            Me.Invoke(Sub()
+                          'Debug.WriteLine("update data")
+                          MainFormController.UpdateSW2AppListView()
+                          AppInitModule.ReadSourceAppProfile()
+                      End Sub)
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
     End Sub
 
 
@@ -69,6 +74,10 @@ Public Class Form1
         End If
 
     End Sub
+
+
+
+
 
 
 End Class

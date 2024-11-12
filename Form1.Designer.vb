@@ -40,7 +40,7 @@ Partial Class Form1
         SourceSW2AppVersion_TextBox = New TextBox()
         RevealAppSourceFolder_Button = New Button()
         TerminateAllSW2App_Button = New Button()
-        Button9 = New Button()
+        UpdateAllSWApp_Button = New Button()
         AppConfigs_GroupBox = New GroupBox()
         Label4 = New Label()
         SW2App_ScheduledRun_RadioButton = New RadioButton()
@@ -51,6 +51,11 @@ Partial Class Form1
         SaveSW2AppConfigs_Button = New Button()
         LaunchDelaySeconds_NumericUpDown = New NumericUpDown()
         Label5 = New Label()
+        AppUpdating_ProgressBar = New ProgressBar()
+        Button1 = New Button()
+        AppUpdatingProgressInfo_Label = New Label()
+        Label6 = New Label()
+        UpdatingProgressPercent_Label = New Label()
         AppConfigs_GroupBox.SuspendLayout()
         CType(SW2App_AutoRunDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(LaunchDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -58,7 +63,7 @@ Partial Class Form1
         ' 
         ' CreateNewSW2App_Button
         ' 
-        CreateNewSW2App_Button.Location = New Point(410, 57)
+        CreateNewSW2App_Button.Location = New Point(410, 117)
         CreateNewSW2App_Button.Name = "CreateNewSW2App_Button"
         CreateNewSW2App_Button.Size = New Size(94, 29)
         CreateNewSW2App_Button.TabIndex = 1
@@ -67,7 +72,7 @@ Partial Class Form1
         ' 
         ' DeleteSelectedSW2AppFolder_Button
         ' 
-        DeleteSelectedSW2AppFolder_Button.Location = New Point(510, 57)
+        DeleteSelectedSW2AppFolder_Button.Location = New Point(510, 117)
         DeleteSelectedSW2AppFolder_Button.Name = "DeleteSelectedSW2AppFolder_Button"
         DeleteSelectedSW2AppFolder_Button.Size = New Size(94, 29)
         DeleteSelectedSW2AppFolder_Button.TabIndex = 2
@@ -94,7 +99,7 @@ Partial Class Form1
         ' 
         ' UpdateSW2AppListView_Button
         ' 
-        UpdateSW2AppListView_Button.Location = New Point(610, 57)
+        UpdateSW2AppListView_Button.Location = New Point(539, 506)
         UpdateSW2AppListView_Button.Name = "UpdateSW2AppListView_Button"
         UpdateSW2AppListView_Button.Size = New Size(94, 29)
         UpdateSW2AppListView_Button.TabIndex = 5
@@ -105,9 +110,9 @@ Partial Class Form1
         ' 
         SW2App_ListView.Columns.AddRange(New ColumnHeader() {SW2App_PId_ColumnHeader, SW2App_FolderName_ColumnHeader, SW2App_Version_ColumnHeader, SW2App_Status_ColumnHeader, ColumnHeader5})
         SW2App_ListView.FullRowSelect = True
-        SW2App_ListView.Location = New Point(12, 92)
+        SW2App_ListView.Location = New Point(12, 153)
         SW2App_ListView.Name = "SW2App_ListView"
-        SW2App_ListView.Size = New Size(692, 408)
+        SW2App_ListView.Size = New Size(621, 347)
         SW2App_ListView.TabIndex = 6
         SW2App_ListView.UseCompatibleStateImageBehavior = False
         SW2App_ListView.View = View.Details
@@ -139,7 +144,7 @@ Partial Class Form1
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Location = New Point(12, 62)
+        Label1.Location = New Point(12, 122)
         Label1.Name = "Label1"
         Label1.Size = New Size(91, 19)
         Label1.TabIndex = 7
@@ -147,7 +152,7 @@ Partial Class Form1
         ' 
         ' NewSW2FolderName_TextBox
         ' 
-        NewSW2FolderName_TextBox.Location = New Point(109, 57)
+        NewSW2FolderName_TextBox.Location = New Point(109, 117)
         NewSW2FolderName_TextBox.Name = "NewSW2FolderName_TextBox"
         NewSW2FolderName_TextBox.Size = New Size(295, 27)
         NewSW2FolderName_TextBox.TabIndex = 8
@@ -163,7 +168,7 @@ Partial Class Form1
         ' 
         ' UpdateSelectedSW2App_Button
         ' 
-        UpdateSelectedSW2App_Button.Location = New Point(510, 17)
+        UpdateSelectedSW2App_Button.Location = New Point(410, 52)
         UpdateSelectedSW2App_Button.Name = "UpdateSelectedSW2App_Button"
         UpdateSelectedSW2App_Button.Size = New Size(94, 29)
         UpdateSelectedSW2App_Button.TabIndex = 1
@@ -182,28 +187,28 @@ Partial Class Form1
         ' 
         RevealAppSourceFolder_Button.Location = New Point(410, 17)
         RevealAppSourceFolder_Button.Name = "RevealAppSourceFolder_Button"
-        RevealAppSourceFolder_Button.Size = New Size(94, 29)
+        RevealAppSourceFolder_Button.Size = New Size(194, 29)
         RevealAppSourceFolder_Button.TabIndex = 3
-        RevealAppSourceFolder_Button.Text = "打開"
+        RevealAppSourceFolder_Button.Text = "打開來源資料夾"
         RevealAppSourceFolder_Button.UseVisualStyleBackColor = True
         ' 
         ' TerminateAllSW2App_Button
         ' 
-        TerminateAllSW2App_Button.Location = New Point(610, 506)
+        TerminateAllSW2App_Button.Location = New Point(428, 506)
         TerminateAllSW2App_Button.Name = "TerminateAllSW2App_Button"
         TerminateAllSW2App_Button.Size = New Size(94, 29)
         TerminateAllSW2App_Button.TabIndex = 10
         TerminateAllSW2App_Button.Text = "全部關閉"
         TerminateAllSW2App_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button9
+        ' UpdateAllSWApp_Button
         ' 
-        Button9.Location = New Point(610, 17)
-        Button9.Name = "Button9"
-        Button9.Size = New Size(94, 29)
-        Button9.TabIndex = 11
-        Button9.Text = "全部更新"
-        Button9.UseVisualStyleBackColor = True
+        UpdateAllSWApp_Button.Location = New Point(510, 52)
+        UpdateAllSWApp_Button.Name = "UpdateAllSWApp_Button"
+        UpdateAllSWApp_Button.Size = New Size(94, 29)
+        UpdateAllSWApp_Button.TabIndex = 11
+        UpdateAllSWApp_Button.Text = "全部更新"
+        UpdateAllSWApp_Button.UseVisualStyleBackColor = True
         ' 
         ' AppConfigs_GroupBox
         ' 
@@ -213,7 +218,7 @@ Partial Class Form1
         AppConfigs_GroupBox.Controls.Add(SW2App_AutoRunDelaySeconds_NumericUpDown)
         AppConfigs_GroupBox.Controls.Add(Label3)
         AppConfigs_GroupBox.Controls.Add(SW2App_AutoRun_CheckBox)
-        AppConfigs_GroupBox.Location = New Point(710, 92)
+        AppConfigs_GroupBox.Location = New Point(639, 92)
         AppConfigs_GroupBox.Name = "AppConfigs_GroupBox"
         AppConfigs_GroupBox.Size = New Size(322, 408)
         AppConfigs_GroupBox.TabIndex = 12
@@ -281,7 +286,7 @@ Partial Class Form1
         ' 
         ' SaveSW2AppConfigs_Button
         ' 
-        SaveSW2AppConfigs_Button.Location = New Point(938, 506)
+        SaveSW2AppConfigs_Button.Location = New Point(867, 506)
         SaveSW2AppConfigs_Button.Name = "SaveSW2AppConfigs_Button"
         SaveSW2AppConfigs_Button.Size = New Size(94, 29)
         SaveSW2AppConfigs_Button.TabIndex = 13
@@ -306,16 +311,64 @@ Partial Class Form1
         Label5.TabIndex = 15
         Label5.Text = "啟動延遲秒數 : "
         ' 
+        ' AppUpdating_ProgressBar
+        ' 
+        AppUpdating_ProgressBar.Location = New Point(109, 50)
+        AppUpdating_ProgressBar.Name = "AppUpdating_ProgressBar"
+        AppUpdating_ProgressBar.Size = New Size(295, 29)
+        AppUpdating_ProgressBar.TabIndex = 16
+        ' 
+        ' Button1
+        ' 
+        Button1.Location = New Point(867, 57)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(94, 29)
+        Button1.TabIndex = 17
+        Button1.Text = "Button1"
+        Button1.UseVisualStyleBackColor = True
+        ' 
+        ' AppUpdatingProgressInfo_Label
+        ' 
+        AppUpdatingProgressInfo_Label.AutoSize = True
+        AppUpdatingProgressInfo_Label.Location = New Point(109, 82)
+        AppUpdatingProgressInfo_Label.Name = "AppUpdatingProgressInfo_Label"
+        AppUpdatingProgressInfo_Label.Size = New Size(73, 19)
+        AppUpdatingProgressInfo_Label.TabIndex = 18
+        AppUpdatingProgressInfo_Label.Text = "更新進度 "
+        ' 
+        ' Label6
+        ' 
+        Label6.AutoSize = True
+        Label6.Location = New Point(12, 57)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(80, 19)
+        Label6.TabIndex = 19
+        Label6.Text = "程式更新 : "
+        ' 
+        ' UpdatingProgressPercent_Label
+        ' 
+        UpdatingProgressPercent_Label.AutoSize = True
+        UpdatingProgressPercent_Label.Location = New Point(355, 82)
+        UpdatingProgressPercent_Label.Name = "UpdatingProgressPercent_Label"
+        UpdatingProgressPercent_Label.Size = New Size(49, 19)
+        UpdatingProgressPercent_Label.TabIndex = 20
+        UpdatingProgressPercent_Label.Text = "100%"
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1057, 552)
+        ClientSize = New Size(997, 552)
+        Controls.Add(UpdatingProgressPercent_Label)
+        Controls.Add(Label6)
+        Controls.Add(AppUpdatingProgressInfo_Label)
+        Controls.Add(Button1)
+        Controls.Add(AppUpdating_ProgressBar)
         Controls.Add(Label5)
         Controls.Add(LaunchDelaySeconds_NumericUpDown)
         Controls.Add(SaveSW2AppConfigs_Button)
         Controls.Add(AppConfigs_GroupBox)
-        Controls.Add(Button9)
+        Controls.Add(UpdateAllSWApp_Button)
         Controls.Add(RevealAppSourceFolder_Button)
         Controls.Add(TerminateAllSW2App_Button)
         Controls.Add(SourceSW2AppVersion_TextBox)
@@ -357,7 +410,7 @@ Partial Class Form1
     Friend WithEvents Label2 As Label
     Friend WithEvents RevealAppSourceFolder_Button As Button
     Friend WithEvents TerminateAllSW2App_Button As Button
-    Friend WithEvents Button9 As Button
+    Friend WithEvents UpdateAllSWApp_Button As Button
     Friend WithEvents AppConfigs_GroupBox As GroupBox
     Friend WithEvents SaveSW2AppConfigs_Button As Button
     Friend WithEvents Label3 As Label
@@ -368,5 +421,10 @@ Partial Class Form1
     Friend WithEvents SW2App_AutoRunDelaySeconds_NumericUpDown As NumericUpDown
     Friend WithEvents LaunchDelaySeconds_NumericUpDown As NumericUpDown
     Friend WithEvents Label5 As Label
+    Friend WithEvents AppUpdating_ProgressBar As ProgressBar
+    Friend WithEvents Button1 As Button
+    Friend WithEvents AppUpdatingProgressInfo_Label As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents UpdatingProgressPercent_Label As Label
 
 End Class

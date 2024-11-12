@@ -3,7 +3,43 @@ Imports Newtonsoft.Json
 
 Public Class MgrMainFormEventController
     Public Sub UpdateSelectedSW2App_Button_Click(sender As Object, e As EventArgs)
-        Debug.WriteLine("Update SWapp")
+
+        Try
+            If Form1.SW2App_ListView.SelectedItems.Count < 1 Then
+                Exit Sub
+            End If
+
+            'Dim result As DialogResult = MessageBox.Show("確定要更新嗎？", "更新確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            'If result = DialogResult.Yes Then
+            Form1.UpdateSelectedSW2App_Button.Enabled = False
+                Form1.UpdateAllSWApp_Button.Enabled = False
+
+
+            For Each selectedItem As ListViewItem In Form1.SW2App_ListView.SelectedItems
+
+                'Debug.WriteLine("update : " & selectedItem.SubItems(1).Text)
+
+                Form1.AppUpdatingProgressInfo_Label.Text = $"更新 {selectedItem.SubItems(1).Text} 中"
+
+                Dim swAppPath = Path.Combine(webview2AppDirectory, selectedItem.SubItems(1).Text)
+                UpdaterModule.totalFiles = GetTotalFiles(AppInitModule.webview2AppSourceDirectory)
+                Form1.AppUpdating_ProgressBar.Value = 0
+                UpdaterModule.UpdateFiles(AppInitModule.webview2AppSourceDirectory, swAppPath)
+                Form1.AppUpdatingProgressInfo_Label.Text = $"更新 {selectedItem.SubItems(1).Text} 完成"
+                UpdaterModule.progressCounter = 0
+            Next
+            MsgBox("更新成功")
+            'End If
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("更新失敗")
+        End Try
+
+        Form1.UpdateSelectedSW2App_Button.Enabled = True
+        Form1.UpdateAllSWApp_Button.Enabled = True
+
+
     End Sub
 
 
@@ -82,7 +118,7 @@ Public Class MgrMainFormEventController
         For Each selectedItem As ListViewItem In Form1.SW2App_ListView.SelectedItems
             Try
                 Dim exePath As String = Path.Combine(AppInitModule.webview2AppDirectory, selectedItem.SubItems(1).Text, "SW2WinFormsApp.exe")
-                Debug.WriteLine("exepath : " & exePath)
+                'Debug.WriteLine("exepath : " & exePath)
                 If File.Exists(exePath) Then
                     Form1.LaunchSeletedSW2App_Button.Enabled = False
                     Form1.TerminateSW2AppByPId_Button.Enabled = True

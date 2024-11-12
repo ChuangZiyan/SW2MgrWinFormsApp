@@ -24,6 +24,10 @@ Module MainFormController
                     If exist_app_name = folderName Then
                         'Debug.WriteLine("exist app " & folderName)
                         exist_app = True
+
+                        ' update version
+                        item.SubItems(2).Text = myProfile.Version
+
                         ' check app status with pid
                         If exist_app_pid <> "" Then
                             If IsProcessRunning(CInt(exist_app_pid)) Then
@@ -74,6 +78,7 @@ Module MainFormController
                 Dim jsonString As String = File.ReadAllText(filePath)
                 profile = JsonConvert.DeserializeObject(Of Webview2AppProfile)(jsonString)
             End If
+            'Debug.WriteLine($"{folderName} ver {profile.Version}")
 
             Return profile
         Catch ex As Exception
@@ -110,6 +115,7 @@ Module MainFormController
         End Try
 
     End Function
+
 
 
     Public Class Webview2AppProfile
