@@ -52,10 +52,10 @@ Partial Class Form1
         LaunchDelaySeconds_NumericUpDown = New NumericUpDown()
         Label5 = New Label()
         AppUpdating_ProgressBar = New ProgressBar()
-        Button1 = New Button()
         AppUpdatingProgressInfo_Label = New Label()
         Label6 = New Label()
         UpdatingProgressPercent_Label = New Label()
+        SaveFileDialog1 = New SaveFileDialog()
         AppConfigs_GroupBox.SuspendLayout()
         CType(SW2App_AutoRunDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(LaunchDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -318,15 +318,6 @@ Partial Class Form1
         AppUpdating_ProgressBar.Size = New Size(295, 29)
         AppUpdating_ProgressBar.TabIndex = 16
         ' 
-        ' Button1
-        ' 
-        Button1.Location = New Point(867, 57)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(94, 29)
-        Button1.TabIndex = 17
-        Button1.Text = "Button1"
-        Button1.UseVisualStyleBackColor = True
-        ' 
         ' AppUpdatingProgressInfo_Label
         ' 
         AppUpdatingProgressInfo_Label.AutoSize = True
@@ -362,7 +353,6 @@ Partial Class Form1
         Controls.Add(UpdatingProgressPercent_Label)
         Controls.Add(Label6)
         Controls.Add(AppUpdatingProgressInfo_Label)
-        Controls.Add(Button1)
         Controls.Add(AppUpdating_ProgressBar)
         Controls.Add(Label5)
         Controls.Add(LaunchDelaySeconds_NumericUpDown)
@@ -422,9 +412,9 @@ Partial Class Form1
     Friend WithEvents LaunchDelaySeconds_NumericUpDown As NumericUpDown
     Friend WithEvents Label5 As Label
     Friend WithEvents AppUpdating_ProgressBar As ProgressBar
-    Friend WithEvents Button1 As Button
     Friend WithEvents AppUpdatingProgressInfo_Label As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents UpdatingProgressPercent_Label As Label
+    Friend WithEvents SaveFileDialog1 As SaveFileDialog
 
 End Class
