@@ -19,7 +19,7 @@ Public Class Form1
         AddHandler LaunchSeletedSW2App_Button.Click, AddressOf MgrMainFormEventController.LaunchSeletedSW2App_Button_Click
         AddHandler TerminateSW2AppByPId_Button.Click, AddressOf MgrMainFormEventController.TerminateSW2AppByPId_Button_Click
         AddHandler SW2App_ListView.SelectedIndexChanged, AddressOf MgrMainFormEventController.SW2App_ListView_SelectedIndexChanged
-        AddHandler SaveSW2AppConfigs_Button.Click, AddressOf MgrMainFormEventController.SW2App_ListView_SelectedIndexChanged
+        AddHandler SaveSW2AppConfigs_Button.Click, AddressOf MgrMainFormEventController.SaveSW2AppConfigs_Button_Click
         AddHandler TerminateAllSW2App_Button.Click, AddressOf MgrMainFormEventController.TerminateAllSW2App_Button_Click
         AddHandler SW2App_ListView.DoubleClick, AddressOf MgrMainFormEventController.SW2App_ListView_DoubleClick
         AddHandler UpdateAllSWApp_Button.Click, AddressOf MgrMainFormEventController.UpdateAllSWApp_Button_Click

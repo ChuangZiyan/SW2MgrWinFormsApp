@@ -56,9 +56,12 @@ Partial Class Form1
         Label6 = New Label()
         UpdatingProgressPercent_Label = New Label()
         SaveFileDialog1 = New SaveFileDialog()
+        Label7 = New Label()
+        NumericUpDown1 = New NumericUpDown()
         AppConfigs_GroupBox.SuspendLayout()
         CType(SW2App_AutoRunDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(LaunchDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' CreateNewSW2App_Button
@@ -212,6 +215,8 @@ Partial Class Form1
         ' 
         ' AppConfigs_GroupBox
         ' 
+        AppConfigs_GroupBox.Controls.Add(NumericUpDown1)
+        AppConfigs_GroupBox.Controls.Add(Label7)
         AppConfigs_GroupBox.Controls.Add(Label4)
         AppConfigs_GroupBox.Controls.Add(SW2App_ScheduledRun_RadioButton)
         AppConfigs_GroupBox.Controls.Add(SW2App_SequentialRun_RadioButton)
@@ -341,9 +346,25 @@ Partial Class Form1
         UpdatingProgressPercent_Label.AutoSize = True
         UpdatingProgressPercent_Label.Location = New Point(355, 82)
         UpdatingProgressPercent_Label.Name = "UpdatingProgressPercent_Label"
-        UpdatingProgressPercent_Label.Size = New Size(49, 19)
+        UpdatingProgressPercent_Label.Size = New Size(31, 19)
         UpdatingProgressPercent_Label.TabIndex = 20
-        UpdatingProgressPercent_Label.Text = "100%"
+        UpdatingProgressPercent_Label.Text = "0%"
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Location = New Point(6, 92)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(80, 19)
+        Label7.TabIndex = 7
+        Label7.Text = "執行次數 : "
+        ' 
+        ' NumericUpDown1
+        ' 
+        NumericUpDown1.Location = New Point(92, 90)
+        NumericUpDown1.Name = "NumericUpDown1"
+        NumericUpDown1.Size = New Size(90, 27)
+        NumericUpDown1.TabIndex = 8
         ' 
         ' Form1
         ' 
@@ -379,6 +400,7 @@ Partial Class Form1
         AppConfigs_GroupBox.PerformLayout()
         CType(SW2App_AutoRunDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(LaunchDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(NumericUpDown1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -416,5 +438,7 @@ Partial Class Form1
     Friend WithEvents Label6 As Label
     Friend WithEvents UpdatingProgressPercent_Label As Label
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
+    Friend WithEvents NumericUpDown1 As NumericUpDown
+    Friend WithEvents Label7 As Label
 
 End Class

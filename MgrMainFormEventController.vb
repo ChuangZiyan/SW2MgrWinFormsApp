@@ -63,6 +63,10 @@ Public Class MgrMainFormEventController
                 UpdaterModule.progressCounter = 0
             Next
             MsgBox("更新成功")
+            Form1.AppUpdatingProgressInfo_Label.Text = "更新進度"
+            Form1.UpdatingProgressPercent_Label.Text = "0%"
+            Form1.AppUpdating_ProgressBar.Value = 0
+
             'End If
 
         Catch ex As Exception
@@ -120,7 +124,12 @@ Public Class MgrMainFormEventController
                     Form1.AppUpdatingProgressInfo_Label.Text = $"更新 {selectedItem.SubItems(1).Text} 完成"
                     UpdaterModule.progressCounter = 0
                 Next
+
                 MsgBox("更新成功")
+                Form1.AppUpdatingProgressInfo_Label.Text = "更新進度"
+                Form1.UpdatingProgressPercent_Label.Text = "0%"
+                Form1.AppUpdating_ProgressBar.Value = 0
+
             End If
 
         Catch ex As Exception
@@ -290,23 +299,30 @@ Public Class MgrMainFormEventController
 
     Public Sub SaveSW2AppConfigs_Button_Click(sender As Object, e As EventArgs)
         Try
+
             Dim selectedSW2AppListViewItems = Form1.SW2App_ListView.SelectedItems
 
-            If selectedSW2AppListViewItems.Count > 0 Then
-                Dim folderName = selectedSW2AppListViewItems(0).SubItems(1).Text
-                Dim filePath As String = Path.Combine(AppInitModule.webview2AppDirectory, folderName, "appConfigs", "appConfigs.json")
 
-                Dim appConfigs As New AppConfigs With {
-                    .AutoRun = Form1.SW2App_AutoRun_CheckBox.Checked,
-                    .AutoRunDelaySeconds = Form1.SW2App_AutoRunDelaySeconds_NumericUpDown.Value,
-                    .ScheduledRun = Form1.SW2App_ScheduledRun_RadioButton.Checked
-                }
-                Dim jsonString As String = JsonConvert.SerializeObject(appConfigs, Formatting.Indented)
-                File.WriteAllText(filePath, jsonString)
+            If selectedSW2AppListViewItems.Count > 0 Then
+                For Each seletedItem As ListViewItem In selectedSW2AppListViewItems
+
+                    Dim folderName = seletedItem.SubItems(1).Text
+                    Dim filePath As String = Path.Combine(AppInitModule.webview2AppDirectory, folderName, "appConfigs", "appConfigs.json")
+
+                    Dim appConfigs As New AppConfigs With {
+                        .AutoRun = Form1.SW2App_AutoRun_CheckBox.Checked,
+                        .AutoRunDelaySeconds = Form1.SW2App_AutoRunDelaySeconds_NumericUpDown.Value,
+                        .ScheduledRun = Form1.SW2App_ScheduledRun_RadioButton.Checked
+                    }
+                    Dim jsonString As String = JsonConvert.SerializeObject(appConfigs, Formatting.Indented)
+                    File.WriteAllText(filePath, jsonString)
+
+                Next
                 MsgBox("儲存成功")
             Else
                 MsgBox("未選擇程式")
             End If
+
 
         Catch ex As Exception
             Debug.WriteLine(ex)
