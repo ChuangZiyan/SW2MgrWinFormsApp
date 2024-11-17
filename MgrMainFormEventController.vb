@@ -288,6 +288,8 @@ Public Class MgrMainFormEventController
                     Form1.SW2App_SequentialRun_RadioButton.Checked = True
                 End If
 
+                Form1.SW2App_NumberOfRuns_NumericUpDown.Value = appConfigs.NumberOfRuns
+
             End If
         Catch ex As Exception
             Debug.WriteLine(ex)
@@ -302,7 +304,6 @@ Public Class MgrMainFormEventController
 
             Dim selectedSW2AppListViewItems = Form1.SW2App_ListView.SelectedItems
 
-
             If selectedSW2AppListViewItems.Count > 0 Then
                 For Each seletedItem As ListViewItem In selectedSW2AppListViewItems
 
@@ -312,7 +313,8 @@ Public Class MgrMainFormEventController
                     Dim appConfigs As New AppConfigs With {
                         .AutoRun = Form1.SW2App_AutoRun_CheckBox.Checked,
                         .AutoRunDelaySeconds = Form1.SW2App_AutoRunDelaySeconds_NumericUpDown.Value,
-                        .ScheduledRun = Form1.SW2App_ScheduledRun_RadioButton.Checked
+                        .ScheduledRun = Form1.SW2App_ScheduledRun_RadioButton.Checked,
+                        .NumberOfRuns = Form1.SW2App_NumberOfRuns_NumericUpDown.Value
                     }
                     Dim jsonString As String = JsonConvert.SerializeObject(appConfigs, Formatting.Indented)
                     File.WriteAllText(filePath, jsonString)

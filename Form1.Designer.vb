@@ -42,6 +42,8 @@ Partial Class Form1
         TerminateAllSW2App_Button = New Button()
         UpdateAllSWApp_Button = New Button()
         AppConfigs_GroupBox = New GroupBox()
+        SW2App_NumberOfRuns_NumericUpDown = New NumericUpDown()
+        Label7 = New Label()
         Label4 = New Label()
         SW2App_ScheduledRun_RadioButton = New RadioButton()
         SW2App_SequentialRun_RadioButton = New RadioButton()
@@ -56,12 +58,10 @@ Partial Class Form1
         Label6 = New Label()
         UpdatingProgressPercent_Label = New Label()
         SaveFileDialog1 = New SaveFileDialog()
-        Label7 = New Label()
-        NumericUpDown1 = New NumericUpDown()
         AppConfigs_GroupBox.SuspendLayout()
+        CType(SW2App_NumberOfRuns_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SW2App_AutoRunDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(LaunchDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
-        CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' CreateNewSW2App_Button
@@ -215,7 +215,7 @@ Partial Class Form1
         ' 
         ' AppConfigs_GroupBox
         ' 
-        AppConfigs_GroupBox.Controls.Add(NumericUpDown1)
+        AppConfigs_GroupBox.Controls.Add(SW2App_NumberOfRuns_NumericUpDown)
         AppConfigs_GroupBox.Controls.Add(Label7)
         AppConfigs_GroupBox.Controls.Add(Label4)
         AppConfigs_GroupBox.Controls.Add(SW2App_ScheduledRun_RadioButton)
@@ -229,6 +229,22 @@ Partial Class Form1
         AppConfigs_GroupBox.TabIndex = 12
         AppConfigs_GroupBox.TabStop = False
         AppConfigs_GroupBox.Text = "程式設置"
+        ' 
+        ' SW2App_NumberOfRuns_NumericUpDown
+        ' 
+        SW2App_NumberOfRuns_NumericUpDown.Location = New Point(92, 90)
+        SW2App_NumberOfRuns_NumericUpDown.Name = "SW2App_NumberOfRuns_NumericUpDown"
+        SW2App_NumberOfRuns_NumericUpDown.Size = New Size(90, 27)
+        SW2App_NumberOfRuns_NumericUpDown.TabIndex = 8
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Location = New Point(6, 92)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(80, 19)
+        Label7.TabIndex = 7
+        Label7.Text = "執行次數 : "
         ' 
         ' Label4
         ' 
@@ -350,22 +366,6 @@ Partial Class Form1
         UpdatingProgressPercent_Label.TabIndex = 20
         UpdatingProgressPercent_Label.Text = "0%"
         ' 
-        ' Label7
-        ' 
-        Label7.AutoSize = True
-        Label7.Location = New Point(6, 92)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(80, 19)
-        Label7.TabIndex = 7
-        Label7.Text = "執行次數 : "
-        ' 
-        ' NumericUpDown1
-        ' 
-        NumericUpDown1.Location = New Point(92, 90)
-        NumericUpDown1.Name = "NumericUpDown1"
-        NumericUpDown1.Size = New Size(90, 27)
-        NumericUpDown1.TabIndex = 8
-        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
@@ -398,9 +398,9 @@ Partial Class Form1
         Text = "SW2App 主控"
         AppConfigs_GroupBox.ResumeLayout(False)
         AppConfigs_GroupBox.PerformLayout()
+        CType(SW2App_NumberOfRuns_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(SW2App_AutoRunDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(LaunchDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
-        CType(NumericUpDown1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -438,7 +438,7 @@ Partial Class Form1
     Friend WithEvents Label6 As Label
     Friend WithEvents UpdatingProgressPercent_Label As Label
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
-    Friend WithEvents NumericUpDown1 As NumericUpDown
+    Friend WithEvents SW2App_NumberOfRuns_NumericUpDown As NumericUpDown
     Friend WithEvents Label7 As Label
 
 End Class

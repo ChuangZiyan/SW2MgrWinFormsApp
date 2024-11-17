@@ -128,6 +128,7 @@ Module MainFormController
         Public Property AutoRun As Boolean
         Public Property AutoRunDelaySeconds As Integer
         Public Property ScheduledRun As Boolean
+        Public Property NumberOfRuns As Integer
 
     End Class
 
