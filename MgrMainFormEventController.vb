@@ -11,7 +11,7 @@ Public Class MgrMainFormEventController
         Try
             Dim selectedItem As ListViewItem = Form1.SW2App_ListView.SelectedItems(0)
             Dim folderName = selectedItem.SubItems(1).Text
-            Debug.WriteLine("folderName : " & folderName)
+            ' Debug.WriteLine("folderName : " & folderName)
 
             Process.Start("explorer.exe", Path.Combine(AppInitModule.webview2AppDirectory, folderName))
         Catch ex As Exception
@@ -56,7 +56,7 @@ Public Class MgrMainFormEventController
                 Form1.AppUpdatingProgressInfo_Label.Text = $"更新 {selectedItem.SubItems(1).Text} 中"
 
                 Dim swAppPath = Path.Combine(webview2AppDirectory, selectedItem.SubItems(1).Text)
-                UpdaterModule.totalFiles = GetTotalFiles(AppInitModule.webview2AppSourceDirectory)
+                UpdaterModule.totalFiles = UpdaterModule.GetTotalFiles(AppInitModule.webview2AppSourceDirectory)
                 Form1.AppUpdating_ProgressBar.Value = 0
                 UpdaterModule.UpdateFiles(AppInitModule.webview2AppSourceDirectory, swAppPath)
                 Form1.AppUpdatingProgressInfo_Label.Text = $"更新 {selectedItem.SubItems(1).Text} 完成"
@@ -118,7 +118,7 @@ Public Class MgrMainFormEventController
                     Form1.AppUpdatingProgressInfo_Label.Text = $"更新 {selectedItem.SubItems(1).Text} 中"
 
                     Dim swAppPath = Path.Combine(webview2AppDirectory, selectedItem.SubItems(1).Text)
-                    UpdaterModule.totalFiles = GetTotalFiles(AppInitModule.webview2AppSourceDirectory)
+                    UpdaterModule.totalFiles = UpdaterModule.GetTotalFiles(AppInitModule.webview2AppSourceDirectory)
                     Form1.AppUpdating_ProgressBar.Value = 0
                     UpdaterModule.UpdateFiles(AppInitModule.webview2AppSourceDirectory, swAppPath)
                     Form1.AppUpdatingProgressInfo_Label.Text = $"更新 {selectedItem.SubItems(1).Text} 完成"
@@ -151,9 +151,15 @@ Public Class MgrMainFormEventController
     End Sub
 
 
-    Public Sub CreateNewSW2App_Button_Click(sender As Object, e As EventArgs)
+    Public Async Sub CreateNewSW2App_Button_Click(sender As Object, e As EventArgs)
 
         Try
+            ' 設定一些防呆
+            Form1.CreateNewSW2App_Button.Enabled = False
+            Form1.DeleteSelectedSW2AppFolder_Button.Enabled = False
+            Form1.autoUpdateUI = False
+
+            ' 這邊開始主要功能
             Dim folderName As String = Form1.NewSW2FolderName_TextBox.Text
             Dim folderPath = Path.Combine(AppInitModule.webview2AppDirectory, folderName)
 
@@ -166,7 +172,8 @@ Public Class MgrMainFormEventController
                 Dim destinationPath As String = folderPath
 
                 If Directory.Exists(sourceFolder) Then
-                    DirectoryCopy(sourceFolder, destinationPath, True)
+                    SWAppCreatorModule.totalFiles = SWAppCreatorModule.GetTotalFiles(sourceFolder)
+                    Await DirectoryCopy(sourceFolder, destinationPath, True)
                 Else
                     Debug.WriteLine("source not found")
                 End If
@@ -179,6 +186,12 @@ Public Class MgrMainFormEventController
         Catch ex As Exception
             MsgBox(ex)
         End Try
+
+        ' 把防呆的元件設定回來
+        Form1.CreateNewSW2App_Button.Text = "新增"
+        Form1.CreateNewSW2App_Button.Enabled = True
+        Form1.DeleteSelectedSW2AppFolder_Button.Enabled = True
+        Form1.autoUpdateUI = True
 
     End Sub
 
@@ -299,40 +312,6 @@ Public Class MgrMainFormEventController
     End Sub
 
 
-    Public Sub SaveSW2AppConfigs_Button_Click(sender As Object, e As EventArgs)
-        Try
-
-            Dim selectedSW2AppListViewItems = Form1.SW2App_ListView.SelectedItems
-
-            If selectedSW2AppListViewItems.Count > 0 Then
-                For Each seletedItem As ListViewItem In selectedSW2AppListViewItems
-
-                    Dim folderName = seletedItem.SubItems(1).Text
-                    Dim filePath As String = Path.Combine(AppInitModule.webview2AppDirectory, folderName, "appConfigs", "appConfigs.json")
-
-                    Dim appConfigs As New AppConfigs With {
-                        .AutoRun = Form1.SW2App_AutoRun_CheckBox.Checked,
-                        .AutoRunDelaySeconds = Form1.SW2App_AutoRunDelaySeconds_NumericUpDown.Value,
-                        .ScheduledRun = Form1.SW2App_ScheduledRun_RadioButton.Checked,
-                        .NumberOfRuns = Form1.SW2App_NumberOfRuns_NumericUpDown.Value
-                    }
-                    Dim jsonString As String = JsonConvert.SerializeObject(appConfigs, Formatting.Indented)
-                    File.WriteAllText(filePath, jsonString)
-
-                Next
-                MsgBox("儲存成功")
-            Else
-                MsgBox("未選擇程式")
-            End If
-
-
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-            MsgBox("寫入失敗")
-        End Try
-
-    End Sub
-
     Public Sub TerminateAllSW2App_Button_Click(sender As Object, e As EventArgs)
         Try
             For Each selectedItem As ListViewItem In Form1.SW2App_ListView.Items
@@ -362,6 +341,57 @@ Public Class MgrMainFormEventController
             MsgBox("關閉發生錯誤")
         End Try
 
+    End Sub
+
+    Public Sub SaveSW2AppConfigs_Button_Click(sender As Object, e As EventArgs)
+        Try
+
+            Dim selectedSW2AppListViewItems = Form1.SW2App_ListView.SelectedItems
+
+            If selectedSW2AppListViewItems.Count > 0 Then
+                For Each seletedItem As ListViewItem In selectedSW2AppListViewItems
+
+                    Dim folderName = seletedItem.SubItems(1).Text
+                    Dim filePath As String = Path.Combine(AppInitModule.webview2AppDirectory, folderName, "appConfigs", "appConfigs.json")
+
+                    Dim appConfigs As New AppConfigs With {
+                        .AutoRunDelaySeconds = Form1.SW2App_AutoRunDelaySeconds_NumericUpDown.Value,
+                        .ScheduledRun = Form1.SW2App_ScheduledRun_RadioButton.Checked,
+                        .NumberOfRuns = Form1.SW2App_NumberOfRuns_NumericUpDown.Value
+                    }
+                    Dim jsonString As String = JsonConvert.SerializeObject(appConfigs, Formatting.Indented)
+                    File.WriteAllText(filePath, jsonString)
+
+                Next
+                MsgBox("儲存成功")
+            Else
+                MsgBox("未選擇程式")
+            End If
+
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("寫入失敗")
+        End Try
+
+    End Sub
+
+    Public Sub SW2App_AutoRun_CheckBox_Click(sender As Object, e As EventArgs)
+        MainFormController.SaveSW2AppConfigs("autoRun")
+    End Sub
+
+    Public Sub SW2App_AutoRunDelaySeconds_NumericUpDown_ValueChanged(sender As Object, e As EventArgs)
+        MainFormController.SaveSW2AppConfigs("autoRunDelaySeconds")
+    End Sub
+
+
+    Public Sub SW2App_SequentialRun_RadioButton_CheckedChanged(sender As Object, e As EventArgs)
+        MainFormController.SaveSW2AppConfigs("sequentialRun")
+    End Sub
+
+
+    Public Sub SW2App_NumberOfRuns_NumericUpDown_ValueChanged(sender As Object, e As EventArgs)
+        MainFormController.SaveSW2AppConfigs("numberOfRuns")
     End Sub
 
 End Class

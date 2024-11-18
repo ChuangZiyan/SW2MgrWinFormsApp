@@ -12,27 +12,6 @@ Module UtilsModule
         End Try
     End Function
 
-    Public Sub DirectoryCopy(sourceDir As String, destDir As String, copySubDirs As Boolean)
-        Dim dir As DirectoryInfo = New DirectoryInfo(sourceDir)
-        Dim dirs As DirectoryInfo() = dir.GetDirectories()
-
-        If Not Directory.Exists(destDir) Then
-            Directory.CreateDirectory(destDir)
-        End If
-
-        Dim files As FileInfo() = dir.GetFiles()
-        For Each file As FileInfo In files
-            Dim tempPath As String = Path.Combine(destDir, file.Name)
-            file.CopyTo(tempPath, False)
-        Next
-
-        If copySubDirs Then
-            For Each subdir As DirectoryInfo In dirs
-                Dim tempPath As String = Path.Combine(destDir, subdir.Name)
-                DirectoryCopy(subdir.FullName, tempPath, copySubDirs)
-            Next
-        End If
-    End Sub
 
     Public Async Function Delay_msec(msec As Integer) As Task
         Await Task.Delay(msec)

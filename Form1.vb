@@ -6,6 +6,7 @@ Imports SW2MgrWinFormsApp.MainFormController
 
 Public Class Form1
 
+    Public autoUpdateUI As Boolean = True
     Private cts As CancellationTokenSource ' 用來取消背景任務
     Private MgrMainFormEventController As New MgrMainFormEventController()
 
@@ -24,20 +25,34 @@ Public Class Form1
         AddHandler SW2App_ListView.DoubleClick, AddressOf MgrMainFormEventController.SW2App_ListView_DoubleClick
         AddHandler UpdateAllSWApp_Button.Click, AddressOf MgrMainFormEventController.UpdateAllSWApp_Button_Click
 
+
+        ' 程式設置儲存功能
+        AddHandler SW2App_AutoRun_CheckBox.Click, AddressOf MgrMainFormEventController.SW2App_AutoRun_CheckBox_Click
+        'AddHandler SW2App_AutoRunDelaySeconds_NumericUpDown.Click, AddressOf MgrMainFormEventController.SW2App_AutoRunDelaySeconds_NumericUpDown_ValueChanged
+        'AddHandler SW2App_SequentialRun_RadioButton.CheckedChanged, AddressOf MgrMainFormEventController.SW2App_SequentialRun_RadioButton_CheckedChanged
+        'AddHandler SW2App_NumberOfRuns_NumericUpDown.ValueChanged, AddressOf MgrMainFormEventController.SW2App_NumberOfRuns_NumericUpDown_ValueChanged
+
     End Sub
+
 
     Private Async Sub StartBackgroundUpdate()
         cts = New CancellationTokenSource()
         Dim token As CancellationToken = cts.Token
         Await Task.Run(Async Function()
                            While Not token.IsCancellationRequested
-                               UpdateData()
-                               Try
-                                   ' 預設每3秒更新UI資訊
-                                   Await Task.Delay(3000, token)
-                               Catch ex As TaskCanceledException
-                                   Exit While
-                               End Try
+
+                               If autoUpdateUI Then
+                                   UpdateData()
+                                   Try
+                                       ' 預設每3秒更新UI資訊
+                                       Await Task.Delay(3000, token)
+                                   Catch ex As TaskCanceledException
+                                       Exit While
+                                   End Try
+                               Else
+                                   Await Delay_msec(3000)
+                               End If
+
                            End While
                        End Function, token)
     End Sub
@@ -45,7 +60,6 @@ Public Class Form1
     Private Sub UpdateData()
         Try
             Me.Invoke(Sub()
-                          'Debug.WriteLine("update data")
                           MainFormController.UpdateSW2AppListView()
                           AppInitModule.ReadSourceAppProfile()
                       End Sub)

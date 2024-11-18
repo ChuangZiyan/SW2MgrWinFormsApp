@@ -66,7 +66,7 @@ Partial Class Form1
         ' 
         ' CreateNewSW2App_Button
         ' 
-        CreateNewSW2App_Button.Location = New Point(410, 117)
+        CreateNewSW2App_Button.Location = New Point(342, 118)
         CreateNewSW2App_Button.Name = "CreateNewSW2App_Button"
         CreateNewSW2App_Button.Size = New Size(94, 29)
         CreateNewSW2App_Button.TabIndex = 1
@@ -75,7 +75,7 @@ Partial Class Form1
         ' 
         ' DeleteSelectedSW2AppFolder_Button
         ' 
-        DeleteSelectedSW2AppFolder_Button.Location = New Point(510, 117)
+        DeleteSelectedSW2AppFolder_Button.Location = New Point(442, 118)
         DeleteSelectedSW2AppFolder_Button.Name = "DeleteSelectedSW2AppFolder_Button"
         DeleteSelectedSW2AppFolder_Button.Size = New Size(94, 29)
         DeleteSelectedSW2AppFolder_Button.TabIndex = 2
@@ -84,7 +84,7 @@ Partial Class Form1
         ' 
         ' LaunchSeletedSW2App_Button
         ' 
-        LaunchSeletedSW2App_Button.Location = New Point(228, 506)
+        LaunchSeletedSW2App_Button.Location = New Point(184, 506)
         LaunchSeletedSW2App_Button.Name = "LaunchSeletedSW2App_Button"
         LaunchSeletedSW2App_Button.Size = New Size(94, 29)
         LaunchSeletedSW2App_Button.TabIndex = 3
@@ -93,7 +93,7 @@ Partial Class Form1
         ' 
         ' TerminateSW2AppByPId_Button
         ' 
-        TerminateSW2AppByPId_Button.Location = New Point(328, 506)
+        TerminateSW2AppByPId_Button.Location = New Point(284, 506)
         TerminateSW2AppByPId_Button.Name = "TerminateSW2AppByPId_Button"
         TerminateSW2AppByPId_Button.Size = New Size(94, 29)
         TerminateSW2AppByPId_Button.TabIndex = 4
@@ -102,7 +102,7 @@ Partial Class Form1
         ' 
         ' UpdateSW2AppListView_Button
         ' 
-        UpdateSW2AppListView_Button.Location = New Point(539, 506)
+        UpdateSW2AppListView_Button.Location = New Point(542, 506)
         UpdateSW2AppListView_Button.Name = "UpdateSW2AppListView_Button"
         UpdateSW2AppListView_Button.Size = New Size(94, 29)
         UpdateSW2AppListView_Button.TabIndex = 5
@@ -115,7 +115,7 @@ Partial Class Form1
         SW2App_ListView.FullRowSelect = True
         SW2App_ListView.Location = New Point(12, 153)
         SW2App_ListView.Name = "SW2App_ListView"
-        SW2App_ListView.Size = New Size(621, 347)
+        SW2App_ListView.Size = New Size(524, 347)
         SW2App_ListView.TabIndex = 6
         SW2App_ListView.UseCompatibleStateImageBehavior = False
         SW2App_ListView.View = View.Details
@@ -142,7 +142,7 @@ Partial Class Form1
         ' ColumnHeader5
         ' 
         ColumnHeader5.Text = "保留"
-        ColumnHeader5.Width = 150
+        ColumnHeader5.Width = 10
         ' 
         ' Label1
         ' 
@@ -157,7 +157,7 @@ Partial Class Form1
         ' 
         NewSW2FolderName_TextBox.Location = New Point(109, 117)
         NewSW2FolderName_TextBox.Name = "NewSW2FolderName_TextBox"
-        NewSW2FolderName_TextBox.Size = New Size(295, 27)
+        NewSW2FolderName_TextBox.Size = New Size(227, 27)
         NewSW2FolderName_TextBox.TabIndex = 8
         ' 
         ' Label2
@@ -171,7 +171,7 @@ Partial Class Form1
         ' 
         ' UpdateSelectedSW2App_Button
         ' 
-        UpdateSelectedSW2App_Button.Location = New Point(410, 52)
+        UpdateSelectedSW2App_Button.Location = New Point(342, 52)
         UpdateSelectedSW2App_Button.Name = "UpdateSelectedSW2App_Button"
         UpdateSelectedSW2App_Button.Size = New Size(94, 29)
         UpdateSelectedSW2App_Button.TabIndex = 1
@@ -183,12 +183,12 @@ Partial Class Form1
         SourceSW2AppVersion_TextBox.Location = New Point(109, 17)
         SourceSW2AppVersion_TextBox.Name = "SourceSW2AppVersion_TextBox"
         SourceSW2AppVersion_TextBox.ReadOnly = True
-        SourceSW2AppVersion_TextBox.Size = New Size(295, 27)
+        SourceSW2AppVersion_TextBox.Size = New Size(227, 27)
         SourceSW2AppVersion_TextBox.TabIndex = 2
         ' 
         ' RevealAppSourceFolder_Button
         ' 
-        RevealAppSourceFolder_Button.Location = New Point(410, 17)
+        RevealAppSourceFolder_Button.Location = New Point(342, 17)
         RevealAppSourceFolder_Button.Name = "RevealAppSourceFolder_Button"
         RevealAppSourceFolder_Button.Size = New Size(194, 29)
         RevealAppSourceFolder_Button.TabIndex = 3
@@ -197,7 +197,7 @@ Partial Class Form1
         ' 
         ' TerminateAllSW2App_Button
         ' 
-        TerminateAllSW2App_Button.Location = New Point(428, 506)
+        TerminateAllSW2App_Button.Location = New Point(384, 506)
         TerminateAllSW2App_Button.Name = "TerminateAllSW2App_Button"
         TerminateAllSW2App_Button.Size = New Size(94, 29)
         TerminateAllSW2App_Button.TabIndex = 10
@@ -206,7 +206,7 @@ Partial Class Form1
         ' 
         ' UpdateAllSWApp_Button
         ' 
-        UpdateAllSWApp_Button.Location = New Point(510, 52)
+        UpdateAllSWApp_Button.Location = New Point(442, 52)
         UpdateAllSWApp_Button.Name = "UpdateAllSWApp_Button"
         UpdateAllSWApp_Button.Size = New Size(94, 29)
         UpdateAllSWApp_Button.TabIndex = 11
@@ -215,32 +215,33 @@ Partial Class Form1
         ' 
         ' AppConfigs_GroupBox
         ' 
-        AppConfigs_GroupBox.Controls.Add(SW2App_NumberOfRuns_NumericUpDown)
-        AppConfigs_GroupBox.Controls.Add(Label7)
-        AppConfigs_GroupBox.Controls.Add(Label4)
-        AppConfigs_GroupBox.Controls.Add(SW2App_ScheduledRun_RadioButton)
-        AppConfigs_GroupBox.Controls.Add(SW2App_SequentialRun_RadioButton)
-        AppConfigs_GroupBox.Controls.Add(SW2App_AutoRunDelaySeconds_NumericUpDown)
         AppConfigs_GroupBox.Controls.Add(Label3)
+        AppConfigs_GroupBox.Controls.Add(SW2App_NumberOfRuns_NumericUpDown)
+        AppConfigs_GroupBox.Controls.Add(SW2App_AutoRunDelaySeconds_NumericUpDown)
         AppConfigs_GroupBox.Controls.Add(SW2App_AutoRun_CheckBox)
-        AppConfigs_GroupBox.Location = New Point(639, 92)
+        AppConfigs_GroupBox.Controls.Add(Label7)
+        AppConfigs_GroupBox.Controls.Add(SW2App_ScheduledRun_RadioButton)
+        AppConfigs_GroupBox.Controls.Add(SaveSW2AppConfigs_Button)
+        AppConfigs_GroupBox.Controls.Add(SW2App_SequentialRun_RadioButton)
+        AppConfigs_GroupBox.Controls.Add(Label4)
+        AppConfigs_GroupBox.Location = New Point(542, 153)
         AppConfigs_GroupBox.Name = "AppConfigs_GroupBox"
-        AppConfigs_GroupBox.Size = New Size(322, 408)
+        AppConfigs_GroupBox.Size = New Size(313, 347)
         AppConfigs_GroupBox.TabIndex = 12
         AppConfigs_GroupBox.TabStop = False
         AppConfigs_GroupBox.Text = "程式設置"
         ' 
         ' SW2App_NumberOfRuns_NumericUpDown
         ' 
-        SW2App_NumberOfRuns_NumericUpDown.Location = New Point(92, 90)
+        SW2App_NumberOfRuns_NumericUpDown.Location = New Point(116, 97)
         SW2App_NumberOfRuns_NumericUpDown.Name = "SW2App_NumberOfRuns_NumericUpDown"
-        SW2App_NumberOfRuns_NumericUpDown.Size = New Size(90, 27)
+        SW2App_NumberOfRuns_NumericUpDown.Size = New Size(70, 27)
         SW2App_NumberOfRuns_NumericUpDown.TabIndex = 8
         ' 
         ' Label7
         ' 
         Label7.AutoSize = True
-        Label7.Location = New Point(6, 92)
+        Label7.Location = New Point(30, 99)
         Label7.Name = "Label7"
         Label7.Size = New Size(80, 19)
         Label7.TabIndex = 7
@@ -249,7 +250,7 @@ Partial Class Form1
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Location = New Point(6, 63)
+        Label4.Location = New Point(30, 133)
         Label4.Name = "Label4"
         Label4.Size = New Size(80, 19)
         Label4.TabIndex = 6
@@ -258,7 +259,7 @@ Partial Class Form1
         ' SW2App_ScheduledRun_RadioButton
         ' 
         SW2App_ScheduledRun_RadioButton.AutoSize = True
-        SW2App_ScheduledRun_RadioButton.Location = New Point(188, 61)
+        SW2App_ScheduledRun_RadioButton.Location = New Point(212, 131)
         SW2App_ScheduledRun_RadioButton.Name = "SW2App_ScheduledRun_RadioButton"
         SW2App_ScheduledRun_RadioButton.Size = New Size(90, 23)
         SW2App_ScheduledRun_RadioButton.TabIndex = 5
@@ -269,7 +270,7 @@ Partial Class Form1
         ' SW2App_SequentialRun_RadioButton
         ' 
         SW2App_SequentialRun_RadioButton.AutoSize = True
-        SW2App_SequentialRun_RadioButton.Location = New Point(92, 61)
+        SW2App_SequentialRun_RadioButton.Location = New Point(116, 131)
         SW2App_SequentialRun_RadioButton.Name = "SW2App_SequentialRun_RadioButton"
         SW2App_SequentialRun_RadioButton.Size = New Size(90, 23)
         SW2App_SequentialRun_RadioButton.TabIndex = 4
@@ -279,17 +280,17 @@ Partial Class Form1
         ' 
         ' SW2App_AutoRunDelaySeconds_NumericUpDown
         ' 
-        SW2App_AutoRunDelaySeconds_NumericUpDown.Location = New Point(204, 22)
+        SW2App_AutoRunDelaySeconds_NumericUpDown.Location = New Point(116, 64)
         SW2App_AutoRunDelaySeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
         SW2App_AutoRunDelaySeconds_NumericUpDown.Name = "SW2App_AutoRunDelaySeconds_NumericUpDown"
-        SW2App_AutoRunDelaySeconds_NumericUpDown.Size = New Size(60, 27)
+        SW2App_AutoRunDelaySeconds_NumericUpDown.Size = New Size(70, 27)
         SW2App_AutoRunDelaySeconds_NumericUpDown.TabIndex = 3
         SW2App_AutoRunDelaySeconds_NumericUpDown.Value = New Decimal(New Integer() {15, 0, 0, 0})
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Location = New Point(118, 27)
+        Label3.Location = New Point(30, 66)
         Label3.Name = "Label3"
         Label3.Size = New Size(80, 19)
         Label3.TabIndex = 2
@@ -298,18 +299,19 @@ Partial Class Form1
         ' SW2App_AutoRun_CheckBox
         ' 
         SW2App_AutoRun_CheckBox.AutoSize = True
+        SW2App_AutoRun_CheckBox.Font = New Font("Microsoft JhengHei UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(136))
         SW2App_AutoRun_CheckBox.Location = New Point(6, 26)
         SW2App_AutoRun_CheckBox.Name = "SW2App_AutoRun_CheckBox"
-        SW2App_AutoRun_CheckBox.Size = New Size(106, 23)
+        SW2App_AutoRun_CheckBox.Size = New Size(214, 26)
         SW2App_AutoRun_CheckBox.TabIndex = 0
-        SW2App_AutoRun_CheckBox.Text = "啟動時執行"
+        SW2App_AutoRun_CheckBox.Text = "啟動時執行(勾了就生效)"
         SW2App_AutoRun_CheckBox.UseVisualStyleBackColor = True
         ' 
         ' SaveSW2AppConfigs_Button
         ' 
-        SaveSW2AppConfigs_Button.Location = New Point(867, 506)
+        SaveSW2AppConfigs_Button.Location = New Point(217, 312)
         SaveSW2AppConfigs_Button.Name = "SaveSW2AppConfigs_Button"
-        SaveSW2AppConfigs_Button.Size = New Size(94, 29)
+        SaveSW2AppConfigs_Button.Size = New Size(90, 29)
         SaveSW2AppConfigs_Button.TabIndex = 13
         SaveSW2AppConfigs_Button.Text = "儲存"
         SaveSW2AppConfigs_Button.UseVisualStyleBackColor = True
@@ -319,7 +321,7 @@ Partial Class Form1
         LaunchDelaySeconds_NumericUpDown.Location = New Point(128, 506)
         LaunchDelaySeconds_NumericUpDown.Maximum = New Decimal(New Integer() {999, 0, 0, 0})
         LaunchDelaySeconds_NumericUpDown.Name = "LaunchDelaySeconds_NumericUpDown"
-        LaunchDelaySeconds_NumericUpDown.Size = New Size(94, 27)
+        LaunchDelaySeconds_NumericUpDown.Size = New Size(50, 27)
         LaunchDelaySeconds_NumericUpDown.TabIndex = 14
         LaunchDelaySeconds_NumericUpDown.Value = New Decimal(New Integer() {3, 0, 0, 0})
         ' 
@@ -336,7 +338,7 @@ Partial Class Form1
         ' 
         AppUpdating_ProgressBar.Location = New Point(109, 50)
         AppUpdating_ProgressBar.Name = "AppUpdating_ProgressBar"
-        AppUpdating_ProgressBar.Size = New Size(295, 29)
+        AppUpdating_ProgressBar.Size = New Size(227, 29)
         AppUpdating_ProgressBar.TabIndex = 16
         ' 
         ' AppUpdatingProgressInfo_Label
@@ -360,7 +362,7 @@ Partial Class Form1
         ' UpdatingProgressPercent_Label
         ' 
         UpdatingProgressPercent_Label.AutoSize = True
-        UpdatingProgressPercent_Label.Location = New Point(355, 82)
+        UpdatingProgressPercent_Label.Location = New Point(305, 82)
         UpdatingProgressPercent_Label.Name = "UpdatingProgressPercent_Label"
         UpdatingProgressPercent_Label.Size = New Size(31, 19)
         UpdatingProgressPercent_Label.TabIndex = 20
@@ -370,14 +372,13 @@ Partial Class Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(997, 552)
+        ClientSize = New Size(867, 552)
         Controls.Add(UpdatingProgressPercent_Label)
         Controls.Add(Label6)
         Controls.Add(AppUpdatingProgressInfo_Label)
         Controls.Add(AppUpdating_ProgressBar)
         Controls.Add(Label5)
         Controls.Add(LaunchDelaySeconds_NumericUpDown)
-        Controls.Add(SaveSW2AppConfigs_Button)
         Controls.Add(AppConfigs_GroupBox)
         Controls.Add(UpdateAllSWApp_Button)
         Controls.Add(RevealAppSourceFolder_Button)

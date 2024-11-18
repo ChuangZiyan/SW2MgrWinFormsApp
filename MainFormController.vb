@@ -117,6 +117,50 @@ Module MainFormController
     End Function
 
 
+    Public Sub SaveSW2AppConfigs(target As String)
+        Try
+            Debug.WriteLine(target)
+            Dim selectedSW2AppListViewItems = Form1.SW2App_ListView.SelectedItems
+
+            If selectedSW2AppListViewItems.Count > 0 Then
+                For Each seletedItem As ListViewItem In selectedSW2AppListViewItems
+
+                    Dim folderName = seletedItem.SubItems(1).Text
+                    Dim appConfigs As AppConfigs = GetAppConfigs(folderName)
+
+                    Dim filePath As String = Path.Combine(AppInitModule.webview2AppDirectory, folderName, "appConfigs", "appConfigs.json")
+
+                    Select Case target
+                        Case "autoRun"
+                            appConfigs.AutoRun = Form1.SW2App_AutoRun_CheckBox.Checked
+                        Case "autoRunDelaySeconds"
+                            appConfigs.AutoRunDelaySeconds = Form1.SW2App_AutoRunDelaySeconds_NumericUpDown.Value
+                        Case "numberOfRuns"
+                            appConfigs.NumberOfRuns = Form1.SW2App_NumberOfRuns_NumericUpDown.Value
+                        Case "sequentialRun"
+                            If Form1.SW2App_SequentialRun_RadioButton.Checked Then
+                                appConfigs.ScheduledRun = False
+                            Else
+                                appConfigs.ScheduledRun = True
+                            End If
+                    End Select
+
+
+                    Dim jsonString As String = JsonConvert.SerializeObject(appConfigs, Formatting.Indented)
+                    File.WriteAllText(filePath, jsonString)
+
+                Next
+
+            End If
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+
+        End Try
+
+    End Sub
+
+
 
     Public Class Webview2AppProfile
         Public Property Version As String
