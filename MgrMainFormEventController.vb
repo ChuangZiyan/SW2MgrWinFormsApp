@@ -4,9 +4,6 @@ Imports Newtonsoft.Json
 
 Public Class MgrMainFormEventController
 
-
-
-
     Public Sub SW2App_ListView_DoubleClick(sender As Object, e As EventArgs)
         Try
             Dim selectedItem As ListViewItem = Form1.SW2App_ListView.SelectedItems(0)
@@ -151,7 +148,7 @@ Public Class MgrMainFormEventController
     End Sub
 
 
-    Public Async Sub CreateNewSW2App_Button_Click(sender As Object, e As EventArgs)
+    Public Sub CreateNewSW2App_Button_Click(sender As Object, e As EventArgs)
 
         Try
             ' 設定一些防呆
@@ -173,7 +170,8 @@ Public Class MgrMainFormEventController
 
                 If Directory.Exists(sourceFolder) Then
                     SWAppCreatorModule.totalFiles = SWAppCreatorModule.GetTotalFiles(sourceFolder)
-                    Await DirectoryCopy(sourceFolder, destinationPath, True)
+                    SWAppCreatorModule.UpdateFiles(sourceFolder, destinationPath)
+
                 Else
                     Debug.WriteLine("source not found")
                 End If
@@ -192,6 +190,8 @@ Public Class MgrMainFormEventController
         Form1.CreateNewSW2App_Button.Enabled = True
         Form1.DeleteSelectedSW2AppFolder_Button.Enabled = True
         Form1.autoUpdateUI = True
+        ' 進度重設
+        SWAppCreatorModule.progressCounter = 0
 
     End Sub
 
@@ -203,14 +203,19 @@ Public Class MgrMainFormEventController
 
     Public Sub DeleteSelectedSW2AppFolder_Button_Click(sender As Object, e As EventArgs)
         Try
-            If Form1.SW2App_ListView.SelectedItems.Count < 1 Then
+            If Form1.SW2App_ListView.SelectedItems.Count > 0 Then
                 Exit Sub
             End If
 
             Dim result As DialogResult = MessageBox.Show("確定要刪除嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If result = DialogResult.Yes Then
-                For Each selectedItem As ListViewItem In Form1.SW2App_ListView.SelectedItems
+                ' 設定一些防呆
+                Form1.DeleteSelectedSW2AppFolder_Button.Enabled = False
+                Form1.DeleteSelectedSW2AppFolder_Button.Text = "刪除中"
+                Form1.CreateNewSW2App_Button.Enabled = False
+                Form1.autoUpdateUI = False
 
+                For Each selectedItem As ListViewItem In Form1.SW2App_ListView.SelectedItems
                     Dim folderPath = Path.Combine(AppInitModule.webview2AppDirectory, selectedItem.SubItems(1).Text)
                     Directory.Delete(folderPath, recursive:=True)
                     Form1.SW2App_ListView.Items.Remove(selectedItem)
@@ -222,6 +227,13 @@ Public Class MgrMainFormEventController
             Debug.WriteLine(ex)
             MsgBox("刪除失敗")
         End Try
+
+        ' 把防呆的元件設定回來
+        Form1.DeleteSelectedSW2AppFolder_Button.Text = "刪除"
+        Form1.DeleteSelectedSW2AppFolder_Button.Enabled = True
+        Form1.CreateNewSW2App_Button.Enabled = True
+        Form1.autoUpdateUI = True
+
     End Sub
 
 
@@ -276,9 +288,10 @@ Public Class MgrMainFormEventController
     End Sub
 
     Public Sub SW2App_ListView_SelectedIndexChanged(sender As Object, e As EventArgs)
+
         Try
             Dim selectedSW2AppListViewItems = Form1.SW2App_ListView.SelectedItems
-            If selectedSW2AppListViewItems.Count > 0 Then
+            If selectedSW2AppListViewItems.Count = 1 Then
 
                 If selectedSW2AppListViewItems(0).SubItems(3).Text = "On" Then
                     Form1.LaunchSeletedSW2App_Button.Enabled = False
@@ -302,6 +315,12 @@ Public Class MgrMainFormEventController
                 End If
 
                 Form1.SW2App_NumberOfRuns_NumericUpDown.Value = appConfigs.NumberOfRuns
+            Else
+                Form1.SW2App_AutoRun_CheckBox.Checked = False
+                Form1.SW2App_ScheduledRun_RadioButton.Checked = False
+                Form1.SW2App_SequentialRun_RadioButton.Checked = True
+                Form1.SW2App_AutoRunDelaySeconds_NumericUpDown.Value = 15
+                Form1.SW2App_NumberOfRuns_NumericUpDown.Value = 0
 
             End If
         Catch ex As Exception

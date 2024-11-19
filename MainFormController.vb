@@ -55,6 +55,7 @@ Module MainFormController
                 End If
 
             Next
+            UpdateListViewItemStyle()
         Catch ex As Exception
             Debug.WriteLine("更新失敗")
             Debug.WriteLine(ex)
@@ -63,6 +64,23 @@ Module MainFormController
 
     End Sub
 
+    Private Sub UpdateListViewItemStyle()
+        For Each item As ListViewItem In Form1.SW2App_ListView.Items
+            Dim subItemText As String = item.SubItems(3).Text
+            If subItemText = "On" Then
+                ' 修改背景與粗體樣式
+                item.UseItemStyleForSubItems = False
+                'item.SubItems(3).ForeColor = Color.Green
+                item.SubItems(3).BackColor = Color.LightGreen
+
+                item.SubItems(3).Font = New Font(Form1.SW2App_ListView.Font, FontStyle.Bold)
+            Else
+                ' 恢復預設樣式
+                item.SubItems(3).BackColor = Color.White
+                item.SubItems(3).Font = Form1.SW2App_ListView.Font
+            End If
+        Next
+    End Sub
 
     Private Function GetProfile(folderName)
         Try

@@ -1,40 +1,38 @@
 ﻿Imports System.IO
 
 Module SWAppCreatorModule
-    Public Async Function DirectoryCopy(sourceDir As String, destDir As String, copySubDirs As Boolean) As Task
-        Dim dir As DirectoryInfo = New DirectoryInfo(sourceDir)
-        Dim dirs As DirectoryInfo() = dir.GetDirectories()
 
-        If Not Directory.Exists(destDir) Then
-            Directory.CreateDirectory(destDir)
-        End If
+    Public totalFiles As Integer
+    Public progressCounter As Integer = 0
 
+    Public Sub UpdateFiles(sourceDir As String, targetDir As String)
+        Try
 
-        Dim files As FileInfo() = dir.GetFiles()
-        For Each file As FileInfo In files
-            Dim tempPath As String = Path.Combine(destDir, file.Name)
-            file.CopyTo(tempPath, False)
-            UpdateCreateNewSW2AppButtonProgress()
-        Next
+            If Not Directory.Exists(targetDir) Then
+                Directory.CreateDirectory(targetDir)
+            End If
 
-        If copySubDirs Then
-            For Each subdir As DirectoryInfo In dirs
-                Dim tempPath As String = Path.Combine(destDir, subdir.Name)
-                Await DirectoryCopy(subdir.FullName, tempPath, copySubDirs)
+            For Each sourceFilePath As String In Directory.GetFiles(sourceDir)
+                Dim fileName As String = Path.GetFileName(sourceFilePath)
+
+                Dim targetFilePath As String = Path.Combine(targetDir, fileName)
+                File.Copy(sourceFilePath, targetFilePath, True)
+
+                UpdateProgress()
             Next
-        End If
-    End Function
 
+            For Each sourceSubDir As String In Directory.GetDirectories(sourceDir)
+                Dim dirName As String = New DirectoryInfo(sourceSubDir).Name
 
+                Dim targetSubDir As String = Path.Combine(targetDir, dirName)
+                UpdateFiles(sourceSubDir, targetSubDir)
+            Next
 
-    Private copiedFiles As Integer = 0
-    Public totalFiles As Integer = 0
-
-    Private Sub UpdateCreateNewSW2AppButtonProgress()
-        copiedFiles += 1
-        Dim progressPercent As Integer = CInt((copiedFiles / totalFiles) * 100)
-        Form1.CreateNewSW2App_Button.Text = $"{progressPercent}%"
+        Catch ex As Exception
+            Debug.WriteLine($"錯誤: {ex.Message}")
+        End Try
     End Sub
+
 
     Public Function GetTotalFiles(dir As String) As Integer
         Dim count As Integer = 0
@@ -47,6 +45,13 @@ Module SWAppCreatorModule
         Next
         Return count
     End Function
+
+    Private Sub UpdateProgress()
+        progressCounter += 1
+        Dim progressPercent As Integer = CInt((progressCounter / totalFiles) * 100)
+        Form1.CreateNewSW2App_Button.Text = $"{progressPercent}%"
+        Application.DoEvents() ' update UI
+    End Sub
 
 
 End Module

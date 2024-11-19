@@ -42,15 +42,15 @@ Partial Class Form1
         TerminateAllSW2App_Button = New Button()
         UpdateAllSWApp_Button = New Button()
         AppConfigs_GroupBox = New GroupBox()
-        SW2App_NumberOfRuns_NumericUpDown = New NumericUpDown()
-        Label7 = New Label()
-        Label4 = New Label()
-        SW2App_ScheduledRun_RadioButton = New RadioButton()
-        SW2App_SequentialRun_RadioButton = New RadioButton()
-        SW2App_AutoRunDelaySeconds_NumericUpDown = New NumericUpDown()
         Label3 = New Label()
+        SW2App_NumberOfRuns_NumericUpDown = New NumericUpDown()
+        SW2App_AutoRunDelaySeconds_NumericUpDown = New NumericUpDown()
         SW2App_AutoRun_CheckBox = New CheckBox()
+        Label7 = New Label()
+        SW2App_ScheduledRun_RadioButton = New RadioButton()
         SaveSW2AppConfigs_Button = New Button()
+        SW2App_SequentialRun_RadioButton = New RadioButton()
+        Label4 = New Label()
         LaunchDelaySeconds_NumericUpDown = New NumericUpDown()
         Label5 = New Label()
         AppUpdating_ProgressBar = New ProgressBar()
@@ -111,6 +111,7 @@ Partial Class Form1
         ' 
         ' SW2App_ListView
         ' 
+        SW2App_ListView.BackColor = SystemColors.Window
         SW2App_ListView.Columns.AddRange(New ColumnHeader() {SW2App_PId_ColumnHeader, SW2App_FolderName_ColumnHeader, SW2App_Version_ColumnHeader, SW2App_Status_ColumnHeader, ColumnHeader5})
         SW2App_ListView.FullRowSelect = True
         SW2App_ListView.Location = New Point(12, 153)
@@ -231,52 +232,21 @@ Partial Class Form1
         AppConfigs_GroupBox.TabStop = False
         AppConfigs_GroupBox.Text = "程式設置"
         ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Location = New Point(30, 66)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(80, 19)
+        Label3.TabIndex = 2
+        Label3.Text = "延遲秒數 : "
+        ' 
         ' SW2App_NumberOfRuns_NumericUpDown
         ' 
         SW2App_NumberOfRuns_NumericUpDown.Location = New Point(116, 97)
         SW2App_NumberOfRuns_NumericUpDown.Name = "SW2App_NumberOfRuns_NumericUpDown"
         SW2App_NumberOfRuns_NumericUpDown.Size = New Size(70, 27)
         SW2App_NumberOfRuns_NumericUpDown.TabIndex = 8
-        ' 
-        ' Label7
-        ' 
-        Label7.AutoSize = True
-        Label7.Location = New Point(30, 99)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(80, 19)
-        Label7.TabIndex = 7
-        Label7.Text = "執行次數 : "
-        ' 
-        ' Label4
-        ' 
-        Label4.AutoSize = True
-        Label4.Location = New Point(30, 133)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(80, 19)
-        Label4.TabIndex = 6
-        Label4.Text = "執行模式 : "
-        ' 
-        ' SW2App_ScheduledRun_RadioButton
-        ' 
-        SW2App_ScheduledRun_RadioButton.AutoSize = True
-        SW2App_ScheduledRun_RadioButton.Location = New Point(212, 131)
-        SW2App_ScheduledRun_RadioButton.Name = "SW2App_ScheduledRun_RadioButton"
-        SW2App_ScheduledRun_RadioButton.Size = New Size(90, 23)
-        SW2App_ScheduledRun_RadioButton.TabIndex = 5
-        SW2App_ScheduledRun_RadioButton.TabStop = True
-        SW2App_ScheduledRun_RadioButton.Text = "定時執行"
-        SW2App_ScheduledRun_RadioButton.UseVisualStyleBackColor = True
-        ' 
-        ' SW2App_SequentialRun_RadioButton
-        ' 
-        SW2App_SequentialRun_RadioButton.AutoSize = True
-        SW2App_SequentialRun_RadioButton.Location = New Point(116, 131)
-        SW2App_SequentialRun_RadioButton.Name = "SW2App_SequentialRun_RadioButton"
-        SW2App_SequentialRun_RadioButton.Size = New Size(90, 23)
-        SW2App_SequentialRun_RadioButton.TabIndex = 4
-        SW2App_SequentialRun_RadioButton.TabStop = True
-        SW2App_SequentialRun_RadioButton.Text = "順序執行"
-        SW2App_SequentialRun_RadioButton.UseVisualStyleBackColor = True
         ' 
         ' SW2App_AutoRunDelaySeconds_NumericUpDown
         ' 
@@ -286,15 +256,6 @@ Partial Class Form1
         SW2App_AutoRunDelaySeconds_NumericUpDown.Size = New Size(70, 27)
         SW2App_AutoRunDelaySeconds_NumericUpDown.TabIndex = 3
         SW2App_AutoRunDelaySeconds_NumericUpDown.Value = New Decimal(New Integer() {15, 0, 0, 0})
-        ' 
-        ' Label3
-        ' 
-        Label3.AutoSize = True
-        Label3.Location = New Point(30, 66)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(80, 19)
-        Label3.TabIndex = 2
-        Label3.Text = "延遲秒數 : "
         ' 
         ' SW2App_AutoRun_CheckBox
         ' 
@@ -307,6 +268,26 @@ Partial Class Form1
         SW2App_AutoRun_CheckBox.Text = "啟動時執行(勾了就生效)"
         SW2App_AutoRun_CheckBox.UseVisualStyleBackColor = True
         ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Location = New Point(30, 99)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(80, 19)
+        Label7.TabIndex = 7
+        Label7.Text = "執行次數 : "
+        ' 
+        ' SW2App_ScheduledRun_RadioButton
+        ' 
+        SW2App_ScheduledRun_RadioButton.AutoSize = True
+        SW2App_ScheduledRun_RadioButton.Location = New Point(212, 131)
+        SW2App_ScheduledRun_RadioButton.Name = "SW2App_ScheduledRun_RadioButton"
+        SW2App_ScheduledRun_RadioButton.Size = New Size(90, 23)
+        SW2App_ScheduledRun_RadioButton.TabIndex = 5
+        SW2App_ScheduledRun_RadioButton.TabStop = True
+        SW2App_ScheduledRun_RadioButton.Text = "定時執行"
+        SW2App_ScheduledRun_RadioButton.UseVisualStyleBackColor = True
+        ' 
         ' SaveSW2AppConfigs_Button
         ' 
         SaveSW2AppConfigs_Button.Location = New Point(217, 312)
@@ -315,6 +296,26 @@ Partial Class Form1
         SaveSW2AppConfigs_Button.TabIndex = 13
         SaveSW2AppConfigs_Button.Text = "儲存"
         SaveSW2AppConfigs_Button.UseVisualStyleBackColor = True
+        ' 
+        ' SW2App_SequentialRun_RadioButton
+        ' 
+        SW2App_SequentialRun_RadioButton.AutoSize = True
+        SW2App_SequentialRun_RadioButton.Location = New Point(116, 131)
+        SW2App_SequentialRun_RadioButton.Name = "SW2App_SequentialRun_RadioButton"
+        SW2App_SequentialRun_RadioButton.Size = New Size(90, 23)
+        SW2App_SequentialRun_RadioButton.TabIndex = 4
+        SW2App_SequentialRun_RadioButton.TabStop = True
+        SW2App_SequentialRun_RadioButton.Text = "順序執行"
+        SW2App_SequentialRun_RadioButton.UseVisualStyleBackColor = True
+        ' 
+        ' Label4
+        ' 
+        Label4.AutoSize = True
+        Label4.Location = New Point(30, 133)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(80, 19)
+        Label4.TabIndex = 6
+        Label4.Text = "執行模式 : "
         ' 
         ' LaunchDelaySeconds_NumericUpDown
         ' 
