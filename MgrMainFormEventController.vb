@@ -201,9 +201,9 @@ Public Class MgrMainFormEventController
     End Sub
 
 
-    Public Sub DeleteSelectedSW2AppFolder_Button_Click(sender As Object, e As EventArgs)
+    Public Async Sub DeleteSelectedSW2AppFolder_Button_Click(sender As Object, e As EventArgs)
         Try
-            If Form1.SW2App_ListView.SelectedItems.Count > 0 Then
+            If Form1.SW2App_ListView.SelectedItems.Count < 1 Then
                 Exit Sub
             End If
 
@@ -214,6 +214,22 @@ Public Class MgrMainFormEventController
                 Form1.DeleteSelectedSW2AppFolder_Button.Text = "刪除中"
                 Form1.CreateNewSW2App_Button.Enabled = False
                 Form1.autoUpdateUI = False
+
+                Application.DoEvents() ' 更新一下UI
+
+                ' 先關閉開啟的APP
+                For Each selectedItem As ListViewItem In Form1.SW2App_ListView.SelectedItems
+
+                    ' 如果開啟就先關閉再更新
+                    Dim app_pid = selectedItem.SubItems(0).Text
+                    If app_pid <> "" Then
+                        Dim pid As Integer = CInt(selectedItem.SubItems(0).Text)
+                        Dim process As Process = Process.GetProcessById(pid)
+                        process.Kill()
+                    End If
+                Next
+
+                Await Delay_msec(1000)
 
                 For Each selectedItem As ListViewItem In Form1.SW2App_ListView.SelectedItems
                     Dim folderPath = Path.Combine(AppInitModule.webview2AppDirectory, selectedItem.SubItems(1).Text)
@@ -320,7 +336,7 @@ Public Class MgrMainFormEventController
                 Form1.SW2App_ScheduledRun_RadioButton.Checked = False
                 Form1.SW2App_SequentialRun_RadioButton.Checked = True
                 Form1.SW2App_AutoRunDelaySeconds_NumericUpDown.Value = 15
-                Form1.SW2App_NumberOfRuns_NumericUpDown.Value = 0
+                Form1.SW2App_NumberOfRuns_NumericUpDown.Value = 1
 
             End If
         Catch ex As Exception
@@ -386,7 +402,6 @@ Public Class MgrMainFormEventController
             Else
                 MsgBox("未選擇程式")
             End If
-
 
         Catch ex As Exception
             Debug.WriteLine(ex)

@@ -55,6 +55,7 @@ Module MainFormController
                 End If
 
             Next
+            ' 更新字體樣式
             UpdateListViewItemStyle()
         Catch ex As Exception
             Debug.WriteLine("更新失敗")
@@ -70,9 +71,14 @@ Module MainFormController
             If subItemText = "On" Then
                 ' 修改背景與粗體樣式
                 item.UseItemStyleForSubItems = False
+
+                ' 字的顏色
                 'item.SubItems(3).ForeColor = Color.Green
+
+                ' 背景顏色
                 item.SubItems(3).BackColor = Color.LightGreen
 
+                ' 字體修改 FontStyle.Bold就是粗體
                 item.SubItems(3).Font = New Font(Form1.SW2App_ListView.Font, FontStyle.Bold)
             Else
                 ' 恢復預設樣式
