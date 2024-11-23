@@ -4,6 +4,7 @@ Module MainFormController
 
     Public Sub UpdateSW2AppListView()
         'Debug.WriteLine("update listview")
+
         Try
 
             Dim dirs As String() = Directory.GetDirectories(AppInitModule.webview2AppDirectory)
@@ -11,6 +12,7 @@ Module MainFormController
 
                 Dim folderName As String = Path.GetFileName(dir)
                 Dim myProfile As Webview2AppProfile = GetProfile(folderName)
+                Dim myAppConfigs As AppConfigs = GetAppConfigs(folderName)
 
                 Dim exist_app = False
                 Dim app_status = "Off"
@@ -27,6 +29,19 @@ Module MainFormController
 
                         ' update version
                         item.SubItems(2).Text = myProfile.Version
+
+
+                        item.SubItems(4).Text = If(myAppConfigs.AutoRun, "是", "否")
+                        item.SubItems(5).Text = myAppConfigs.AutoRunDelaySeconds
+                        item.SubItems(6).Text = If(myAppConfigs.ScheduledRun, "定時", "順序")
+
+
+                        If myAppConfigs.ScheduledRun Then
+                            item.SubItems(7).Text = "NULL"
+                        Else
+                            item.SubItems(7).Text = myAppConfigs.NumberOfRuns
+                        End If
+
 
                         ' check app status with pid
                         If exist_app_pid <> "" Then
@@ -50,9 +65,23 @@ Module MainFormController
                     sw2appListViewItem.SubItems.Add(myProfile.Version)
                     '狀態
                     sw2appListViewItem.SubItems.Add(app_status)
-                    sw2appListViewItem.SubItems.Add("")
+                    sw2appListViewItem.SubItems.Add(If(myAppConfigs.AutoRun, "是", "否"))
+                    sw2appListViewItem.SubItems.Add(myAppConfigs.AutoRunDelaySeconds)
+                    sw2appListViewItem.SubItems.Add(If(myAppConfigs.ScheduledRun, "定時", "順序"))
+
+                    If myAppConfigs.ScheduledRun Then
+                        sw2appListViewItem.SubItems.Add("NULL")
+                    Else
+                        sw2appListViewItem.SubItems.Add(myAppConfigs.NumberOfRuns)
+                    End If
+
+
                     Form1.SW2App_ListView.Items.Add(sw2appListViewItem)
                 End If
+
+
+
+
 
             Next
             UpdateListViewItemStyle()

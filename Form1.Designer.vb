@@ -32,7 +32,10 @@ Partial Class Form1
         SW2App_FolderName_ColumnHeader = New ColumnHeader()
         SW2App_Version_ColumnHeader = New ColumnHeader()
         SW2App_Status_ColumnHeader = New ColumnHeader()
-        ColumnHeader5 = New ColumnHeader()
+        SW2APP_AutoRun_ColumnHeader = New ColumnHeader()
+        SW2APP_AutoRunDelaySeconds_ColumnHeader = New ColumnHeader()
+        SW2APP_NumberOfRuns_ColumnHeader = New ColumnHeader()
+        SW2APP_RunMode_ColumnHeader = New ColumnHeader()
         Label1 = New Label()
         NewSW2FolderName_TextBox = New TextBox()
         Label2 = New Label()
@@ -102,7 +105,7 @@ Partial Class Form1
         ' 
         ' UpdateSW2AppListView_Button
         ' 
-        UpdateSW2AppListView_Button.Location = New Point(542, 506)
+        UpdateSW2AppListView_Button.Location = New Point(663, 506)
         UpdateSW2AppListView_Button.Name = "UpdateSW2AppListView_Button"
         UpdateSW2AppListView_Button.Size = New Size(94, 29)
         UpdateSW2AppListView_Button.TabIndex = 5
@@ -112,11 +115,11 @@ Partial Class Form1
         ' SW2App_ListView
         ' 
         SW2App_ListView.BackColor = SystemColors.Window
-        SW2App_ListView.Columns.AddRange(New ColumnHeader() {SW2App_PId_ColumnHeader, SW2App_FolderName_ColumnHeader, SW2App_Version_ColumnHeader, SW2App_Status_ColumnHeader, ColumnHeader5})
+        SW2App_ListView.Columns.AddRange(New ColumnHeader() {SW2App_PId_ColumnHeader, SW2App_FolderName_ColumnHeader, SW2App_Version_ColumnHeader, SW2App_Status_ColumnHeader, SW2APP_AutoRun_ColumnHeader, SW2APP_AutoRunDelaySeconds_ColumnHeader, SW2APP_RunMode_ColumnHeader, SW2APP_NumberOfRuns_ColumnHeader})
         SW2App_ListView.FullRowSelect = True
         SW2App_ListView.Location = New Point(12, 153)
         SW2App_ListView.Name = "SW2App_ListView"
-        SW2App_ListView.Size = New Size(524, 347)
+        SW2App_ListView.Size = New Size(745, 347)
         SW2App_ListView.TabIndex = 6
         SW2App_ListView.UseCompatibleStateImageBehavior = False
         SW2App_ListView.View = View.Details
@@ -140,10 +143,26 @@ Partial Class Form1
         ' 
         SW2App_Status_ColumnHeader.Text = "狀態"
         ' 
-        ' ColumnHeader5
+        ' SW2APP_AutoRun_ColumnHeader
         ' 
-        ColumnHeader5.Text = "保留"
-        ColumnHeader5.Width = 10
+        SW2APP_AutoRun_ColumnHeader.Text = "啟動執行"
+        SW2APP_AutoRun_ColumnHeader.Width = 75
+        ' 
+        ' SW2APP_AutoRunDelaySeconds_ColumnHeader
+        ' 
+        SW2APP_AutoRunDelaySeconds_ColumnHeader.Text = "延遲秒數"
+        SW2APP_AutoRunDelaySeconds_ColumnHeader.Width = 75
+        ' 
+        ' SW2APP_NumberOfRuns_ColumnHeader
+        ' 
+        SW2APP_NumberOfRuns_ColumnHeader.Text = "執行次數"
+        SW2APP_NumberOfRuns_ColumnHeader.Width = 75
+        ' 
+        ' SW2APP_RunMode_ColumnHeader
+        ' 
+        SW2APP_RunMode_ColumnHeader.DisplayIndex = 7
+        SW2APP_RunMode_ColumnHeader.Text = "執行模式"
+        SW2APP_RunMode_ColumnHeader.Width = 75
         ' 
         ' Label1
         ' 
@@ -225,7 +244,7 @@ Partial Class Form1
         AppConfigs_GroupBox.Controls.Add(SaveSW2AppConfigs_Button)
         AppConfigs_GroupBox.Controls.Add(SW2App_SequentialRun_RadioButton)
         AppConfigs_GroupBox.Controls.Add(Label4)
-        AppConfigs_GroupBox.Location = New Point(542, 153)
+        AppConfigs_GroupBox.Location = New Point(763, 153)
         AppConfigs_GroupBox.Name = "AppConfigs_GroupBox"
         AppConfigs_GroupBox.Size = New Size(313, 347)
         AppConfigs_GroupBox.TabIndex = 12
@@ -373,7 +392,7 @@ Partial Class Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(867, 552)
+        ClientSize = New Size(1089, 552)
         Controls.Add(UpdatingProgressPercent_Label)
         Controls.Add(Label6)
         Controls.Add(AppUpdatingProgressInfo_Label)
@@ -416,7 +435,7 @@ Partial Class Form1
     Friend WithEvents SW2App_FolderName_ColumnHeader As ColumnHeader
     Friend WithEvents SW2App_Version_ColumnHeader As ColumnHeader
     Friend WithEvents SW2App_Status_ColumnHeader As ColumnHeader
-    Friend WithEvents ColumnHeader5 As ColumnHeader
+    Friend WithEvents SW2APP_AutoRun_ColumnHeader As ColumnHeader
     Friend WithEvents Label1 As Label
     Friend WithEvents NewSW2FolderName_TextBox As TextBox
     Friend WithEvents SourceSW2AppVersion_TextBox As TextBox
@@ -442,5 +461,8 @@ Partial Class Form1
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
     Friend WithEvents SW2App_NumberOfRuns_NumericUpDown As NumericUpDown
     Friend WithEvents Label7 As Label
+    Friend WithEvents SW2APP_AutoRunDelaySeconds_ColumnHeader As ColumnHeader
+    Friend WithEvents SW2APP_NumberOfRuns_ColumnHeader As ColumnHeader
+    Friend WithEvents SW2APP_RunMode_ColumnHeader As ColumnHeader
 
 End Class

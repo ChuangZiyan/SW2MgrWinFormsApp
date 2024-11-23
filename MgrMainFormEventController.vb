@@ -373,11 +373,13 @@ Public Class MgrMainFormEventController
                     Dim folderName = seletedItem.SubItems(1).Text
                     Dim filePath As String = Path.Combine(AppInitModule.webview2AppDirectory, folderName, "appConfigs", "appConfigs.json")
 
-                    Dim appConfigs As New AppConfigs With {
-                        .AutoRunDelaySeconds = Form1.SW2App_AutoRunDelaySeconds_NumericUpDown.Value,
-                        .ScheduledRun = Form1.SW2App_ScheduledRun_RadioButton.Checked,
-                        .NumberOfRuns = Form1.SW2App_NumberOfRuns_NumericUpDown.Value
-                    }
+                    Dim appConfigs = GetAppConfigs(folderName)
+
+                    appConfigs.AutoRunDelaySeconds = Form1.SW2App_AutoRunDelaySeconds_NumericUpDown.Value
+                    appConfigs.ScheduledRun = Form1.SW2App_ScheduledRun_RadioButton.Checked
+                    appConfigs.NumberOfRuns = Form1.SW2App_NumberOfRuns_NumericUpDown.Value
+
+
                     Dim jsonString As String = JsonConvert.SerializeObject(appConfigs, Formatting.Indented)
                     File.WriteAllText(filePath, jsonString)
 
@@ -387,6 +389,7 @@ Public Class MgrMainFormEventController
                 MsgBox("未選擇程式")
             End If
 
+            MainFormController.UpdateSW2AppListView()
 
         Catch ex As Exception
             Debug.WriteLine(ex)
