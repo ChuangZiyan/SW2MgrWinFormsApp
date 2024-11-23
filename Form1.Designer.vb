@@ -34,7 +34,6 @@ Partial Class Form1
         SW2App_Status_ColumnHeader = New ColumnHeader()
         SW2APP_AutoRun_ColumnHeader = New ColumnHeader()
         SW2APP_AutoRunDelaySeconds_ColumnHeader = New ColumnHeader()
-        SW2APP_NumberOfRuns_ColumnHeader = New ColumnHeader()
         SW2APP_RunMode_ColumnHeader = New ColumnHeader()
         Label1 = New Label()
         NewSW2FolderName_TextBox = New TextBox()
@@ -61,6 +60,7 @@ Partial Class Form1
         Label6 = New Label()
         UpdatingProgressPercent_Label = New Label()
         SaveFileDialog1 = New SaveFileDialog()
+        SW2APP_NumberOfRuns_ColumnHeader = New ColumnHeader()
         AppConfigs_GroupBox.SuspendLayout()
         CType(SW2App_NumberOfRuns_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SW2App_AutoRunDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -153,14 +153,8 @@ Partial Class Form1
         SW2APP_AutoRunDelaySeconds_ColumnHeader.Text = "延遲秒數"
         SW2APP_AutoRunDelaySeconds_ColumnHeader.Width = 75
         ' 
-        ' SW2APP_NumberOfRuns_ColumnHeader
-        ' 
-        SW2APP_NumberOfRuns_ColumnHeader.Text = "執行次數"
-        SW2APP_NumberOfRuns_ColumnHeader.Width = 75
-        ' 
         ' SW2APP_RunMode_ColumnHeader
         ' 
-        SW2APP_RunMode_ColumnHeader.DisplayIndex = 7
         SW2APP_RunMode_ColumnHeader.Text = "執行模式"
         SW2APP_RunMode_ColumnHeader.Width = 75
         ' 
@@ -388,6 +382,11 @@ Partial Class Form1
         UpdatingProgressPercent_Label.TabIndex = 20
         UpdatingProgressPercent_Label.Text = "0%"
         ' 
+        ' SW2APP_NumberOfRuns_ColumnHeader
+        ' 
+        SW2APP_NumberOfRuns_ColumnHeader.Text = "執行次數"
+        SW2APP_NumberOfRuns_ColumnHeader.Width = 75
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
@@ -462,7 +461,7 @@ Partial Class Form1
     Friend WithEvents SW2App_NumberOfRuns_NumericUpDown As NumericUpDown
     Friend WithEvents Label7 As Label
     Friend WithEvents SW2APP_AutoRunDelaySeconds_ColumnHeader As ColumnHeader
-    Friend WithEvents SW2APP_NumberOfRuns_ColumnHeader As ColumnHeader
     Friend WithEvents SW2APP_RunMode_ColumnHeader As ColumnHeader
+    Friend WithEvents SW2APP_NumberOfRuns_ColumnHeader As ColumnHeader
 
 End Class
