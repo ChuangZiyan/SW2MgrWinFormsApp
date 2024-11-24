@@ -206,6 +206,8 @@ Module MainFormController
 
             End If
 
+            MainFormController.UpdateSW2AppListView()
+
         Catch ex As Exception
             Debug.WriteLine(ex)
 

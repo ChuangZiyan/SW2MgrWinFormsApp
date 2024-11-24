@@ -405,6 +405,7 @@ Public Class MgrMainFormEventController
                 MsgBox("未選擇程式")
             End If
 
+            MainFormController.UpdateSW2AppListView()
 
         Catch ex As Exception
             Debug.WriteLine(ex)
