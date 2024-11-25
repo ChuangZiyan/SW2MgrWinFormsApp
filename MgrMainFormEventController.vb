@@ -418,18 +418,20 @@ Public Class MgrMainFormEventController
         MainFormController.SaveSW2AppConfigs("autoRun")
     End Sub
 
-    Public Sub SW2App_AutoRunDelaySeconds_NumericUpDown_ValueChanged(sender As Object, e As EventArgs)
-        MainFormController.SaveSW2AppConfigs("autoRunDelaySeconds")
+
+
+    Public Sub SelectAllSW2AppListViewItems_Button_Click(sender As Object, e As EventArgs)
+
+        For Each item As ListViewItem In Form1.SW2App_ListView.Items
+            item.Selected = True
+        Next
+
     End Sub
 
-
-    Public Sub SW2App_SequentialRun_RadioButton_CheckedChanged(sender As Object, e As EventArgs)
-        MainFormController.SaveSW2AppConfigs("sequentialRun")
-    End Sub
-
-
-    Public Sub SW2App_NumberOfRuns_NumericUpDown_ValueChanged(sender As Object, e As EventArgs)
-        MainFormController.SaveSW2AppConfigs("numberOfRuns")
+    Public Sub DeselectAllSW2AppListViewItems_Button_Click(sender As Object, e As EventArgs)
+        For Each item As ListViewItem In Form1.SW2App_ListView.Items
+            item.Selected = False
+        Next
     End Sub
 
 End Class

@@ -23,6 +23,10 @@ Public Class Form1
         AddHandler SW2App_ListView.DoubleClick, AddressOf MgrMainFormEventController.SW2App_ListView_DoubleClick
 
 
+        AddHandler SelectAllSW2AppListViewItems_Button.Click, AddressOf MgrMainFormEventController.SelectAllSW2AppListViewItems_Button_Click
+        AddHandler DeselectAllSW2AppListViewItems_Button.Click, AddressOf MgrMainFormEventController.DeselectAllSW2AppListViewItems_Button_Click
+
+
         ' 新增SWAPP資料夾
         AddHandler CreateNewSW2App_Button.Click, AddressOf MgrMainFormEventController.CreateNewSW2App_Button_Click
 
@@ -40,6 +44,8 @@ Public Class Form1
         'AddHandler SW2App_NumberOfRuns_NumericUpDown.ValueChanged, AddressOf MgrMainFormEventController.SW2App_NumberOfRuns_NumericUpDown_ValueChanged
 
     End Sub
+
+
 
 
     Private Async Sub StartBackgroundUpdate()
@@ -97,7 +103,5 @@ Public Class Form1
         End If
 
     End Sub
-
-
 
 End Class
