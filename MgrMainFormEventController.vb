@@ -434,4 +434,53 @@ Public Class MgrMainFormEventController
         Next
     End Sub
 
+
+
+    Public Sub SelectedItemsByText_Button_Click(sender As Object, e As EventArgs)
+        For Each item As ListViewItem In Form1.SW2App_ListView.Items
+            For Each subItem As ListViewItem.ListViewSubItem In item.SubItems
+                If subItem.Text = Form1.SW2APPSearchText_ComboBox.Text Then
+                    item.Selected = True
+                    Exit For ' 一旦找到匹配的子項就跳出內層迴圈
+                End If
+            Next
+        Next
+    End Sub
+
+
+
+    Public Sub MarkSW2ListViewItemsByText_Button_Click(sender As Object, e As EventArgs)
+        For Each item As ListViewItem In Form1.SW2App_ListView.Items
+            For Each subItem As ListViewItem.ListViewSubItem In item.SubItems
+                item.UseItemStyleForSubItems = False
+                If subItem.Text = Form1.SW2APPSearchText_ComboBox.Text Then
+
+                    subItem.ForeColor = Color.Green
+                    subItem.Font = New Font(Form1.SW2App_ListView.Font, FontStyle.Bold)
+                    Exit For
+                End If
+            Next
+        Next
+    End Sub
+
+
+    Public Sub UnmarkSW2ListViewItemsByText_Button_Click(sender As Object, e As EventArgs)
+        For Each item As ListViewItem In Form1.SW2App_ListView.Items
+            For Each subItem As ListViewItem.ListViewSubItem In item.SubItems
+                item.UseItemStyleForSubItems = False
+
+                If Form1.SW2APPSearchText_ComboBox.Text = "" Then
+                    subItem.ForeColor = Color.Black
+                    subItem.Font = Form1.SW2App_ListView.Font
+
+                ElseIf subItem.Text = form1.SW2APPSearchText_ComboBox.Text Then
+                    subItem.ForeColor = Color.Black
+                    subItem.Font = Form1.SW2App_ListView.Font
+                    Exit For
+                End If
+
+            Next
+        Next
+    End Sub
+
 End Class

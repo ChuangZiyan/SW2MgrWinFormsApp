@@ -37,11 +37,18 @@ Public Class Form1
         AddHandler UpdateSelectedSW2App_Button.Click, AddressOf MgrMainFormEventController.UpdateSelectedSW2App_Button_Click
         AddHandler UpdateAllSWApp_Button.Click, AddressOf MgrMainFormEventController.UpdateAllSWApp_Button_Click
 
+
         ' 程式設置儲存功能
         AddHandler SW2App_AutoRun_CheckBox.Click, AddressOf MgrMainFormEventController.SW2App_AutoRun_CheckBox_Click
         'AddHandler SW2App_AutoRunDelaySeconds_NumericUpDown.Click, AddressOf MgrMainFormEventController.SW2App_AutoRunDelaySeconds_NumericUpDown_ValueChanged
         'AddHandler SW2App_SequentialRun_RadioButton.CheckedChanged, AddressOf MgrMainFormEventController.SW2App_SequentialRun_RadioButton_CheckedChanged
         'AddHandler SW2App_NumberOfRuns_NumericUpDown.ValueChanged, AddressOf MgrMainFormEventController.SW2App_NumberOfRuns_NumericUpDown_ValueChanged
+
+        '下排選擇跟標記功能
+        AddHandler SelectedItemsByText_Button.Click, AddressOf MgrMainFormEventController.SelectedItemsByText_Button_Click
+        AddHandler MarkSW2ListViewItemsByText_Button.Click, AddressOf MgrMainFormEventController.MarkSW2ListViewItemsByText_Button_Click
+        AddHandler UnmarkSW2ListViewItemsByText_Button.Click, AddressOf MgrMainFormEventController.UnmarkSW2ListViewItemsByText_Button_Click
+
 
     End Sub
 
@@ -103,47 +110,9 @@ Public Class Form1
         End If
 
     End Sub
-    Private Sub SelectedItemsBaseOnCondition_Button_Click(sender As Object, e As EventArgs) Handles SelectedItemsByText_Button.Click
-        For Each item As ListViewItem In SW2App_ListView.Items
-            For Each subItem As ListViewItem.ListViewSubItem In item.SubItems
-                If subItem.Text.Contains(SW2APPSearchText_ComboBox.Text) Then
-                    item.Selected = True
-                    Exit For ' 一旦找到匹配的子項就跳出內層迴圈
-                End If
-            Next
-        Next
-    End Sub
 
-    Private Sub MarkSW2ListViewItemsByText_Button_Click(sender As Object, e As EventArgs) Handles MarkSW2ListViewItemsByText_Button.Click
-        For Each item As ListViewItem In SW2App_ListView.Items
-            For Each subItem As ListViewItem.ListViewSubItem In item.SubItems
-                item.UseItemStyleForSubItems = False
-                If subItem.Text.Contains(SW2APPSearchText_ComboBox.Text) Then
 
-                    subItem.ForeColor = Color.Green
-                    subItem.BackColor = Color.LightGray
-                    Exit For
-                End If
-            Next
-        Next
-    End Sub
 
-    Private Sub UnmarkSW2ListViewItemsByText_Button_Click(sender As Object, e As EventArgs) Handles UnmarkSW2ListViewItemsByText_Button.Click
-        For Each item As ListViewItem In SW2App_ListView.Items
-            For Each subItem As ListViewItem.ListViewSubItem In item.SubItems
-                item.UseItemStyleForSubItems = False
 
-                If SW2APPSearchText_ComboBox.Text = "" Then
-                    subItem.ForeColor = Color.Black
-                    subItem.BackColor = Color.White
-                ElseIf subItem.Text.Contains(SW2APPSearchText_ComboBox.Text) Then
-                    subItem.ForeColor = Color.Black
-                    subItem.BackColor = Color.White
-                    Exit For
-                End If
-
-            Next
-        Next
-    End Sub
 
 End Class
