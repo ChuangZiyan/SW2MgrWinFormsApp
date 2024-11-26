@@ -103,5 +103,47 @@ Public Class Form1
         End If
 
     End Sub
+    Private Sub SelectedItemsBaseOnCondition_Button_Click(sender As Object, e As EventArgs) Handles SelectedItemsByText_Button.Click
+        For Each item As ListViewItem In SW2App_ListView.Items
+            For Each subItem As ListViewItem.ListViewSubItem In item.SubItems
+                If subItem.Text.Contains(SW2APPSearchText_ComboBox.Text) Then
+                    item.Selected = True
+                    Exit For ' 一旦找到匹配的子項就跳出內層迴圈
+                End If
+            Next
+        Next
+    End Sub
+
+    Private Sub MarkSW2ListViewItemsByText_Button_Click(sender As Object, e As EventArgs) Handles MarkSW2ListViewItemsByText_Button.Click
+        For Each item As ListViewItem In SW2App_ListView.Items
+            For Each subItem As ListViewItem.ListViewSubItem In item.SubItems
+                item.UseItemStyleForSubItems = False
+                If subItem.Text.Contains(SW2APPSearchText_ComboBox.Text) Then
+
+                    subItem.ForeColor = Color.Green
+                    subItem.BackColor = Color.LightGray
+                    Exit For
+                End If
+            Next
+        Next
+    End Sub
+
+    Private Sub UnmarkSW2ListViewItemsByText_Button_Click(sender As Object, e As EventArgs) Handles UnmarkSW2ListViewItemsByText_Button.Click
+        For Each item As ListViewItem In SW2App_ListView.Items
+            For Each subItem As ListViewItem.ListViewSubItem In item.SubItems
+                item.UseItemStyleForSubItems = False
+
+                If SW2APPSearchText_ComboBox.Text = "" Then
+                    subItem.ForeColor = Color.Black
+                    subItem.BackColor = Color.White
+                ElseIf subItem.Text.Contains(SW2APPSearchText_ComboBox.Text) Then
+                    subItem.ForeColor = Color.Black
+                    subItem.BackColor = Color.White
+                    Exit For
+                End If
+
+            Next
+        Next
+    End Sub
 
 End Class

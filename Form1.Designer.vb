@@ -63,6 +63,10 @@ Partial Class Form1
         SaveFileDialog1 = New SaveFileDialog()
         SelectAllSW2AppListViewItems_Button = New Button()
         DeselectAllSW2AppListViewItems_Button = New Button()
+        SW2APPSearchText_ComboBox = New ComboBox()
+        MarkSW2ListViewItemsByText_Button = New Button()
+        SelectedItemsByText_Button = New Button()
+        UnmarkSW2ListViewItemsByText_Button = New Button()
         AppConfigs_GroupBox.SuspendLayout()
         CType(SW2App_NumberOfRuns_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SW2App_AutoRunDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -407,11 +411,51 @@ Partial Class Form1
         DeselectAllSW2AppListViewItems_Button.Text = "全不選"
         DeselectAllSW2AppListViewItems_Button.UseVisualStyleBackColor = True
         ' 
+        ' SW2APPSearchText_ComboBox
+        ' 
+        SW2APPSearchText_ComboBox.FormattingEnabled = True
+        SW2APPSearchText_ComboBox.Items.AddRange(New Object() {"是", "否", "定時", "順序"})
+        SW2APPSearchText_ComboBox.Location = New Point(12, 541)
+        SW2APPSearchText_ComboBox.Name = "SW2APPSearchText_ComboBox"
+        SW2APPSearchText_ComboBox.Size = New Size(166, 27)
+        SW2APPSearchText_ComboBox.TabIndex = 23
+        ' 
+        ' MarkSW2ListViewItemsByText_Button
+        ' 
+        MarkSW2ListViewItemsByText_Button.Location = New Point(284, 541)
+        MarkSW2ListViewItemsByText_Button.Name = "MarkSW2ListViewItemsByText_Button"
+        MarkSW2ListViewItemsByText_Button.Size = New Size(94, 29)
+        MarkSW2ListViewItemsByText_Button.TabIndex = 24
+        MarkSW2ListViewItemsByText_Button.Text = "標註"
+        MarkSW2ListViewItemsByText_Button.UseVisualStyleBackColor = True
+        ' 
+        ' SelectedItemsByText_Button
+        ' 
+        SelectedItemsByText_Button.Location = New Point(184, 541)
+        SelectedItemsByText_Button.Name = "SelectedItemsByText_Button"
+        SelectedItemsByText_Button.Size = New Size(94, 29)
+        SelectedItemsByText_Button.TabIndex = 25
+        SelectedItemsByText_Button.Text = "選取"
+        SelectedItemsByText_Button.UseVisualStyleBackColor = True
+        ' 
+        ' UnmarkSW2ListViewItemsByText_Button
+        ' 
+        UnmarkSW2ListViewItemsByText_Button.Location = New Point(384, 541)
+        UnmarkSW2ListViewItemsByText_Button.Name = "UnmarkSW2ListViewItemsByText_Button"
+        UnmarkSW2ListViewItemsByText_Button.Size = New Size(94, 29)
+        UnmarkSW2ListViewItemsByText_Button.TabIndex = 26
+        UnmarkSW2ListViewItemsByText_Button.Text = "取消標註"
+        UnmarkSW2ListViewItemsByText_Button.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1089, 552)
+        ClientSize = New Size(1089, 585)
+        Controls.Add(UnmarkSW2ListViewItemsByText_Button)
+        Controls.Add(SelectedItemsByText_Button)
+        Controls.Add(MarkSW2ListViewItemsByText_Button)
+        Controls.Add(SW2APPSearchText_ComboBox)
         Controls.Add(DeselectAllSW2AppListViewItems_Button)
         Controls.Add(SelectAllSW2AppListViewItems_Button)
         Controls.Add(UpdatingProgressPercent_Label)
@@ -487,5 +531,9 @@ Partial Class Form1
     Friend WithEvents SW2APP_NumberOfRuns_ColumnHeader As ColumnHeader
     Friend WithEvents SelectAllSW2AppListViewItems_Button As Button
     Friend WithEvents DeselectAllSW2AppListViewItems_Button As Button
+    Friend WithEvents SW2APPSearchText_ComboBox As ComboBox
+    Friend WithEvents MarkSW2ListViewItemsByText_Button As Button
+    Friend WithEvents SelectedItemsByText_Button As Button
+    Friend WithEvents UnmarkSW2ListViewItemsByText_Button As Button
 
 End Class
