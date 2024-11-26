@@ -450,12 +450,17 @@ Public Class MgrMainFormEventController
 
 
     Public Sub MarkSW2ListViewItemsByText_Button_Click(sender As Object, e As EventArgs)
+
+        If Form1.SW2APPSearchText_ComboBox.Text = "" Then
+            Exit Sub
+        End If
+
         For Each item As ListViewItem In Form1.SW2App_ListView.Items
             For Each subItem As ListViewItem.ListViewSubItem In item.SubItems
                 item.UseItemStyleForSubItems = False
                 If subItem.Text = Form1.SW2APPSearchText_ComboBox.Text Then
 
-                    subItem.ForeColor = Color.Green
+                    subItem.BackColor = Color.LightGreen
                     subItem.Font = New Font(Form1.SW2App_ListView.Font, FontStyle.Bold)
                     Exit For
                 End If
@@ -470,11 +475,11 @@ Public Class MgrMainFormEventController
                 item.UseItemStyleForSubItems = False
 
                 If Form1.SW2APPSearchText_ComboBox.Text = "" Then
-                    subItem.ForeColor = Color.Black
+                    subItem.BackColor = Color.White
                     subItem.Font = Form1.SW2App_ListView.Font
 
                 ElseIf subItem.Text = form1.SW2APPSearchText_ComboBox.Text Then
-                    subItem.ForeColor = Color.Black
+                    subItem.BackColor = Color.White
                     subItem.Font = Form1.SW2App_ListView.Font
                     Exit For
                 End If
