@@ -36,7 +36,8 @@ Module AppInitModule
         Try
             Dim profile As New Webview2AppProfile With {
                 .Version = "N/A",
-                .BuildDate = "N/A"
+                .BuildDate = "N/A",
+                .UUID = "N/A"
             }
 
             Dim filePath As String = Path.Combine(AppInitModule.webview2AppSourceDirectory, "appConfigs", "profile.json")
@@ -54,7 +55,6 @@ Module AppInitModule
         End Try
 
     End Sub
-
 
 
 

@@ -117,11 +117,12 @@ Module MainFormController
         Next
     End Sub
 
-    Private Function GetProfile(folderName)
+    Public Function GetProfile(folderName)
         Try
             Dim profile As New Webview2AppProfile With {
-                .Version = "N/A",    ' 設定預設版本號
-                .BuildDate = "N/A" ' 設定預設建置日期
+                .Version = "N/A",
+                .BuildDate = "N/A",
+                .UUID = "N/A"
             }
 
             Dim filePath As String = Path.Combine(AppInitModule.webview2AppDirectory, folderName, "appConfigs", "profile.json")
@@ -172,7 +173,7 @@ Module MainFormController
 
     Public Sub SaveSW2AppConfigs(target As String)
         Try
-            Debug.WriteLine(target)
+            ' Debug.WriteLine(target)
             Dim selectedSW2AppListViewItems = Form1.SW2App_ListView.SelectedItems
 
             If selectedSW2AppListViewItems.Count > 0 Then
@@ -220,6 +221,7 @@ Module MainFormController
     Public Class Webview2AppProfile
         Public Property Version As String
         Public Property BuildDate As String
+        Public Property UUID As String
 
     End Class
 

@@ -45,6 +45,12 @@ Partial Class Form1
         TerminateAllSW2App_Button = New Button()
         UpdateAllSWApp_Button = New Button()
         AppConfigs_GroupBox = New GroupBox()
+        Label10 = New Label()
+        SWAPP_OpacityValue_NumericUpDown = New NumericUpDown()
+        Label9 = New Label()
+        LiteModeScriptListView_RadioButton = New RadioButton()
+        LiteModeWebview_RadioButton = New RadioButton()
+        LiteModeNormal_RadioButton = New RadioButton()
         Label3 = New Label()
         SW2App_NumberOfRuns_NumericUpDown = New NumericUpDown()
         SW2App_AutoRunDelaySeconds_NumericUpDown = New NumericUpDown()
@@ -67,10 +73,17 @@ Partial Class Form1
         MarkSW2ListViewItemsByText_Button = New Button()
         SelectedItemsByText_Button = New Button()
         UnmarkSW2ListViewItemsByText_Button = New Button()
+        FocusSelectedSWAPP_Button = New Button()
+        uuid_TextBox1 = New TextBox()
+        Button2 = New Button()
+        GroupBox1 = New GroupBox()
+        ApplySWAppWindowConfigs_Button = New Button()
         AppConfigs_GroupBox.SuspendLayout()
+        CType(SWAPP_OpacityValue_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SW2App_NumberOfRuns_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SW2App_AutoRunDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(LaunchDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        GroupBox1.SuspendLayout()
         SuspendLayout()
         ' 
         ' CreateNewSW2App_Button
@@ -246,20 +259,78 @@ Partial Class Form1
         AppConfigs_GroupBox.Controls.Add(SW2App_AutoRun_CheckBox)
         AppConfigs_GroupBox.Controls.Add(Label7)
         AppConfigs_GroupBox.Controls.Add(SW2App_ScheduledRun_RadioButton)
-        AppConfigs_GroupBox.Controls.Add(SaveSW2AppConfigs_Button)
         AppConfigs_GroupBox.Controls.Add(SW2App_SequentialRun_RadioButton)
         AppConfigs_GroupBox.Controls.Add(Label4)
+        AppConfigs_GroupBox.Controls.Add(SaveSW2AppConfigs_Button)
         AppConfigs_GroupBox.Location = New Point(763, 153)
         AppConfigs_GroupBox.Name = "AppConfigs_GroupBox"
-        AppConfigs_GroupBox.Size = New Size(313, 347)
+        AppConfigs_GroupBox.Size = New Size(313, 167)
         AppConfigs_GroupBox.TabIndex = 12
         AppConfigs_GroupBox.TabStop = False
         AppConfigs_GroupBox.Text = "程式設置"
         ' 
+        ' Label10
+        ' 
+        Label10.AutoSize = True
+        Label10.Location = New Point(137, 72)
+        Label10.Name = "Label10"
+        Label10.Size = New Size(22, 19)
+        Label10.TabIndex = 20
+        Label10.Text = "%"
+        ' 
+        ' SWAPP_OpacityValue_NumericUpDown
+        ' 
+        SWAPP_OpacityValue_NumericUpDown.Location = New Point(77, 65)
+        SWAPP_OpacityValue_NumericUpDown.Name = "SWAPP_OpacityValue_NumericUpDown"
+        SWAPP_OpacityValue_NumericUpDown.Size = New Size(54, 27)
+        SWAPP_OpacityValue_NumericUpDown.TabIndex = 19
+        ' 
+        ' Label9
+        ' 
+        Label9.AutoSize = True
+        Label9.Location = New Point(6, 72)
+        Label9.Name = "Label9"
+        Label9.Size = New Size(65, 19)
+        Label9.TabIndex = 18
+        Label9.Text = "透明度 : "
+        ' 
+        ' LiteModeScriptListView_RadioButton
+        ' 
+        LiteModeScriptListView_RadioButton.AutoSize = True
+        LiteModeScriptListView_RadioButton.Location = New Point(198, 26)
+        LiteModeScriptListView_RadioButton.Name = "LiteModeScriptListView_RadioButton"
+        LiteModeScriptListView_RadioButton.Size = New Size(90, 23)
+        LiteModeScriptListView_RadioButton.TabIndex = 17
+        LiteModeScriptListView_RadioButton.TabStop = True
+        LiteModeScriptListView_RadioButton.Text = "腳本模式"
+        LiteModeScriptListView_RadioButton.UseVisualStyleBackColor = True
+        ' 
+        ' LiteModeWebview_RadioButton
+        ' 
+        LiteModeWebview_RadioButton.AutoSize = True
+        LiteModeWebview_RadioButton.Location = New Point(102, 26)
+        LiteModeWebview_RadioButton.Name = "LiteModeWebview_RadioButton"
+        LiteModeWebview_RadioButton.Size = New Size(90, 23)
+        LiteModeWebview_RadioButton.TabIndex = 16
+        LiteModeWebview_RadioButton.TabStop = True
+        LiteModeWebview_RadioButton.Text = "網頁模式"
+        LiteModeWebview_RadioButton.UseVisualStyleBackColor = True
+        ' 
+        ' LiteModeNormal_RadioButton
+        ' 
+        LiteModeNormal_RadioButton.AutoSize = True
+        LiteModeNormal_RadioButton.Location = New Point(6, 26)
+        LiteModeNormal_RadioButton.Name = "LiteModeNormal_RadioButton"
+        LiteModeNormal_RadioButton.Size = New Size(90, 23)
+        LiteModeNormal_RadioButton.TabIndex = 15
+        LiteModeNormal_RadioButton.TabStop = True
+        LiteModeNormal_RadioButton.Text = "一般模式"
+        LiteModeNormal_RadioButton.UseVisualStyleBackColor = True
+        ' 
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Location = New Point(30, 66)
+        Label3.Location = New Point(30, 87)
         Label3.Name = "Label3"
         Label3.Size = New Size(80, 19)
         Label3.TabIndex = 2
@@ -267,14 +338,14 @@ Partial Class Form1
         ' 
         ' SW2App_NumberOfRuns_NumericUpDown
         ' 
-        SW2App_NumberOfRuns_NumericUpDown.Location = New Point(116, 97)
+        SW2App_NumberOfRuns_NumericUpDown.Location = New Point(116, 118)
         SW2App_NumberOfRuns_NumericUpDown.Name = "SW2App_NumberOfRuns_NumericUpDown"
         SW2App_NumberOfRuns_NumericUpDown.Size = New Size(70, 27)
         SW2App_NumberOfRuns_NumericUpDown.TabIndex = 8
         ' 
         ' SW2App_AutoRunDelaySeconds_NumericUpDown
         ' 
-        SW2App_AutoRunDelaySeconds_NumericUpDown.Location = New Point(116, 64)
+        SW2App_AutoRunDelaySeconds_NumericUpDown.Location = New Point(116, 85)
         SW2App_AutoRunDelaySeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
         SW2App_AutoRunDelaySeconds_NumericUpDown.Name = "SW2App_AutoRunDelaySeconds_NumericUpDown"
         SW2App_AutoRunDelaySeconds_NumericUpDown.Size = New Size(70, 27)
@@ -295,7 +366,7 @@ Partial Class Form1
         ' Label7
         ' 
         Label7.AutoSize = True
-        Label7.Location = New Point(30, 99)
+        Label7.Location = New Point(30, 120)
         Label7.Name = "Label7"
         Label7.Size = New Size(80, 19)
         Label7.TabIndex = 7
@@ -304,7 +375,7 @@ Partial Class Form1
         ' SW2App_ScheduledRun_RadioButton
         ' 
         SW2App_ScheduledRun_RadioButton.AutoSize = True
-        SW2App_ScheduledRun_RadioButton.Location = New Point(212, 131)
+        SW2App_ScheduledRun_RadioButton.Location = New Point(211, 53)
         SW2App_ScheduledRun_RadioButton.Name = "SW2App_ScheduledRun_RadioButton"
         SW2App_ScheduledRun_RadioButton.Size = New Size(90, 23)
         SW2App_ScheduledRun_RadioButton.TabIndex = 5
@@ -314,7 +385,7 @@ Partial Class Form1
         ' 
         ' SaveSW2AppConfigs_Button
         ' 
-        SaveSW2AppConfigs_Button.Location = New Point(217, 312)
+        SaveSW2AppConfigs_Button.Location = New Point(211, 116)
         SaveSW2AppConfigs_Button.Name = "SaveSW2AppConfigs_Button"
         SaveSW2AppConfigs_Button.Size = New Size(90, 29)
         SaveSW2AppConfigs_Button.TabIndex = 13
@@ -324,7 +395,7 @@ Partial Class Form1
         ' SW2App_SequentialRun_RadioButton
         ' 
         SW2App_SequentialRun_RadioButton.AutoSize = True
-        SW2App_SequentialRun_RadioButton.Location = New Point(116, 131)
+        SW2App_SequentialRun_RadioButton.Location = New Point(115, 53)
         SW2App_SequentialRun_RadioButton.Name = "SW2App_SequentialRun_RadioButton"
         SW2App_SequentialRun_RadioButton.Size = New Size(90, 23)
         SW2App_SequentialRun_RadioButton.TabIndex = 4
@@ -335,7 +406,7 @@ Partial Class Form1
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Location = New Point(30, 133)
+        Label4.Location = New Point(29, 55)
         Label4.Name = "Label4"
         Label4.Size = New Size(80, 19)
         Label4.TabIndex = 6
@@ -447,11 +518,65 @@ Partial Class Form1
         UnmarkSW2ListViewItemsByText_Button.Text = "取消標註"
         UnmarkSW2ListViewItemsByText_Button.UseVisualStyleBackColor = True
         ' 
+        ' FocusSelectedSWAPP_Button
+        ' 
+        FocusSelectedSWAPP_Button.Location = New Point(563, 506)
+        FocusSelectedSWAPP_Button.Name = "FocusSelectedSWAPP_Button"
+        FocusSelectedSWAPP_Button.Size = New Size(94, 29)
+        FocusSelectedSWAPP_Button.TabIndex = 28
+        FocusSelectedSWAPP_Button.Text = "至頂視窗"
+        FocusSelectedSWAPP_Button.UseVisualStyleBackColor = True
+        ' 
+        ' uuid_TextBox1
+        ' 
+        uuid_TextBox1.Location = New Point(597, 17)
+        uuid_TextBox1.Name = "uuid_TextBox1"
+        uuid_TextBox1.Size = New Size(386, 27)
+        uuid_TextBox1.TabIndex = 29
+        ' 
+        ' Button2
+        ' 
+        Button2.Location = New Point(989, 17)
+        Button2.Name = "Button2"
+        Button2.Size = New Size(94, 29)
+        Button2.TabIndex = 30
+        Button2.Text = "Button2"
+        Button2.UseVisualStyleBackColor = True
+        ' 
+        ' GroupBox1
+        ' 
+        GroupBox1.Controls.Add(ApplySWAppWindowConfigs_Button)
+        GroupBox1.Controls.Add(LiteModeNormal_RadioButton)
+        GroupBox1.Controls.Add(Label10)
+        GroupBox1.Controls.Add(LiteModeWebview_RadioButton)
+        GroupBox1.Controls.Add(LiteModeScriptListView_RadioButton)
+        GroupBox1.Controls.Add(SWAPP_OpacityValue_NumericUpDown)
+        GroupBox1.Controls.Add(Label9)
+        GroupBox1.Location = New Point(763, 326)
+        GroupBox1.Name = "GroupBox1"
+        GroupBox1.Size = New Size(313, 174)
+        GroupBox1.TabIndex = 31
+        GroupBox1.TabStop = False
+        GroupBox1.Text = "視窗設置"
+        ' 
+        ' ApplySWAppWindowConfigs_Button
+        ' 
+        ApplySWAppWindowConfigs_Button.Location = New Point(194, 65)
+        ApplySWAppWindowConfigs_Button.Name = "ApplySWAppWindowConfigs_Button"
+        ApplySWAppWindowConfigs_Button.Size = New Size(94, 29)
+        ApplySWAppWindowConfigs_Button.TabIndex = 21
+        ApplySWAppWindowConfigs_Button.Text = "儲存"
+        ApplySWAppWindowConfigs_Button.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1089, 585)
+        ClientSize = New Size(1089, 711)
+        Controls.Add(GroupBox1)
+        Controls.Add(Button2)
+        Controls.Add(uuid_TextBox1)
+        Controls.Add(FocusSelectedSWAPP_Button)
         Controls.Add(UnmarkSW2ListViewItemsByText_Button)
         Controls.Add(SelectedItemsByText_Button)
         Controls.Add(MarkSW2ListViewItemsByText_Button)
@@ -484,9 +609,12 @@ Partial Class Form1
         Text = "SW2App 主控"
         AppConfigs_GroupBox.ResumeLayout(False)
         AppConfigs_GroupBox.PerformLayout()
+        CType(SWAPP_OpacityValue_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(SW2App_NumberOfRuns_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(SW2App_AutoRunDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(LaunchDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        GroupBox1.ResumeLayout(False)
+        GroupBox1.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -535,5 +663,16 @@ Partial Class Form1
     Friend WithEvents MarkSW2ListViewItemsByText_Button As Button
     Friend WithEvents SelectedItemsByText_Button As Button
     Friend WithEvents UnmarkSW2ListViewItemsByText_Button As Button
+    Friend WithEvents LiteModeScriptListView_RadioButton As RadioButton
+    Friend WithEvents LiteModeWebview_RadioButton As RadioButton
+    Friend WithEvents LiteModeNormal_RadioButton As RadioButton
+    Friend WithEvents Label10 As Label
+    Friend WithEvents SWAPP_OpacityValue_NumericUpDown As NumericUpDown
+    Friend WithEvents Label9 As Label
+    Friend WithEvents FocusSelectedSWAPP_Button As Button
+    Friend WithEvents uuid_TextBox1 As TextBox
+    Friend WithEvents Button2 As Button
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents ApplySWAppWindowConfigs_Button As Button
 
 End Class
