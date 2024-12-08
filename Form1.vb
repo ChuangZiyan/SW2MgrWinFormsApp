@@ -51,6 +51,11 @@ Public Class Form1
         AddHandler UnmarkSW2ListViewItemsByText_Button.Click, AddressOf MgrMainFormEventController.UnmarkSW2ListViewItemsByText_Button_Click
 
 
+        '管線命令
+        AddHandler ApplySWAppWindowConfigs_Button.Click, AddressOf MgrMainFormEventController.ApplySWAppWindowConfigs_Button_Click
+
+
+
     End Sub
 
 
@@ -123,36 +128,8 @@ Public Class Form1
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        UtilsModule.SendPipeCommandTask(uuid_TextBox1.Text, "test")
+        UtilsModule.SendPipeCommandTask(uuid_TextBox1.Text, "setOpacity:0.8")
     End Sub
-
-    Private Sub ApplySWAppWindowConfigs_Button_Click(sender As Object, e As EventArgs) Handles ApplySWAppWindowConfigs_Button.Click
-
-
-        Dim selectedSW2AppListViewItems = SW2App_ListView.SelectedItems
-        If selectedSW2AppListViewItems.Count > 0 Then
-            Dim profile As Webview2AppProfile = MainFormController.GetProfile(selectedSW2AppListViewItems.Item(0).SubItems(1).Text)
-            'profile.UUID = uuid_TextBox1.Text ' for test
-            Select Case True
-                Case LiteModeNormal_RadioButton.Checked
-                    UtilsModule.SendPipeCommandTask(profile.UUID, "setLiteModeNormal")
-                Case LiteModeWebview_RadioButton.Checked
-                    Debug.WriteLine("rewrw")
-                    UtilsModule.SendPipeCommandTask(profile.UUID, "setLiteModeWebview")
-                Case LiteModeScriptListView_RadioButton.Checked
-                    UtilsModule.SendPipeCommandTask(profile.UUID, "setLiteModeScriptListView")
-            End Select
-            Dim opacityVal As Double = SWAPP_OpacityValue_NumericUpDown.Value / 100
-            UtilsModule.SendPipeCommandTask(profile.UUID, $"setOpacity:{opacityVal:0.00}")
-
-
-            'UtilsModule.SendPipeCommandTask(profile.UUID, "setFocus")
-            ' UtilsModule.SendPipeCommandTask(uuid_TextBox1.Text, "setFocus") ' this is for test
-
-        End If
-
-    End Sub
-
 
 
 End Class

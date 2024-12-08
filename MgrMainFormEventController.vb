@@ -488,4 +488,35 @@ Public Class MgrMainFormEventController
         Next
     End Sub
 
+
+    Public Sub ApplySWAppWindowConfigs_Button_Click(sender As Object, e As EventArgs)
+
+        Dim selectedSW2AppListViewItems = Form1.SW2App_ListView.SelectedItems
+
+        For Each item As ListViewItem In selectedSW2AppListViewItems
+
+            ' 檢查是啟動的APP才送命令，防止Timeout
+            If item.SubItems(0).Text <> "" Then
+
+                Dim profile As Webview2AppProfile = MainFormController.GetProfile(item.SubItems(1).Text)
+                Dim appUUID As String = profile.UUID
+                Select Case True
+                    Case Form1.LiteModeNormal_RadioButton.Checked
+                        UtilsModule.SendPipeCommandTask(appUUID, "setLiteModeNormal")
+                    Case Form1.LiteModeWebview_RadioButton.Checked
+                        UtilsModule.SendPipeCommandTask(appUUID, "setLiteModeWebview")
+                    Case Form1.LiteModeScriptListView_RadioButton.Checked
+                        UtilsModule.SendPipeCommandTask(appUUID, "setLiteModeScriptListView")
+                End Select
+                Dim opacityVal As Double = Form1.SWAPP_OpacityValue_NumericUpDown.Value / 100
+                UtilsModule.SendPipeCommandTask(appUUID, $"setOpacity:{opacityVal:0.00}")
+
+            End If
+
+
+        Next
+
+    End Sub
+
+
 End Class

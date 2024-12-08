@@ -45,21 +45,21 @@ Partial Class Form1
         TerminateAllSW2App_Button = New Button()
         UpdateAllSWApp_Button = New Button()
         AppConfigs_GroupBox = New GroupBox()
-        Label10 = New Label()
-        SWAPP_OpacityValue_NumericUpDown = New NumericUpDown()
-        Label9 = New Label()
-        LiteModeScriptListView_RadioButton = New RadioButton()
-        LiteModeWebview_RadioButton = New RadioButton()
-        LiteModeNormal_RadioButton = New RadioButton()
         Label3 = New Label()
         SW2App_NumberOfRuns_NumericUpDown = New NumericUpDown()
         SW2App_AutoRunDelaySeconds_NumericUpDown = New NumericUpDown()
         SW2App_AutoRun_CheckBox = New CheckBox()
         Label7 = New Label()
         SW2App_ScheduledRun_RadioButton = New RadioButton()
-        SaveSW2AppConfigs_Button = New Button()
         SW2App_SequentialRun_RadioButton = New RadioButton()
         Label4 = New Label()
+        SaveSW2AppConfigs_Button = New Button()
+        Label10 = New Label()
+        SWAPP_OpacityValue_NumericUpDown = New NumericUpDown()
+        Label9 = New Label()
+        LiteModeScriptListView_RadioButton = New RadioButton()
+        LiteModeWebview_RadioButton = New RadioButton()
+        LiteModeNormal_RadioButton = New RadioButton()
         LaunchDelaySeconds_NumericUpDown = New NumericUpDown()
         Label5 = New Label()
         AppUpdating_ProgressBar = New ProgressBar()
@@ -79,9 +79,9 @@ Partial Class Form1
         GroupBox1 = New GroupBox()
         ApplySWAppWindowConfigs_Button = New Button()
         AppConfigs_GroupBox.SuspendLayout()
-        CType(SWAPP_OpacityValue_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SW2App_NumberOfRuns_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SW2App_AutoRunDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(SWAPP_OpacityValue_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(LaunchDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         GroupBox1.SuspendLayout()
         SuspendLayout()
@@ -269,64 +269,6 @@ Partial Class Form1
         AppConfigs_GroupBox.TabStop = False
         AppConfigs_GroupBox.Text = "程式設置"
         ' 
-        ' Label10
-        ' 
-        Label10.AutoSize = True
-        Label10.Location = New Point(137, 72)
-        Label10.Name = "Label10"
-        Label10.Size = New Size(22, 19)
-        Label10.TabIndex = 20
-        Label10.Text = "%"
-        ' 
-        ' SWAPP_OpacityValue_NumericUpDown
-        ' 
-        SWAPP_OpacityValue_NumericUpDown.Location = New Point(77, 65)
-        SWAPP_OpacityValue_NumericUpDown.Name = "SWAPP_OpacityValue_NumericUpDown"
-        SWAPP_OpacityValue_NumericUpDown.Size = New Size(54, 27)
-        SWAPP_OpacityValue_NumericUpDown.TabIndex = 19
-        ' 
-        ' Label9
-        ' 
-        Label9.AutoSize = True
-        Label9.Location = New Point(6, 72)
-        Label9.Name = "Label9"
-        Label9.Size = New Size(65, 19)
-        Label9.TabIndex = 18
-        Label9.Text = "透明度 : "
-        ' 
-        ' LiteModeScriptListView_RadioButton
-        ' 
-        LiteModeScriptListView_RadioButton.AutoSize = True
-        LiteModeScriptListView_RadioButton.Location = New Point(198, 26)
-        LiteModeScriptListView_RadioButton.Name = "LiteModeScriptListView_RadioButton"
-        LiteModeScriptListView_RadioButton.Size = New Size(90, 23)
-        LiteModeScriptListView_RadioButton.TabIndex = 17
-        LiteModeScriptListView_RadioButton.TabStop = True
-        LiteModeScriptListView_RadioButton.Text = "腳本模式"
-        LiteModeScriptListView_RadioButton.UseVisualStyleBackColor = True
-        ' 
-        ' LiteModeWebview_RadioButton
-        ' 
-        LiteModeWebview_RadioButton.AutoSize = True
-        LiteModeWebview_RadioButton.Location = New Point(102, 26)
-        LiteModeWebview_RadioButton.Name = "LiteModeWebview_RadioButton"
-        LiteModeWebview_RadioButton.Size = New Size(90, 23)
-        LiteModeWebview_RadioButton.TabIndex = 16
-        LiteModeWebview_RadioButton.TabStop = True
-        LiteModeWebview_RadioButton.Text = "網頁模式"
-        LiteModeWebview_RadioButton.UseVisualStyleBackColor = True
-        ' 
-        ' LiteModeNormal_RadioButton
-        ' 
-        LiteModeNormal_RadioButton.AutoSize = True
-        LiteModeNormal_RadioButton.Location = New Point(6, 26)
-        LiteModeNormal_RadioButton.Name = "LiteModeNormal_RadioButton"
-        LiteModeNormal_RadioButton.Size = New Size(90, 23)
-        LiteModeNormal_RadioButton.TabIndex = 15
-        LiteModeNormal_RadioButton.TabStop = True
-        LiteModeNormal_RadioButton.Text = "一般模式"
-        LiteModeNormal_RadioButton.UseVisualStyleBackColor = True
-        ' 
         ' Label3
         ' 
         Label3.AutoSize = True
@@ -383,15 +325,6 @@ Partial Class Form1
         SW2App_ScheduledRun_RadioButton.Text = "定時執行"
         SW2App_ScheduledRun_RadioButton.UseVisualStyleBackColor = True
         ' 
-        ' SaveSW2AppConfigs_Button
-        ' 
-        SaveSW2AppConfigs_Button.Location = New Point(211, 116)
-        SaveSW2AppConfigs_Button.Name = "SaveSW2AppConfigs_Button"
-        SaveSW2AppConfigs_Button.Size = New Size(90, 29)
-        SaveSW2AppConfigs_Button.TabIndex = 13
-        SaveSW2AppConfigs_Button.Text = "儲存"
-        SaveSW2AppConfigs_Button.UseVisualStyleBackColor = True
-        ' 
         ' SW2App_SequentialRun_RadioButton
         ' 
         SW2App_SequentialRun_RadioButton.AutoSize = True
@@ -411,6 +344,74 @@ Partial Class Form1
         Label4.Size = New Size(80, 19)
         Label4.TabIndex = 6
         Label4.Text = "執行模式 : "
+        ' 
+        ' SaveSW2AppConfigs_Button
+        ' 
+        SaveSW2AppConfigs_Button.Location = New Point(211, 116)
+        SaveSW2AppConfigs_Button.Name = "SaveSW2AppConfigs_Button"
+        SaveSW2AppConfigs_Button.Size = New Size(90, 29)
+        SaveSW2AppConfigs_Button.TabIndex = 13
+        SaveSW2AppConfigs_Button.Text = "儲存"
+        SaveSW2AppConfigs_Button.UseVisualStyleBackColor = True
+        ' 
+        ' Label10
+        ' 
+        Label10.AutoSize = True
+        Label10.Location = New Point(137, 72)
+        Label10.Name = "Label10"
+        Label10.Size = New Size(22, 19)
+        Label10.TabIndex = 20
+        Label10.Text = "%"
+        ' 
+        ' SWAPP_OpacityValue_NumericUpDown
+        ' 
+        SWAPP_OpacityValue_NumericUpDown.Location = New Point(77, 65)
+        SWAPP_OpacityValue_NumericUpDown.Name = "SWAPP_OpacityValue_NumericUpDown"
+        SWAPP_OpacityValue_NumericUpDown.Size = New Size(54, 27)
+        SWAPP_OpacityValue_NumericUpDown.TabIndex = 19
+        SWAPP_OpacityValue_NumericUpDown.Value = New Decimal(New Integer() {100, 0, 0, 0})
+        ' 
+        ' Label9
+        ' 
+        Label9.AutoSize = True
+        Label9.Location = New Point(6, 72)
+        Label9.Name = "Label9"
+        Label9.Size = New Size(65, 19)
+        Label9.TabIndex = 18
+        Label9.Text = "透明度 : "
+        ' 
+        ' LiteModeScriptListView_RadioButton
+        ' 
+        LiteModeScriptListView_RadioButton.AutoSize = True
+        LiteModeScriptListView_RadioButton.Location = New Point(198, 26)
+        LiteModeScriptListView_RadioButton.Name = "LiteModeScriptListView_RadioButton"
+        LiteModeScriptListView_RadioButton.Size = New Size(90, 23)
+        LiteModeScriptListView_RadioButton.TabIndex = 17
+        LiteModeScriptListView_RadioButton.TabStop = True
+        LiteModeScriptListView_RadioButton.Text = "腳本模式"
+        LiteModeScriptListView_RadioButton.UseVisualStyleBackColor = True
+        ' 
+        ' LiteModeWebview_RadioButton
+        ' 
+        LiteModeWebview_RadioButton.AutoSize = True
+        LiteModeWebview_RadioButton.Location = New Point(102, 26)
+        LiteModeWebview_RadioButton.Name = "LiteModeWebview_RadioButton"
+        LiteModeWebview_RadioButton.Size = New Size(90, 23)
+        LiteModeWebview_RadioButton.TabIndex = 16
+        LiteModeWebview_RadioButton.TabStop = True
+        LiteModeWebview_RadioButton.Text = "網頁模式"
+        LiteModeWebview_RadioButton.UseVisualStyleBackColor = True
+        ' 
+        ' LiteModeNormal_RadioButton
+        ' 
+        LiteModeNormal_RadioButton.AutoSize = True
+        LiteModeNormal_RadioButton.Location = New Point(6, 26)
+        LiteModeNormal_RadioButton.Name = "LiteModeNormal_RadioButton"
+        LiteModeNormal_RadioButton.Size = New Size(90, 23)
+        LiteModeNormal_RadioButton.TabIndex = 15
+        LiteModeNormal_RadioButton.TabStop = True
+        LiteModeNormal_RadioButton.Text = "一般模式"
+        LiteModeNormal_RadioButton.UseVisualStyleBackColor = True
         ' 
         ' LaunchDelaySeconds_NumericUpDown
         ' 
@@ -565,7 +566,7 @@ Partial Class Form1
         ApplySWAppWindowConfigs_Button.Name = "ApplySWAppWindowConfigs_Button"
         ApplySWAppWindowConfigs_Button.Size = New Size(94, 29)
         ApplySWAppWindowConfigs_Button.TabIndex = 21
-        ApplySWAppWindowConfigs_Button.Text = "儲存"
+        ApplySWAppWindowConfigs_Button.Text = "套用"
         ApplySWAppWindowConfigs_Button.UseVisualStyleBackColor = True
         ' 
         ' Form1
@@ -609,9 +610,9 @@ Partial Class Form1
         Text = "SW2App 主控"
         AppConfigs_GroupBox.ResumeLayout(False)
         AppConfigs_GroupBox.PerformLayout()
-        CType(SWAPP_OpacityValue_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(SW2App_NumberOfRuns_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(SW2App_AutoRunDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(SWAPP_OpacityValue_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(LaunchDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         GroupBox1.ResumeLayout(False)
         GroupBox1.PerformLayout()
