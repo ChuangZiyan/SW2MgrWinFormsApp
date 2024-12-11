@@ -511,6 +511,16 @@ Public Class MgrMainFormEventController
                 Dim opacityVal As Double = Form1.SWAPP_OpacityValue_NumericUpDown.Value / 100
                 UtilsModule.SendPipeCommandTask(appUUID, $"setOpacity:{opacityVal:0.00}")
 
+
+                If Form1.EnableSWappAutoScroll_RadioButton.Checked = True Then
+                    UtilsModule.SendPipeCommandTask(appUUID, "enableAutoScroll")
+                End If
+
+                If Form1.DisableSWappAutoScroll_RadioButton.Checked = False Then
+                    UtilsModule.SendPipeCommandTask(appUUID, "disableAutoScroll")
+                End If
+
+
             End If
 
 

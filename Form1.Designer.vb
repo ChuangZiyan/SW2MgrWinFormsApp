@@ -73,10 +73,14 @@ Partial Class Form1
         MarkSW2ListViewItemsByText_Button = New Button()
         SelectedItemsByText_Button = New Button()
         UnmarkSW2ListViewItemsByText_Button = New Button()
-        FocusSelectedSWAPP_Button = New Button()
+        SetSWAppForeground_Button = New Button()
         uuid_TextBox1 = New TextBox()
         Button2 = New Button()
         GroupBox1 = New GroupBox()
+        Label8 = New Label()
+        Panel1 = New Panel()
+        DisableSWappAutoScroll_RadioButton = New RadioButton()
+        EnableSWappAutoScroll_RadioButton = New RadioButton()
         ApplySWAppWindowConfigs_Button = New Button()
         AppConfigs_GroupBox.SuspendLayout()
         CType(SW2App_NumberOfRuns_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -84,6 +88,7 @@ Partial Class Form1
         CType(SWAPP_OpacityValue_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(LaunchDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         GroupBox1.SuspendLayout()
+        Panel1.SuspendLayout()
         SuspendLayout()
         ' 
         ' CreateNewSW2App_Button
@@ -357,7 +362,7 @@ Partial Class Form1
         ' Label10
         ' 
         Label10.AutoSize = True
-        Label10.Location = New Point(137, 72)
+        Label10.Location = New Point(152, 63)
         Label10.Name = "Label10"
         Label10.Size = New Size(22, 19)
         Label10.TabIndex = 20
@@ -365,7 +370,7 @@ Partial Class Form1
         ' 
         ' SWAPP_OpacityValue_NumericUpDown
         ' 
-        SWAPP_OpacityValue_NumericUpDown.Location = New Point(77, 65)
+        SWAPP_OpacityValue_NumericUpDown.Location = New Point(92, 55)
         SWAPP_OpacityValue_NumericUpDown.Name = "SWAPP_OpacityValue_NumericUpDown"
         SWAPP_OpacityValue_NumericUpDown.Size = New Size(54, 27)
         SWAPP_OpacityValue_NumericUpDown.TabIndex = 19
@@ -374,7 +379,7 @@ Partial Class Form1
         ' Label9
         ' 
         Label9.AutoSize = True
-        Label9.Location = New Point(6, 72)
+        Label9.Location = New Point(6, 63)
         Label9.Name = "Label9"
         Label9.Size = New Size(65, 19)
         Label9.TabIndex = 18
@@ -519,14 +524,14 @@ Partial Class Form1
         UnmarkSW2ListViewItemsByText_Button.Text = "取消標註"
         UnmarkSW2ListViewItemsByText_Button.UseVisualStyleBackColor = True
         ' 
-        ' FocusSelectedSWAPP_Button
+        ' SetSWAppForeground_Button
         ' 
-        FocusSelectedSWAPP_Button.Location = New Point(563, 506)
-        FocusSelectedSWAPP_Button.Name = "FocusSelectedSWAPP_Button"
-        FocusSelectedSWAPP_Button.Size = New Size(94, 29)
-        FocusSelectedSWAPP_Button.TabIndex = 28
-        FocusSelectedSWAPP_Button.Text = "至頂視窗"
-        FocusSelectedSWAPP_Button.UseVisualStyleBackColor = True
+        SetSWAppForeground_Button.Location = New Point(563, 506)
+        SetSWAppForeground_Button.Name = "SetSWAppForeground_Button"
+        SetSWAppForeground_Button.Size = New Size(94, 29)
+        SetSWAppForeground_Button.TabIndex = 28
+        SetSWAppForeground_Button.Text = "至頂視窗"
+        SetSWAppForeground_Button.UseVisualStyleBackColor = True
         ' 
         ' uuid_TextBox1
         ' 
@@ -546,6 +551,8 @@ Partial Class Form1
         ' 
         ' GroupBox1
         ' 
+        GroupBox1.Controls.Add(Label8)
+        GroupBox1.Controls.Add(Panel1)
         GroupBox1.Controls.Add(ApplySWAppWindowConfigs_Button)
         GroupBox1.Controls.Add(LiteModeNormal_RadioButton)
         GroupBox1.Controls.Add(Label10)
@@ -560,9 +567,49 @@ Partial Class Form1
         GroupBox1.TabStop = False
         GroupBox1.Text = "視窗設置"
         ' 
+        ' Label8
+        ' 
+        Label8.AutoSize = True
+        Label8.Location = New Point(6, 93)
+        Label8.Name = "Label8"
+        Label8.Size = New Size(80, 19)
+        Label8.TabIndex = 24
+        Label8.Text = "自動卷軸 : "
+        ' 
+        ' Panel1
+        ' 
+        Panel1.Controls.Add(DisableSWappAutoScroll_RadioButton)
+        Panel1.Controls.Add(EnableSWappAutoScroll_RadioButton)
+        Panel1.Location = New Point(92, 88)
+        Panel1.Name = "Panel1"
+        Panel1.Size = New Size(136, 29)
+        Panel1.TabIndex = 23
+        ' 
+        ' DisableSWappAutoScroll_RadioButton
+        ' 
+        DisableSWappAutoScroll_RadioButton.AutoSize = True
+        DisableSWappAutoScroll_RadioButton.Location = New Point(68, 3)
+        DisableSWappAutoScroll_RadioButton.Name = "DisableSWappAutoScroll_RadioButton"
+        DisableSWappAutoScroll_RadioButton.Size = New Size(60, 23)
+        DisableSWappAutoScroll_RadioButton.TabIndex = 23
+        DisableSWappAutoScroll_RadioButton.TabStop = True
+        DisableSWappAutoScroll_RadioButton.Text = "禁用"
+        DisableSWappAutoScroll_RadioButton.UseVisualStyleBackColor = True
+        ' 
+        ' EnableSWappAutoScroll_RadioButton
+        ' 
+        EnableSWappAutoScroll_RadioButton.AutoSize = True
+        EnableSWappAutoScroll_RadioButton.Location = New Point(3, 3)
+        EnableSWappAutoScroll_RadioButton.Name = "EnableSWappAutoScroll_RadioButton"
+        EnableSWappAutoScroll_RadioButton.Size = New Size(60, 23)
+        EnableSWappAutoScroll_RadioButton.TabIndex = 22
+        EnableSWappAutoScroll_RadioButton.TabStop = True
+        EnableSWappAutoScroll_RadioButton.Text = "啟用"
+        EnableSWappAutoScroll_RadioButton.UseVisualStyleBackColor = True
+        ' 
         ' ApplySWAppWindowConfigs_Button
         ' 
-        ApplySWAppWindowConfigs_Button.Location = New Point(194, 65)
+        ApplySWAppWindowConfigs_Button.Location = New Point(213, 139)
         ApplySWAppWindowConfigs_Button.Name = "ApplySWAppWindowConfigs_Button"
         ApplySWAppWindowConfigs_Button.Size = New Size(94, 29)
         ApplySWAppWindowConfigs_Button.TabIndex = 21
@@ -577,7 +624,7 @@ Partial Class Form1
         Controls.Add(GroupBox1)
         Controls.Add(Button2)
         Controls.Add(uuid_TextBox1)
-        Controls.Add(FocusSelectedSWAPP_Button)
+        Controls.Add(SetSWAppForeground_Button)
         Controls.Add(UnmarkSW2ListViewItemsByText_Button)
         Controls.Add(SelectedItemsByText_Button)
         Controls.Add(MarkSW2ListViewItemsByText_Button)
@@ -616,6 +663,8 @@ Partial Class Form1
         CType(LaunchDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         GroupBox1.ResumeLayout(False)
         GroupBox1.PerformLayout()
+        Panel1.ResumeLayout(False)
+        Panel1.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -670,10 +719,14 @@ Partial Class Form1
     Friend WithEvents Label10 As Label
     Friend WithEvents SWAPP_OpacityValue_NumericUpDown As NumericUpDown
     Friend WithEvents Label9 As Label
-    Friend WithEvents FocusSelectedSWAPP_Button As Button
+    Friend WithEvents SetSWAppForeground_Button As Button
     Friend WithEvents uuid_TextBox1 As TextBox
     Friend WithEvents Button2 As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents ApplySWAppWindowConfigs_Button As Button
+    Friend WithEvents EnableSWappAutoScroll_RadioButton As RadioButton
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents DisableSWappAutoScroll_RadioButton As RadioButton
+    Friend WithEvents Label8 As Label
 
 End Class

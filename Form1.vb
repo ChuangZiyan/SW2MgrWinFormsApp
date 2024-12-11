@@ -115,20 +115,21 @@ Public Class Form1
 
     End Sub
 
-    Private Sub FocusSelectedSWAPP_Button_Click(sender As Object, e As EventArgs) Handles FocusSelectedSWAPP_Button.Click
+    Private Sub SetSWAppForeground_Button_Click(sender As Object, e As EventArgs) Handles SetSWAppForeground_Button.Click
 
         Dim selectedSW2AppListViewItems = SW2App_ListView.SelectedItems
         If selectedSW2AppListViewItems.Count > 0 Then
             Dim profile As Webview2AppProfile = MainFormController.GetProfile(selectedSW2AppListViewItems.Item(0).SubItems(1).Text)
-            Debug.WriteLine($"UUID : {profile.UUID}")
-            UtilsModule.SendPipeCommandTask(profile.UUID, "setFocus")
+            ' Debug.WriteLine($"UUID : {profile.UUID}")
+            UtilsModule.SendPipeCommandTask(profile.UUID, "setForegroundWindow")
 
         End If
 
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        UtilsModule.SendPipeCommandTask(uuid_TextBox1.Text, "setOpacity:0.8")
+        ' UtilsModule.SendPipeCommandTask(uuid_TextBox1.Text, "bringToTop")
+        UtilsModule.SendPipeCommandTask(uuid_TextBox1.Text, "disableAutoScroll")
     End Sub
 
 
