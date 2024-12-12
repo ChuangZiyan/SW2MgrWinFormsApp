@@ -500,16 +500,6 @@ Public Class MgrMainFormEventController
 
                 Dim profile As Webview2AppProfile = MainFormController.GetProfile(item.SubItems(1).Text)
                 Dim appUUID As String = profile.UUID
-                Select Case True
-                    Case Form1.LiteModeNormal_RadioButton.Checked
-                        UtilsModule.SendPipeCommandTask(appUUID, "setLiteModeNormal")
-                    Case Form1.LiteModeWebview_RadioButton.Checked
-                        UtilsModule.SendPipeCommandTask(appUUID, "setLiteModeWebview")
-                    Case Form1.LiteModeScriptListView_RadioButton.Checked
-                        UtilsModule.SendPipeCommandTask(appUUID, "setLiteModeScriptListView")
-                End Select
-                Dim opacityVal As Double = Form1.SWAPP_OpacityValue_NumericUpDown.Value / 100
-                UtilsModule.SendPipeCommandTask(appUUID, $"setOpacity:{opacityVal:0.00}")
 
 
                 If Form1.EnableSWappAutoScroll_RadioButton.Checked = True Then
@@ -520,6 +510,25 @@ Public Class MgrMainFormEventController
                     UtilsModule.SendPipeCommandTask(appUUID, "disableAutoScroll")
                 End If
 
+
+                ' 設定面板模式
+                Select Case True
+                    Case Form1.LiteModeNormal_RadioButton.Checked
+                        UtilsModule.SendPipeCommandTask(appUUID, "setLiteModeNormal")
+                    Case Form1.LiteModeWebview_RadioButton.Checked
+                        UtilsModule.SendPipeCommandTask(appUUID, "setLiteModeWebview")
+                    Case Form1.LiteModeScriptListView_RadioButton.Checked
+                        UtilsModule.SendPipeCommandTask(appUUID, "setLiteModeScriptListView")
+                End Select
+
+                ' 設定透明度
+                Dim opacityVal As Double = Form1.SWAPP_OpacityValue_NumericUpDown.Value / 100
+                UtilsModule.SendPipeCommandTask(appUUID, $"setOpacity:{opacityVal:0.00}")
+
+
+                ' 設定SWAPP座標
+                Dim locationCmd As String = $"setLocation:{Form1.SWAppLocationX_NumericUpDown.Value},{Form1.SWAppLocationY_NumericUpDown.Value}"
+                UtilsModule.SendPipeCommandTask(appUUID, locationCmd)
 
             End If
 

@@ -129,7 +129,7 @@ Public Class Form1
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         ' UtilsModule.SendPipeCommandTask(uuid_TextBox1.Text, "bringToTop")
-        UtilsModule.SendPipeCommandTask(uuid_TextBox1.Text, "disableAutoScroll")
+        UtilsModule.SendPipeCommandTask(uuid_TextBox1.Text, "setLocation:0,0")
     End Sub
 
 

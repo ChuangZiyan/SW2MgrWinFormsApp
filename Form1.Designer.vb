@@ -82,6 +82,11 @@ Partial Class Form1
         DisableSWappAutoScroll_RadioButton = New RadioButton()
         EnableSWappAutoScroll_RadioButton = New RadioButton()
         ApplySWAppWindowConfigs_Button = New Button()
+        Label11 = New Label()
+        SWAppLocationX_NumericUpDown = New NumericUpDown()
+        SWAppLocationY_NumericUpDown = New NumericUpDown()
+        Label12 = New Label()
+        Label13 = New Label()
         AppConfigs_GroupBox.SuspendLayout()
         CType(SW2App_NumberOfRuns_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SW2App_AutoRunDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -89,6 +94,8 @@ Partial Class Form1
         CType(LaunchDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         GroupBox1.SuspendLayout()
         Panel1.SuspendLayout()
+        CType(SWAppLocationX_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(SWAppLocationY_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' CreateNewSW2App_Button
@@ -551,6 +558,11 @@ Partial Class Form1
         ' 
         ' GroupBox1
         ' 
+        GroupBox1.Controls.Add(Label13)
+        GroupBox1.Controls.Add(Label12)
+        GroupBox1.Controls.Add(SWAppLocationY_NumericUpDown)
+        GroupBox1.Controls.Add(SWAppLocationX_NumericUpDown)
+        GroupBox1.Controls.Add(Label11)
         GroupBox1.Controls.Add(Label8)
         GroupBox1.Controls.Add(Panel1)
         GroupBox1.Controls.Add(ApplySWAppWindowConfigs_Button)
@@ -562,7 +574,7 @@ Partial Class Form1
         GroupBox1.Controls.Add(Label9)
         GroupBox1.Location = New Point(763, 326)
         GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(313, 174)
+        GroupBox1.Size = New Size(313, 242)
         GroupBox1.TabIndex = 31
         GroupBox1.TabStop = False
         GroupBox1.Text = "視窗設置"
@@ -609,12 +621,53 @@ Partial Class Form1
         ' 
         ' ApplySWAppWindowConfigs_Button
         ' 
-        ApplySWAppWindowConfigs_Button.Location = New Point(213, 139)
+        ApplySWAppWindowConfigs_Button.Location = New Point(213, 207)
         ApplySWAppWindowConfigs_Button.Name = "ApplySWAppWindowConfigs_Button"
         ApplySWAppWindowConfigs_Button.Size = New Size(94, 29)
         ApplySWAppWindowConfigs_Button.TabIndex = 21
         ApplySWAppWindowConfigs_Button.Text = "套用"
         ApplySWAppWindowConfigs_Button.UseVisualStyleBackColor = True
+        ' 
+        ' Label11
+        ' 
+        Label11.AutoSize = True
+        Label11.Location = New Point(6, 127)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(50, 19)
+        Label11.TabIndex = 25
+        Label11.Text = "座標 : "
+        ' 
+        ' SWAppLocationX_NumericUpDown
+        ' 
+        SWAppLocationX_NumericUpDown.Location = New Point(128, 123)
+        SWAppLocationX_NumericUpDown.Name = "SWAppLocationX_NumericUpDown"
+        SWAppLocationX_NumericUpDown.Size = New Size(50, 27)
+        SWAppLocationX_NumericUpDown.TabIndex = 26
+        ' 
+        ' SWAppLocationY_NumericUpDown
+        ' 
+        SWAppLocationY_NumericUpDown.Location = New Point(219, 123)
+        SWAppLocationY_NumericUpDown.Name = "SWAppLocationY_NumericUpDown"
+        SWAppLocationY_NumericUpDown.Size = New Size(50, 27)
+        SWAppLocationY_NumericUpDown.TabIndex = 27
+        ' 
+        ' Label12
+        ' 
+        Label12.AutoSize = True
+        Label12.Location = New Point(92, 127)
+        Label12.Name = "Label12"
+        Label12.Size = New Size(30, 19)
+        Label12.TabIndex = 28
+        Label12.Text = "X : "
+        ' 
+        ' Label13
+        ' 
+        Label13.AutoSize = True
+        Label13.Location = New Point(184, 127)
+        Label13.Name = "Label13"
+        Label13.Size = New Size(29, 19)
+        Label13.TabIndex = 29
+        Label13.Text = "Y : "
         ' 
         ' Form1
         ' 
@@ -665,6 +718,8 @@ Partial Class Form1
         GroupBox1.PerformLayout()
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
+        CType(SWAppLocationX_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(SWAppLocationY_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -728,5 +783,10 @@ Partial Class Form1
     Friend WithEvents Panel1 As Panel
     Friend WithEvents DisableSWappAutoScroll_RadioButton As RadioButton
     Friend WithEvents Label8 As Label
+    Friend WithEvents Label13 As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents SWAppLocationY_NumericUpDown As NumericUpDown
+    Friend WithEvents SWAppLocationX_NumericUpDown As NumericUpDown
+    Friend WithEvents Label11 As Label
 
 End Class
