@@ -53,8 +53,7 @@ Public Class Form1
 
         '管線命令
         AddHandler ApplySWAppWindowConfigs_Button.Click, AddressOf MgrMainFormEventController.ApplySWAppWindowConfigs_Button_Click
-
-
+        AddHandler ApplySWAppLocation_Button.Click, AddressOf MgrMainFormEventController.ApplySWAppLocation_Button_Click
 
     End Sub
 

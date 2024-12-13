@@ -21,7 +21,6 @@ Module UtilsModule
 
     Public Sub SendPipeCommandTask(pipeName As String, command As String)
 
-
         Task.Run(Function()
 
                      Try

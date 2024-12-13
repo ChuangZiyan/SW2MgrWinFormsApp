@@ -501,16 +501,6 @@ Public Class MgrMainFormEventController
                 Dim profile As Webview2AppProfile = MainFormController.GetProfile(item.SubItems(1).Text)
                 Dim appUUID As String = profile.UUID
 
-
-                If Form1.EnableSWappAutoScroll_RadioButton.Checked = True Then
-                    UtilsModule.SendPipeCommandTask(appUUID, "enableAutoScroll")
-                End If
-
-                If Form1.DisableSWappAutoScroll_RadioButton.Checked = False Then
-                    UtilsModule.SendPipeCommandTask(appUUID, "disableAutoScroll")
-                End If
-
-
                 ' 設定面板模式
                 Select Case True
                     Case Form1.LiteModeNormal_RadioButton.Checked
@@ -525,11 +515,6 @@ Public Class MgrMainFormEventController
                 Dim opacityVal As Double = Form1.SWAPP_OpacityValue_NumericUpDown.Value / 100
                 UtilsModule.SendPipeCommandTask(appUUID, $"setOpacity:{opacityVal:0.00}")
 
-
-                ' 設定SWAPP座標
-                Dim locationCmd As String = $"setLocation:{Form1.SWAppLocationX_NumericUpDown.Value},{Form1.SWAppLocationY_NumericUpDown.Value}"
-                UtilsModule.SendPipeCommandTask(appUUID, locationCmd)
-
             End If
 
 
@@ -537,5 +522,26 @@ Public Class MgrMainFormEventController
 
     End Sub
 
+    Public Sub ApplySWAppLocation_Button_Click(sender As Object, e As EventArgs)
+
+        Dim selectedSW2AppListViewItems = Form1.SW2App_ListView.SelectedItems
+
+        For Each item As ListViewItem In selectedSW2AppListViewItems
+
+            ' 檢查是啟動的APP才送命令，防止Timeout
+            If item.SubItems(0).Text <> "" Then
+
+                Dim profile As Webview2AppProfile = MainFormController.GetProfile(item.SubItems(1).Text)
+                Dim appUUID As String = profile.UUID
+
+                ' 設定SWAPP座標
+                Dim locationCmd As String = $"setLocation:{Form1.SWAppLocationX_NumericUpDown.Value},{Form1.SWAppLocationY_NumericUpDown.Value}"
+                UtilsModule.SendPipeCommandTask(appUUID, locationCmd)
+
+            End If
+
+        Next
+
+    End Sub
 
 End Class

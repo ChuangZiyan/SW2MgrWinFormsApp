@@ -77,25 +77,21 @@ Partial Class Form1
         uuid_TextBox1 = New TextBox()
         Button2 = New Button()
         GroupBox1 = New GroupBox()
-        Label8 = New Label()
-        Panel1 = New Panel()
-        DisableSWappAutoScroll_RadioButton = New RadioButton()
-        EnableSWappAutoScroll_RadioButton = New RadioButton()
-        ApplySWAppWindowConfigs_Button = New Button()
-        Label11 = New Label()
-        SWAppLocationX_NumericUpDown = New NumericUpDown()
-        SWAppLocationY_NumericUpDown = New NumericUpDown()
-        Label12 = New Label()
+        ApplySWAppLocation_Button = New Button()
         Label13 = New Label()
+        Label12 = New Label()
+        SWAppLocationY_NumericUpDown = New NumericUpDown()
+        SWAppLocationX_NumericUpDown = New NumericUpDown()
+        Label11 = New Label()
+        ApplySWAppWindowConfigs_Button = New Button()
         AppConfigs_GroupBox.SuspendLayout()
         CType(SW2App_NumberOfRuns_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SW2App_AutoRunDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SWAPP_OpacityValue_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(LaunchDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         GroupBox1.SuspendLayout()
-        Panel1.SuspendLayout()
-        CType(SWAppLocationX_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SWAppLocationY_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(SWAppLocationX_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' CreateNewSW2App_Button
@@ -276,7 +272,7 @@ Partial Class Form1
         AppConfigs_GroupBox.Controls.Add(SaveSW2AppConfigs_Button)
         AppConfigs_GroupBox.Location = New Point(763, 153)
         AppConfigs_GroupBox.Name = "AppConfigs_GroupBox"
-        AppConfigs_GroupBox.Size = New Size(313, 167)
+        AppConfigs_GroupBox.Size = New Size(353, 167)
         AppConfigs_GroupBox.TabIndex = 12
         AppConfigs_GroupBox.TabStop = False
         AppConfigs_GroupBox.Text = "程式設置"
@@ -558,13 +554,12 @@ Partial Class Form1
         ' 
         ' GroupBox1
         ' 
+        GroupBox1.Controls.Add(ApplySWAppLocation_Button)
         GroupBox1.Controls.Add(Label13)
         GroupBox1.Controls.Add(Label12)
         GroupBox1.Controls.Add(SWAppLocationY_NumericUpDown)
         GroupBox1.Controls.Add(SWAppLocationX_NumericUpDown)
         GroupBox1.Controls.Add(Label11)
-        GroupBox1.Controls.Add(Label8)
-        GroupBox1.Controls.Add(Panel1)
         GroupBox1.Controls.Add(ApplySWAppWindowConfigs_Button)
         GroupBox1.Controls.Add(LiteModeNormal_RadioButton)
         GroupBox1.Controls.Add(Label10)
@@ -574,59 +569,51 @@ Partial Class Form1
         GroupBox1.Controls.Add(Label9)
         GroupBox1.Location = New Point(763, 326)
         GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(313, 242)
+        GroupBox1.Size = New Size(353, 242)
         GroupBox1.TabIndex = 31
         GroupBox1.TabStop = False
         GroupBox1.Text = "視窗設置"
         ' 
-        ' Label8
+        ' ApplySWAppLocation_Button
         ' 
-        Label8.AutoSize = True
-        Label8.Location = New Point(6, 93)
-        Label8.Name = "Label8"
-        Label8.Size = New Size(80, 19)
-        Label8.TabIndex = 24
-        Label8.Text = "自動卷軸 : "
+        ApplySWAppLocation_Button.Location = New Point(245, 119)
+        ApplySWAppLocation_Button.Name = "ApplySWAppLocation_Button"
+        ApplySWAppLocation_Button.Size = New Size(94, 29)
+        ApplySWAppLocation_Button.TabIndex = 30
+        ApplySWAppLocation_Button.Text = "套用座標"
+        ApplySWAppLocation_Button.UseVisualStyleBackColor = True
         ' 
-        ' Panel1
+        ' Label13
         ' 
-        Panel1.Controls.Add(DisableSWappAutoScroll_RadioButton)
-        Panel1.Controls.Add(EnableSWappAutoScroll_RadioButton)
-        Panel1.Location = New Point(92, 88)
-        Panel1.Name = "Panel1"
-        Panel1.Size = New Size(136, 29)
-        Panel1.TabIndex = 23
+        Label13.AutoSize = True
+        Label13.Location = New Point(154, 127)
+        Label13.Name = "Label13"
+        Label13.Size = New Size(29, 19)
+        Label13.TabIndex = 29
+        Label13.Text = "Y : "
         ' 
-        ' DisableSWappAutoScroll_RadioButton
+        ' Label12
         ' 
-        DisableSWappAutoScroll_RadioButton.AutoSize = True
-        DisableSWappAutoScroll_RadioButton.Location = New Point(68, 3)
-        DisableSWappAutoScroll_RadioButton.Name = "DisableSWappAutoScroll_RadioButton"
-        DisableSWappAutoScroll_RadioButton.Size = New Size(60, 23)
-        DisableSWappAutoScroll_RadioButton.TabIndex = 23
-        DisableSWappAutoScroll_RadioButton.TabStop = True
-        DisableSWappAutoScroll_RadioButton.Text = "禁用"
-        DisableSWappAutoScroll_RadioButton.UseVisualStyleBackColor = True
+        Label12.AutoSize = True
+        Label12.Location = New Point(62, 127)
+        Label12.Name = "Label12"
+        Label12.Size = New Size(30, 19)
+        Label12.TabIndex = 28
+        Label12.Text = "X : "
         ' 
-        ' EnableSWappAutoScroll_RadioButton
+        ' SWAppLocationY_NumericUpDown
         ' 
-        EnableSWappAutoScroll_RadioButton.AutoSize = True
-        EnableSWappAutoScroll_RadioButton.Location = New Point(3, 3)
-        EnableSWappAutoScroll_RadioButton.Name = "EnableSWappAutoScroll_RadioButton"
-        EnableSWappAutoScroll_RadioButton.Size = New Size(60, 23)
-        EnableSWappAutoScroll_RadioButton.TabIndex = 22
-        EnableSWappAutoScroll_RadioButton.TabStop = True
-        EnableSWappAutoScroll_RadioButton.Text = "啟用"
-        EnableSWappAutoScroll_RadioButton.UseVisualStyleBackColor = True
+        SWAppLocationY_NumericUpDown.Location = New Point(189, 121)
+        SWAppLocationY_NumericUpDown.Name = "SWAppLocationY_NumericUpDown"
+        SWAppLocationY_NumericUpDown.Size = New Size(50, 27)
+        SWAppLocationY_NumericUpDown.TabIndex = 27
         ' 
-        ' ApplySWAppWindowConfigs_Button
+        ' SWAppLocationX_NumericUpDown
         ' 
-        ApplySWAppWindowConfigs_Button.Location = New Point(213, 207)
-        ApplySWAppWindowConfigs_Button.Name = "ApplySWAppWindowConfigs_Button"
-        ApplySWAppWindowConfigs_Button.Size = New Size(94, 29)
-        ApplySWAppWindowConfigs_Button.TabIndex = 21
-        ApplySWAppWindowConfigs_Button.Text = "套用"
-        ApplySWAppWindowConfigs_Button.UseVisualStyleBackColor = True
+        SWAppLocationX_NumericUpDown.Location = New Point(98, 121)
+        SWAppLocationX_NumericUpDown.Name = "SWAppLocationX_NumericUpDown"
+        SWAppLocationX_NumericUpDown.Size = New Size(50, 27)
+        SWAppLocationX_NumericUpDown.TabIndex = 26
         ' 
         ' Label11
         ' 
@@ -637,43 +624,20 @@ Partial Class Form1
         Label11.TabIndex = 25
         Label11.Text = "座標 : "
         ' 
-        ' SWAppLocationX_NumericUpDown
+        ' ApplySWAppWindowConfigs_Button
         ' 
-        SWAppLocationX_NumericUpDown.Location = New Point(128, 123)
-        SWAppLocationX_NumericUpDown.Name = "SWAppLocationX_NumericUpDown"
-        SWAppLocationX_NumericUpDown.Size = New Size(50, 27)
-        SWAppLocationX_NumericUpDown.TabIndex = 26
-        ' 
-        ' SWAppLocationY_NumericUpDown
-        ' 
-        SWAppLocationY_NumericUpDown.Location = New Point(219, 123)
-        SWAppLocationY_NumericUpDown.Name = "SWAppLocationY_NumericUpDown"
-        SWAppLocationY_NumericUpDown.Size = New Size(50, 27)
-        SWAppLocationY_NumericUpDown.TabIndex = 27
-        ' 
-        ' Label12
-        ' 
-        Label12.AutoSize = True
-        Label12.Location = New Point(92, 127)
-        Label12.Name = "Label12"
-        Label12.Size = New Size(30, 19)
-        Label12.TabIndex = 28
-        Label12.Text = "X : "
-        ' 
-        ' Label13
-        ' 
-        Label13.AutoSize = True
-        Label13.Location = New Point(184, 127)
-        Label13.Name = "Label13"
-        Label13.Size = New Size(29, 19)
-        Label13.TabIndex = 29
-        Label13.Text = "Y : "
+        ApplySWAppWindowConfigs_Button.Location = New Point(245, 55)
+        ApplySWAppWindowConfigs_Button.Name = "ApplySWAppWindowConfigs_Button"
+        ApplySWAppWindowConfigs_Button.Size = New Size(94, 29)
+        ApplySWAppWindowConfigs_Button.TabIndex = 21
+        ApplySWAppWindowConfigs_Button.Text = "套用"
+        ApplySWAppWindowConfigs_Button.UseVisualStyleBackColor = True
         ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1089, 711)
+        ClientSize = New Size(1129, 585)
         Controls.Add(GroupBox1)
         Controls.Add(Button2)
         Controls.Add(uuid_TextBox1)
@@ -716,10 +680,8 @@ Partial Class Form1
         CType(LaunchDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         GroupBox1.ResumeLayout(False)
         GroupBox1.PerformLayout()
-        Panel1.ResumeLayout(False)
-        Panel1.PerformLayout()
-        CType(SWAppLocationX_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(SWAppLocationY_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(SWAppLocationX_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -779,14 +741,11 @@ Partial Class Form1
     Friend WithEvents Button2 As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents ApplySWAppWindowConfigs_Button As Button
-    Friend WithEvents EnableSWappAutoScroll_RadioButton As RadioButton
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents DisableSWappAutoScroll_RadioButton As RadioButton
-    Friend WithEvents Label8 As Label
     Friend WithEvents Label13 As Label
     Friend WithEvents Label12 As Label
     Friend WithEvents SWAppLocationY_NumericUpDown As NumericUpDown
     Friend WithEvents SWAppLocationX_NumericUpDown As NumericUpDown
     Friend WithEvents Label11 As Label
+    Friend WithEvents ApplySWAppLocation_Button As Button
 
 End Class
