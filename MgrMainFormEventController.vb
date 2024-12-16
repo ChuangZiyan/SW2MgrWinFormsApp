@@ -260,12 +260,17 @@ Public Class MgrMainFormEventController
                 Dim exePath As String = Path.Combine(AppInitModule.webview2AppDirectory, selectedItem.SubItems(1).Text, "SW2WinFormsApp.exe")
                 'Debug.WriteLine("exepath : " & exePath)
                 If File.Exists(exePath) Then
-                    Form1.LaunchSeletedSW2App_Button.Enabled = False
-                    Form1.TerminateSW2AppByPId_Button.Enabled = True
-                    Dim process As Process = process.Start(exePath)
-                    Dim pid As Integer = process.Id
-                    selectedItem.SubItems(0).Text = pid.ToString()
-                    selectedItem.SubItems(3).Text = "On"
+                    'Form1.LaunchSeletedSW2App_Button.Enabled = False
+                    'Form1.TerminateSW2AppByPId_Button.Enabled = True
+
+                    If selectedItem.SubItems(3).Text = "Off" Then
+                        Dim process As Process = Process.Start(exePath)
+                        Dim pid As Integer = process.Id
+                        selectedItem.SubItems(0).Text = pid.ToString()
+                        selectedItem.SubItems(3).Text = "On"
+                    End If
+
+
                 Else
                     Debug.WriteLine("找不到指定的exe檔案！")
                 End If
@@ -283,17 +288,19 @@ Public Class MgrMainFormEventController
 
         For Each selectedItem As ListViewItem In Form1.SW2App_ListView.SelectedItems
             Try
+                If selectedItem.SubItems(3).Text = "On" Then
+                    Dim pid As Integer = CInt(selectedItem.SubItems(0).Text)
 
-                Dim pid As Integer = CInt(selectedItem.SubItems(0).Text)
+                    ' 取得對應的Process物件並終止
+                    Dim process As Process = Process.GetProcessById(pid)
+                    process.Kill()
 
-                ' 取得對應的Process物件並終止
-                Dim process As Process = process.GetProcessById(pid)
-                process.Kill()
+                    selectedItem.SubItems(0).Text = ""
+                    selectedItem.SubItems(3).Text = "Off"
+                    'Form1.LaunchSeletedSW2App_Button.Enabled = True
+                    'Form1.TerminateSW2AppByPId_Button.Enabled = False
+                End If
 
-                selectedItem.SubItems(0).Text = ""
-                selectedItem.SubItems(3).Text = "Off"
-                Form1.LaunchSeletedSW2App_Button.Enabled = True
-                Form1.TerminateSW2AppByPId_Button.Enabled = False
             Catch ex As Exception
                 Debug.WriteLine(ex)
                 MsgBox("關閉 " & selectedItem.SubItems(1).Text & " 失敗")
@@ -309,13 +316,13 @@ Public Class MgrMainFormEventController
             Dim selectedSW2AppListViewItems = Form1.SW2App_ListView.SelectedItems
             If selectedSW2AppListViewItems.Count = 1 Then
 
-                If selectedSW2AppListViewItems(0).SubItems(3).Text = "On" Then
-                    Form1.LaunchSeletedSW2App_Button.Enabled = False
-                    Form1.TerminateSW2AppByPId_Button.Enabled = True
-                Else
-                    Form1.LaunchSeletedSW2App_Button.Enabled = True
-                    Form1.TerminateSW2AppByPId_Button.Enabled = False
-                End If
+                'If selectedSW2AppListViewItems(0).SubItems(3).Text = "On" Then
+                'Form1.LaunchSeletedSW2App_Button.Enabled = False
+                'Form1.TerminateSW2AppByPId_Button.Enabled = True
+                'Else
+                'Form1.LaunchSeletedSW2App_Button.Enabled = True
+                'Form1.TerminateSW2AppByPId_Button.Enabled = False
+                'End If
 
                 Dim folderName = selectedSW2AppListViewItems(0).SubItems(1).Text
                 'Debug.WriteLine(folderName)
@@ -332,6 +339,7 @@ Public Class MgrMainFormEventController
 
                 Form1.SW2App_NumberOfRuns_NumericUpDown.Value = appConfigs.NumberOfRuns
             Else
+
                 Form1.SW2App_AutoRun_CheckBox.Checked = False
                 Form1.SW2App_ScheduledRun_RadioButton.Checked = False
                 Form1.SW2App_SequentialRun_RadioButton.Checked = True
@@ -368,8 +376,8 @@ Public Class MgrMainFormEventController
 
             Next
 
-            Form1.LaunchSeletedSW2App_Button.Enabled = True
-            Form1.TerminateSW2AppByPId_Button.Enabled = False
+            'Form1.LaunchSeletedSW2App_Button.Enabled = True
+            'Form1.TerminateSW2AppByPId_Button.Enabled = False
             MsgBox("關閉全部成功")
         Catch ex As Exception
             Debug.WriteLine(ex)
