@@ -84,6 +84,7 @@ Partial Class Form1
         SWAppLocationX_NumericUpDown = New NumericUpDown()
         Label11 = New Label()
         ApplySWAppWindowConfigs_Button = New Button()
+        ColseAppByPipeLine_Button = New Button()
         AppConfigs_GroupBox.SuspendLayout()
         CType(SW2App_NumberOfRuns_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SW2App_AutoRunDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -633,11 +634,21 @@ Partial Class Form1
         ApplySWAppWindowConfigs_Button.Text = "套用"
         ApplySWAppWindowConfigs_Button.UseVisualStyleBackColor = True
         ' 
+        ' ColseAppByPipeLine_Button
+        ' 
+        ColseAppByPipeLine_Button.Location = New Point(563, 541)
+        ColseAppByPipeLine_Button.Name = "ColseAppByPipeLine_Button"
+        ColseAppByPipeLine_Button.Size = New Size(122, 29)
+        ColseAppByPipeLine_Button.TabIndex = 32
+        ColseAppByPipeLine_Button.Text = "關閉所選(測試)"
+        ColseAppByPipeLine_Button.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1129, 585)
+        Controls.Add(ColseAppByPipeLine_Button)
         Controls.Add(GroupBox1)
         Controls.Add(Button2)
         Controls.Add(uuid_TextBox1)
@@ -747,5 +758,6 @@ Partial Class Form1
     Friend WithEvents SWAppLocationX_NumericUpDown As NumericUpDown
     Friend WithEvents Label11 As Label
     Friend WithEvents ApplySWAppLocation_Button As Button
+    Friend WithEvents ColseAppByPipeLine_Button As Button
 
 End Class

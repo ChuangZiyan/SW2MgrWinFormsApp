@@ -128,8 +128,16 @@ Public Class Form1
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         ' UtilsModule.SendPipeCommandTask(uuid_TextBox1.Text, "bringToTop")
-        UtilsModule.SendPipeCommandTask(uuid_TextBox1.Text, "setLocation:0,0")
+        UtilsModule.SendPipeCommandTask(uuid_TextBox1.Text, "closeApp")
     End Sub
 
+    Private Sub ColseAppByPipeLine_Button_Click(sender As Object, e As EventArgs) Handles ColseAppByPipeLine_Button.Click
+        Dim selectedSW2AppListViewItems = SW2App_ListView.SelectedItems
+        If selectedSW2AppListViewItems.Count > 0 Then
+            Dim profile As Webview2AppProfile = MainFormController.GetProfile(selectedSW2AppListViewItems.Item(0).SubItems(1).Text)
+            ' Debug.WriteLine($"UUID : {profile.UUID}")
+            UtilsModule.SendPipeCommandTask(profile.UUID, "closeApp")
 
+        End If
+    End Sub
 End Class
