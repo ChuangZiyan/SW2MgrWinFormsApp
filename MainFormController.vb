@@ -12,7 +12,7 @@ Module MainFormController
 
                 Dim folderName As String = Path.GetFileName(dir)
                 Dim myProfile As Webview2AppProfile = GetProfile(folderName)
-                Dim myAppConfigs As AppConfigs = GetAppConfigs(folderName)
+                Dim myAppConfigs As Webview2AppConfigs = GetAppConfigs(folderName)
 
                 Dim exist_app = False
                 Dim app_status = "Off"
@@ -145,7 +145,7 @@ Module MainFormController
 
     Public Function GetAppConfigs(folderName)
         Try
-            Dim appConfigs As New AppConfigs With {
+            Dim appConfigs As New Webview2AppConfigs With {
                 .AutoRun = False,
                 .AutoRunDelaySeconds = 15,
                 .ScheduledRun = False
@@ -156,7 +156,7 @@ Module MainFormController
             ' 如果 profile.json 檔案存在，就讀取檔案並反序列化
             If File.Exists(filePath) Then
                 Dim jsonString As String = File.ReadAllText(filePath)
-                appConfigs = JsonConvert.DeserializeObject(Of AppConfigs)(jsonString)
+                appConfigs = JsonConvert.DeserializeObject(Of Webview2AppConfigs)(jsonString)
             Else
                 Dim jsonString As String = JsonConvert.SerializeObject(appConfigs, Formatting.Indented)
                 File.WriteAllText(filePath, jsonString)
@@ -180,7 +180,7 @@ Module MainFormController
                 For Each seletedItem As ListViewItem In selectedSW2AppListViewItems
 
                     Dim folderName = seletedItem.SubItems(1).Text
-                    Dim appConfigs As AppConfigs = GetAppConfigs(folderName)
+                    Dim appConfigs As Webview2AppConfigs = GetAppConfigs(folderName)
 
                     Dim filePath As String = Path.Combine(AppInitModule.webview2AppDirectory, folderName, "appConfigs", "appConfigs.json")
 
@@ -222,10 +222,11 @@ Module MainFormController
         Public Property Version As String
         Public Property BuildDate As String
         Public Property UUID As String
+        Public Property AppFolderPath As String
 
     End Class
 
-    Public Class AppConfigs
+    Public Class Webview2AppConfigs
         Public Property AutoRun As Boolean
         Public Property AutoRunDelaySeconds As Integer
         Public Property ScheduledRun As Boolean

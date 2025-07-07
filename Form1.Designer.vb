@@ -74,8 +74,6 @@ Partial Class Form1
         SelectedItemsByText_Button = New Button()
         UnmarkSW2ListViewItemsByText_Button = New Button()
         SetSWAppForeground_Button = New Button()
-        uuid_TextBox1 = New TextBox()
-        Button2 = New Button()
         GroupBox1 = New GroupBox()
         ApplySWAppLocation_Button = New Button()
         Label13 = New Label()
@@ -85,6 +83,9 @@ Partial Class Form1
         Label11 = New Label()
         ApplySWAppWindowConfigs_Button = New Button()
         ColseAppByPipeLine_Button = New Button()
+        Label8 = New Label()
+        AppSourcePath_TextBox = New TextBox()
+        ApplySourceAppPath_Button = New Button()
         AppConfigs_GroupBox.SuspendLayout()
         CType(SW2App_NumberOfRuns_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SW2App_AutoRunDelaySeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -210,7 +211,7 @@ Partial Class Form1
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(12, 25)
+        Label2.Location = New Point(12, 47)
         Label2.Name = "Label2"
         Label2.Size = New Size(80, 19)
         Label2.TabIndex = 0
@@ -218,7 +219,7 @@ Partial Class Form1
         ' 
         ' UpdateSelectedSW2App_Button
         ' 
-        UpdateSelectedSW2App_Button.Location = New Point(342, 52)
+        UpdateSelectedSW2App_Button.Location = New Point(563, 39)
         UpdateSelectedSW2App_Button.Name = "UpdateSelectedSW2App_Button"
         UpdateSelectedSW2App_Button.Size = New Size(94, 29)
         UpdateSelectedSW2App_Button.TabIndex = 1
@@ -227,19 +228,19 @@ Partial Class Form1
         ' 
         ' SourceSW2AppVersion_TextBox
         ' 
-        SourceSW2AppVersion_TextBox.Location = New Point(109, 17)
+        SourceSW2AppVersion_TextBox.Location = New Point(98, 39)
         SourceSW2AppVersion_TextBox.Name = "SourceSW2AppVersion_TextBox"
         SourceSW2AppVersion_TextBox.ReadOnly = True
-        SourceSW2AppVersion_TextBox.Size = New Size(227, 27)
+        SourceSW2AppVersion_TextBox.Size = New Size(153, 27)
         SourceSW2AppVersion_TextBox.TabIndex = 2
         ' 
         ' RevealAppSourceFolder_Button
         ' 
-        RevealAppSourceFolder_Button.Location = New Point(342, 17)
+        RevealAppSourceFolder_Button.Location = New Point(663, 4)
         RevealAppSourceFolder_Button.Name = "RevealAppSourceFolder_Button"
-        RevealAppSourceFolder_Button.Size = New Size(194, 29)
+        RevealAppSourceFolder_Button.Size = New Size(94, 29)
         RevealAppSourceFolder_Button.TabIndex = 3
-        RevealAppSourceFolder_Button.Text = "打開來源資料夾"
+        RevealAppSourceFolder_Button.Text = "開啟"
         RevealAppSourceFolder_Button.UseVisualStyleBackColor = True
         ' 
         ' TerminateAllSW2App_Button
@@ -253,7 +254,7 @@ Partial Class Form1
         ' 
         ' UpdateAllSWApp_Button
         ' 
-        UpdateAllSWApp_Button.Location = New Point(442, 52)
+        UpdateAllSWApp_Button.Location = New Point(663, 39)
         UpdateAllSWApp_Button.Name = "UpdateAllSWApp_Button"
         UpdateAllSWApp_Button.Size = New Size(94, 29)
         UpdateAllSWApp_Button.TabIndex = 11
@@ -442,15 +443,15 @@ Partial Class Form1
         ' 
         ' AppUpdating_ProgressBar
         ' 
-        AppUpdating_ProgressBar.Location = New Point(109, 50)
+        AppUpdating_ProgressBar.Location = New Point(343, 39)
         AppUpdating_ProgressBar.Name = "AppUpdating_ProgressBar"
-        AppUpdating_ProgressBar.Size = New Size(227, 29)
+        AppUpdating_ProgressBar.Size = New Size(214, 29)
         AppUpdating_ProgressBar.TabIndex = 16
         ' 
         ' AppUpdatingProgressInfo_Label
         ' 
         AppUpdatingProgressInfo_Label.AutoSize = True
-        AppUpdatingProgressInfo_Label.Location = New Point(109, 82)
+        AppUpdatingProgressInfo_Label.Location = New Point(342, 71)
         AppUpdatingProgressInfo_Label.Name = "AppUpdatingProgressInfo_Label"
         AppUpdatingProgressInfo_Label.Size = New Size(73, 19)
         AppUpdatingProgressInfo_Label.TabIndex = 18
@@ -459,7 +460,7 @@ Partial Class Form1
         ' Label6
         ' 
         Label6.AutoSize = True
-        Label6.Location = New Point(12, 57)
+        Label6.Location = New Point(257, 47)
         Label6.Name = "Label6"
         Label6.Size = New Size(80, 19)
         Label6.TabIndex = 19
@@ -468,7 +469,7 @@ Partial Class Form1
         ' UpdatingProgressPercent_Label
         ' 
         UpdatingProgressPercent_Label.AutoSize = True
-        UpdatingProgressPercent_Label.Location = New Point(305, 82)
+        UpdatingProgressPercent_Label.Location = New Point(526, 71)
         UpdatingProgressPercent_Label.Name = "UpdatingProgressPercent_Label"
         UpdatingProgressPercent_Label.Size = New Size(31, 19)
         UpdatingProgressPercent_Label.TabIndex = 20
@@ -536,22 +537,6 @@ Partial Class Form1
         SetSWAppForeground_Button.TabIndex = 28
         SetSWAppForeground_Button.Text = "至頂視窗"
         SetSWAppForeground_Button.UseVisualStyleBackColor = True
-        ' 
-        ' uuid_TextBox1
-        ' 
-        uuid_TextBox1.Location = New Point(597, 17)
-        uuid_TextBox1.Name = "uuid_TextBox1"
-        uuid_TextBox1.Size = New Size(386, 27)
-        uuid_TextBox1.TabIndex = 29
-        ' 
-        ' Button2
-        ' 
-        Button2.Location = New Point(989, 17)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(94, 29)
-        Button2.TabIndex = 30
-        Button2.Text = "Button2"
-        Button2.UseVisualStyleBackColor = True
         ' 
         ' GroupBox1
         ' 
@@ -643,15 +628,41 @@ Partial Class Form1
         ColseAppByPipeLine_Button.Text = "關閉所選(測試)"
         ColseAppByPipeLine_Button.UseVisualStyleBackColor = True
         ' 
+        ' Label8
+        ' 
+        Label8.AutoSize = True
+        Label8.Location = New Point(12, 14)
+        Label8.Name = "Label8"
+        Label8.Size = New Size(80, 19)
+        Label8.TabIndex = 33
+        Label8.Text = "來源路徑 : "
+        ' 
+        ' AppSourcePath_TextBox
+        ' 
+        AppSourcePath_TextBox.Location = New Point(98, 6)
+        AppSourcePath_TextBox.Name = "AppSourcePath_TextBox"
+        AppSourcePath_TextBox.Size = New Size(459, 27)
+        AppSourcePath_TextBox.TabIndex = 34
+        ' 
+        ' ApplySourceAppPath_Button
+        ' 
+        ApplySourceAppPath_Button.Location = New Point(563, 4)
+        ApplySourceAppPath_Button.Name = "ApplySourceAppPath_Button"
+        ApplySourceAppPath_Button.Size = New Size(94, 29)
+        ApplySourceAppPath_Button.TabIndex = 35
+        ApplySourceAppPath_Button.Text = "套用"
+        ApplySourceAppPath_Button.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1129, 585)
+        Controls.Add(ApplySourceAppPath_Button)
+        Controls.Add(AppSourcePath_TextBox)
+        Controls.Add(Label8)
         Controls.Add(ColseAppByPipeLine_Button)
         Controls.Add(GroupBox1)
-        Controls.Add(Button2)
-        Controls.Add(uuid_TextBox1)
         Controls.Add(SetSWAppForeground_Button)
         Controls.Add(UnmarkSW2ListViewItemsByText_Button)
         Controls.Add(SelectedItemsByText_Button)
@@ -682,7 +693,7 @@ Partial Class Form1
         Controls.Add(CreateNewSW2App_Button)
         Name = "Form1"
         StartPosition = FormStartPosition.Manual
-        Text = "SW2App 主控"
+        Text = "auxiliaryprogram 主控"
         AppConfigs_GroupBox.ResumeLayout(False)
         AppConfigs_GroupBox.PerformLayout()
         CType(SW2App_NumberOfRuns_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
@@ -748,8 +759,6 @@ Partial Class Form1
     Friend WithEvents SWAPP_OpacityValue_NumericUpDown As NumericUpDown
     Friend WithEvents Label9 As Label
     Friend WithEvents SetSWAppForeground_Button As Button
-    Friend WithEvents uuid_TextBox1 As TextBox
-    Friend WithEvents Button2 As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents ApplySWAppWindowConfigs_Button As Button
     Friend WithEvents Label13 As Label
@@ -759,5 +768,8 @@ Partial Class Form1
     Friend WithEvents Label11 As Label
     Friend WithEvents ApplySWAppLocation_Button As Button
     Friend WithEvents ColseAppByPipeLine_Button As Button
+    Friend WithEvents Label8 As Label
+    Friend WithEvents AppSourcePath_TextBox As TextBox
+    Friend WithEvents ApplySourceAppPath_Button As Button
 
 End Class

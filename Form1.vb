@@ -126,11 +126,6 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        ' UtilsModule.SendPipeCommandTask(uuid_TextBox1.Text, "bringToTop")
-        UtilsModule.SendPipeCommandTask(uuid_TextBox1.Text, "closeApp")
-    End Sub
-
     Private Sub ColseAppByPipeLine_Button_Click(sender As Object, e As EventArgs) Handles ColseAppByPipeLine_Button.Click
         Dim selectedSW2AppListViewItems = SW2App_ListView.SelectedItems
         If selectedSW2AppListViewItems.Count > 0 Then
@@ -140,4 +135,30 @@ Public Class Form1
 
         End If
     End Sub
+
+    Private Sub ApplySourceAppPath_Button_Click(sender As Object, e As EventArgs) Handles ApplySourceAppPath_Button.Click
+        Try
+            Dim appSourceDirectory As String = AppSourcePath_TextBox.Text.Trim()
+
+            If File.Exists(Path.Combine(appSourceDirectory, "auxiliaryprogram.exe")) Then
+
+                Dim currentConfig As New AppConfigs With {
+                    .AppSourceDirectory = appSourceDirectory
+                }
+                Dim json As String = JsonConvert.SerializeObject(currentConfig, Formatting.Indented)
+                File.WriteAllText(AppInitModule.appConfigFilePath, json)
+                AppInitModule.webview2AppSourceDirectory = appSourceDirectory
+                MsgBox("設定成功")
+            Else
+                MsgBox("路徑不正確，找不到執行檔")
+                AppSourcePath_TextBox.Text = webview2AppSourceDirectory
+            End If
+
+        Catch ex As Exception
+            MsgBox("發生其他錯誤，請聯繫客服!")
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
+
 End Class

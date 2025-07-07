@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.IO.Pipes
+Imports Newtonsoft.Json
 
 Module UtilsModule
     Function IsProcessRunning(ByVal pid As Integer) As Boolean
@@ -40,6 +41,36 @@ Module UtilsModule
                      End Try
                  End Function)
     End Sub
+
+
+
+    Public Sub SaveAppConfigs(configs As AppConfigs, filePath As String)
+        Try
+            Dim json As String = JsonConvert.SerializeObject(configs, Formatting.Indented)
+            File.WriteAllText(filePath, json)
+        Catch ex As Exception
+            MessageBox.Show("儲存設定檔失敗：" & ex.Message)
+        End Try
+    End Sub
+
+
+    Public Function ReadAppConfigs(filePath As String) As AppConfigs
+        Try
+            If File.Exists(filePath) Then
+                Dim json As String = File.ReadAllText(filePath)
+                Return JsonConvert.DeserializeObject(Of AppConfigs)(json)
+            Else
+                ' 若檔案不存在就回傳預設值
+                Return New AppConfigs()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("讀取設定檔失敗：" & ex.Message)
+            Return New AppConfigs()
+        End Try
+    End Function
+
+
+
 
 
 End Module

@@ -141,6 +141,7 @@ Public Class MgrMainFormEventController
 
     Public Sub RevealAppSourceFolder_Button_Click(sender As Object, e As EventArgs)
         Try
+            Debug.WriteLine(AppInitModule.webview2AppSourceDirectory)
             Process.Start("explorer.exe", AppInitModule.webview2AppSourceDirectory)
         Catch ex As Exception
             Debug.WriteLine(ex)
@@ -326,7 +327,7 @@ Public Class MgrMainFormEventController
 
                 Dim folderName = selectedSW2AppListViewItems(0).SubItems(1).Text
                 'Debug.WriteLine(folderName)
-                Dim appConfigs As AppConfigs = GetAppConfigs(folderName)
+                Dim appConfigs As Webview2AppConfigs = GetAppConfigs(folderName)
                 Form1.SW2App_AutoRun_CheckBox.Checked = appConfigs.AutoRun
                 Form1.SW2App_AutoRunDelaySeconds_NumericUpDown.Value = appConfigs.AutoRunDelaySeconds
                 If appConfigs.ScheduledRun Then
