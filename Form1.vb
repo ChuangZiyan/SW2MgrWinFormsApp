@@ -59,6 +59,7 @@ Public Class Form1
 
 
     Private Async Sub StartBackgroundUpdate()
+        Debug.WriteLine("test")
         cts = New CancellationTokenSource()
         Dim token As CancellationToken = cts.Token
         Await Task.Run(Async Function()
