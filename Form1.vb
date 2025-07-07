@@ -7,6 +7,17 @@ Imports SW2MgrWinFormsApp.MainFormController
 
 Public Class Form1
 
+    ' 自定義的 MsgBox 方法，接受消息內容
+    Public Sub MsgBox(msg As String)
+        MessageBox.Show(msg, "Fb多開程式", MessageBoxButtons.OK)
+    End Sub
+
+    Public Sub MsgBox(ex As Exception)
+        ' 使用 ex.Message 來獲取錯誤消息
+        MessageBox.Show(ex.Message, "Fb多開程式", MessageBoxButtons.OK)
+    End Sub
+
+
     Public autoUpdateUI As Boolean = True
     Private cts As CancellationTokenSource ' 用來取消背景任務
     Private MgrMainFormEventController As New MgrMainFormEventController()
@@ -103,8 +114,37 @@ Public Class Form1
 
         ' 啟用背景更新
         StartBackgroundUpdate()
+
+        '在窗口調整大小時自動重新平衡列寬
+        BalanceColumnWidths_SW2App_ListView(SW2App_ListView)
     End Sub
 
+    Private Sub BalanceColumnWidths_SW2App_ListView(listView As System.Windows.Forms.ListView)
+        Dim columnCount As Integer = listView.Columns.Count
+        If columnCount = 0 Then Return
+
+        ' 计算可用的总宽度
+        Dim totalWidth As Integer = listView.ClientSize.Width - SystemInformation.VerticalScrollBarWidth
+
+        ' 计算新列数（排除第三列）
+        Dim newColumnCount As Integer = columnCount - 1
+        Dim columnWidth As Integer = 0
+
+        ' 如果还有其他列，则计算它们的宽度
+        If newColumnCount > 0 Then
+            columnWidth = totalWidth \ newColumnCount
+        End If
+
+        ' 设置每列的宽度
+        For i As Integer = 0 To columnCount - 1
+            Dim column As ColumnHeader = listView.Columns(i)
+            If i = 2 Then
+                column.Width = 0 ' 将第三列宽度设为0
+            Else
+                column.Width = columnWidth ' 其他列均分剩余宽度
+            End If
+        Next
+    End Sub
 
     Private Sub MainForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
 

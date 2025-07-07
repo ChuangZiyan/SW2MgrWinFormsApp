@@ -4,6 +4,17 @@ Imports Newtonsoft.Json
 
 Public Class MgrMainFormEventController
 
+    ' 自定義的 MsgBox 方法，接受消息內容
+    Public Sub MsgBox(msg As String)
+        MessageBox.Show(msg, "Fb多開程式", MessageBoxButtons.OK)
+    End Sub
+
+    Public Sub MsgBox(ex As Exception)
+        ' 使用 ex.Message 來獲取錯誤消息
+        MessageBox.Show(ex.Message, "Fb多開程式", MessageBoxButtons.OK)
+    End Sub
+
+
     Public Sub SW2App_ListView_DoubleClick(sender As Object, e As EventArgs)
         Try
             Dim selectedItem As ListViewItem = Form1.SW2App_ListView.SelectedItems(0)
@@ -40,7 +51,7 @@ Public Class MgrMainFormEventController
                 Dim app_pid = selectedItem.SubItems(0).Text
                 If app_pid <> "" Then
                     Dim pid As Integer = CInt(selectedItem.SubItems(0).Text)
-                    Dim process As Process = process.GetProcessById(pid)
+                    Dim process As Process = Process.GetProcessById(pid)
                     process.Kill()
                 End If
             Next
@@ -94,7 +105,7 @@ Public Class MgrMainFormEventController
                     Dim app_pid = selectedItem.SubItems(0).Text
                     If app_pid <> "" Then
                         Dim pid As Integer = CInt(selectedItem.SubItems(0).Text)
-                        Dim process As Process = process.GetProcessById(pid)
+                        Dim process As Process = Process.GetProcessById(pid)
                         process.Kill()
                     End If
                 Next
@@ -107,7 +118,7 @@ Public Class MgrMainFormEventController
                     Dim app_pid = selectedItem.SubItems(0).Text
                     If app_pid <> "" Then
                         Dim pid As Integer = CInt(selectedItem.SubItems(0).Text)
-                        Dim process As Process = process.GetProcessById(pid)
+                        Dim process As Process = Process.GetProcessById(pid)
                         process.Kill()
                     End If
 
@@ -225,7 +236,7 @@ Public Class MgrMainFormEventController
                     Dim app_pid = selectedItem.SubItems(0).Text
                     If app_pid <> "" Then
                         Dim pid As Integer = CInt(selectedItem.SubItems(0).Text)
-                        Dim process As Process = process.GetProcessById(pid)
+                        Dim process As Process = Process.GetProcessById(pid)
                         process.Kill()
                     End If
                 Next
@@ -364,7 +375,7 @@ Public Class MgrMainFormEventController
 
                     If app_status = "On" Then
                         Dim pid As Integer = CInt(selectedItem.SubItems(0).Text)
-                        Dim process As Process = process.GetProcessById(pid)
+                        Dim process As Process = Process.GetProcessById(pid)
                         process.Kill()
 
                         selectedItem.SubItems(0).Text = ""
@@ -487,7 +498,7 @@ Public Class MgrMainFormEventController
                     subItem.BackColor = Color.White
                     subItem.Font = Form1.SW2App_ListView.Font
 
-                ElseIf subItem.Text = form1.SW2APPSearchText_ComboBox.Text Then
+                ElseIf subItem.Text = Form1.SW2APPSearchText_ComboBox.Text Then
                     subItem.BackColor = Color.White
                     subItem.Font = Form1.SW2App_ListView.Font
                     Exit For
