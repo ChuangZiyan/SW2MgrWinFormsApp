@@ -181,7 +181,7 @@ Public Class Form1
         Try
             Dim appSourceDirectory As String = AppSourcePath_TextBox.Text.Trim()
 
-            If File.Exists(Path.Combine(appSourceDirectory, "auxiliaryprogram.exe")) Then
+            If File.Exists(Path.Combine(appSourceDirectory, "AuxCore.exe")) Then
 
                 Dim currentConfig As New AppConfigs With {
                     .AppSourceDirectory = appSourceDirectory

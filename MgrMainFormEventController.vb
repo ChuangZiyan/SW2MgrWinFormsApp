@@ -184,6 +184,11 @@ Public Class MgrMainFormEventController
                     SWAppCreatorModule.totalFiles = SWAppCreatorModule.GetTotalFiles(sourceFolder)
                     SWAppCreatorModule.UpdateFiles(sourceFolder, destinationPath)
 
+                    ' 標記一下是子程式
+                    File.Create(Path.Combine(destinationPath, "IsSubroutine"))
+                    '這邊要初始化一下sub app 的設定黨
+                    InitSubroutine(destinationPath)
+
                 Else
                     Debug.WriteLine("source not found")
                 End If
@@ -269,7 +274,7 @@ Public Class MgrMainFormEventController
 
         For Each selectedItem As ListViewItem In Form1.SW2App_ListView.SelectedItems
             Try
-                Dim exePath As String = Path.Combine(AppInitModule.webview2AppDirectory, selectedItem.SubItems(1).Text, "SW2WinFormsApp.exe")
+                Dim exePath As String = Path.Combine(AppInitModule.webview2AppDirectory, selectedItem.SubItems(1).Text, "AuxCore.exe")
                 'Debug.WriteLine("exepath : " & exePath)
                 If File.Exists(exePath) Then
                     'Form1.LaunchSeletedSW2App_Button.Enabled = False

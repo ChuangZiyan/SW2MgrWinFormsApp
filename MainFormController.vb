@@ -9,7 +9,6 @@ Module MainFormController
 
             Dim dirs As String() = Directory.GetDirectories(AppInitModule.webview2AppDirectory)
             For Each dir As String In dirs
-
                 Dim folderName As String = Path.GetFileName(dir)
                 Dim myProfile As Webview2AppProfile = GetProfile(folderName)
                 Dim myAppConfigs As Webview2AppConfigs = GetAppConfigs(folderName)
@@ -78,10 +77,6 @@ Module MainFormController
 
                     Form1.SW2App_ListView.Items.Add(sw2appListViewItem)
                 End If
-
-
-
-
 
             Next
             ' 更新字體樣式

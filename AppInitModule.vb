@@ -10,23 +10,21 @@ Module AppInitModule
 
     ' AppDataDirectory
     Private ReadOnly appdata_path As String = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)
-    Public ReadOnly appDataFolder As String = IO.Path.Combine(appdata_path, "auxiliaryprogram")
+    Public ReadOnly appDataFolder As String = IO.Path.Combine(appdata_path, "AuxCore")
 
     Public ReadOnly documentsPath As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
 
 
     ' 這是主控程式資料的路徑
-    Public ReadOnly appBaseDirectory As String = Path.Combine(documentsPath, "auxiliaryprogram_mgr")
+    Public ReadOnly appBaseDirectory As String = Path.Combine(documentsPath, "AuxMult")
     Public ReadOnly appConfigFilePath As String = Path.Combine(appBaseDirectory, "appConfig.json")
 
 
     ' 這邊是來源程式資料的路徑
-    Public ReadOnly sourceAppDirectory As String = Path.Combine(documentsPath, "auxiliaryprogram")
+    Public ReadOnly sourceAppConfigsDirectory As String = Path.Combine(documentsPath, "AuxCore")
 
 
     Public webview2AppSourceDirectory As String
-
-
 
 
 
@@ -82,12 +80,12 @@ Module AppInitModule
 
 
         Catch ex As Exception
-
+            Debug.WriteLine(ex)
         End Try
     End Sub
 
 
-    Public Sub ReadSourceAppProfile()
+    Public Function ReadSourceAppProfile()
         Try
             ' 這是用來讀取來源程式的設定檔
 
@@ -97,7 +95,7 @@ Module AppInitModule
                 .UUID = "N/A"
             }
 
-            Dim profile_path = Path.Combine(sourceAppDirectory, "appConfigs", "profile.json")
+            Dim profile_path = Path.Combine(sourceAppConfigsDirectory, "appConfigs", "profile.json")
 
             If File.Exists(profile_path) Then
 
@@ -108,14 +106,13 @@ Module AppInitModule
                 End If
                 Form1.SourceSW2AppVersion_TextBox.Text = profile.Version
             End If
-
+            Return profile
         Catch ex As Exception
             Debug.WriteLine(ex)
+            Return Nothing
         End Try
 
-    End Sub
-
-
+    End Function
 
 
     Public Function ReadAppConfigs() As AppConfigs
@@ -150,6 +147,28 @@ Module AppInitModule
             Return New AppConfigs()
         End Try
     End Function
+
+
+    Public Sub InitSubroutine(subApp_path)
+        Try
+
+            Dim subAppConfigDir As String = Path.Combine(subApp_path, "appConfigs")
+            Dim subAppConfigFile As String = Path.Combine(subAppConfigDir, "appConfigs.json")
+
+            ' 檢查目錄是否存在
+            If Not Directory.Exists(subAppConfigDir) Then
+                Directory.CreateDirectory(subAppConfigDir)
+            End If
+            Dim src_profile = ReadSourceAppProfile()
+            Dim jsonString As String = JsonConvert.SerializeObject(src_profile, Formatting.Indented)
+            File.WriteAllText(subAppConfigFile, jsonString)
+
+
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
 
 
 
