@@ -27,10 +27,8 @@ Module AppInitModule
     Public webview2AppSourceDirectory As String
 
 
-
-
-    ' 這是用來儲存 Webview2 應用程式的資料夾，要改成實際的路徑，還未完成!!!
-    Public ReadOnly webview2AppDirectory As String = Path.Combine(appBaseDirectory, "Webview2App")
+    ' 這是用來儲存 Webview2 應用程式的資料夾
+    Public ReadOnly webview2AppDirectory As String = Path.Combine(appBaseDirectory, "AuxCoreApps")
 
 
 
